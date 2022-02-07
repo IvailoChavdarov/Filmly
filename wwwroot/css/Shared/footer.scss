@@ -1,7 +1,7 @@
 ﻿@import '../Utility/_colors.scss';
 footer {
     background-color: $secondaryColor-dark;
-    height: 260px;
+    height: 270px;
     position: relative;
     bottom: 0px;
     left: 0px;
@@ -9,7 +9,7 @@ footer {
     border-top: 1px solid $secondaryColor-light;
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 10px;
+    padding-top: 20px;
 
     h5, h6, p, div {
         color: $textColor;
@@ -68,20 +68,20 @@ footer {
 
     #socialMedias li {
         list-style: none;
-        margin: 0 15px;
+        margin: 0 10px;
     }
 
     #socialMedias li a {
         position: relative;
         display: block;
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
         text-align: center;
-        line-height: 39px;
+        line-height: 46.8px;
         background: $secondaryColor-dark;
         border-radius: 50%;
-        font-size: 20px;
-        color: #666;
+        font-size: 24px;
+        color: $secondaryColor-light;
         transition: .5s;
     }
 
@@ -109,6 +109,45 @@ footer {
         box-shadow: 0 0 5px $mainColor;
         text-shadow: 0 0 5px $mainColor;
     }
+
+    #discordLink {
+        cursor: pointer;
+    }
+    //used
+    #socialMedias li a.used {
+        color: $successColor;
+        box-shadow: 0 0 5px $successColor;
+        text-shadow: 0 0 5px $successColor;
+        cursor: default;
+    }
+
+    #socialMedias li a.used:hover {
+        color: $successColor;
+        box-shadow: 0 0 5px $successColor;
+        text-shadow: 0 0 5px $successColor;
+    }
+
+    #socialMedias li a.used::before {
+        background: $successColor;
+    }
+
+    #socialMedias li a.used:hover::before {
+        box-shadow: 0 0 15px $successColor;
+    }
+
+    @media only screen and (max-width : 991px) {
+        #socialMedias li a {
+            color: $mainColor;
+        }
+    }
+
+    #usedTechnologiesMini a {
+        filter: brightness(70%);
+    }
+
+    #usedTechnologiesMini a:hover {
+        filter: brightness(100%);
+    }
 }
 .darkTheme {
     footer {
@@ -121,6 +160,10 @@ footer {
             a {
                 color: $textColor;
             }
+        }
+
+        #socialMedias li a {
+            background: darken($secondaryColor-dark, 10);
         }
     }
 }
@@ -143,7 +186,37 @@ footer {
         .closeButton:hover {
             opacity: 1;
         }
+
+        .fab, img {
+            margin-right: 5px;
+            margin-left: 3px;
+        }
+
+        .fa-html5 {
+            color: orangered;
+        }
+
+        .fa-css3-alt {
+            color: aqua;
+        }
+
+        .fa-js-square {
+            color: yellow;
+        }
+
+        .fa-bootstrap {
+            color: mediumpurple;
+        }
+
+        .fa-font-awesome{
+            color:deepskyblue;
+        }
+        .fa-sass{
+            color:deeppink;
+        }
     }
+
+
 
     button:focus {
         outline: none;
@@ -167,6 +240,123 @@ footer {
                 box-shadow:none;
                 border-radius:0px;
             }
+        }
+    }
+}
+
+
+//copy content popup
+.popup {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: $successColor;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    margin-bottom: 7px;
+    animation: fadeOut 1s;
+}
+
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: $successColor transparent transparent transparent;
+}
+
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+.popup.hide {
+    visibility: hidden;
+    -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+}
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+@media only screen and (max-width : 991px) {
+    footer {
+        height: fit-content;
+
+        .copyright-container {
+            position: relative;
+            margin-left: -30px;
+        }
+
+        #socialMedias {
+            display: block;
+            position: relative;
+
+            li {
+                display: inline-block;
+            }
+        }
+
+        #usedTechnologiesMini a {
+            filter: brightness(100%);
+        }
+
+        .col-lg-4 {
+            margin-bottom: 30px;
         }
     }
 }

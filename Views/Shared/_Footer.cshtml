@@ -1,6 +1,6 @@
 ﻿<footer class="footer text-muted" id="pageFooter">
     <div class="row mx-auto">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-sm-12">
             <h5>Filmly</h5>
             <hr />
             <h6>
@@ -13,42 +13,45 @@
                 <a asp-area="" asp-controller="Home" asp-action="Privacy">Building Filmly</a>
             </h6>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-sm-12">
             <h5>Used:</h5>
             <hr />
-            <p>
-                <a href="https://imdb-api.com/" target="_blank" class="NoLoader"><img src="~/img/logos/technologies/imdb-api.png" class="tech-icon" alt="IMDb-API" /></a>
-                <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" target="_blank" class="NoLoader"><img src="~/img/logos/technologies/aspnet.png" class="tech-icon" alt="ASP.NET" /></a>
-                <a href="https://cloudinary.com/" target="_blank" class="NoLoader"><img src="~/img/logos/technologies/cloudinary.png" class="tech-icon" alt="Cloudinary" /></a>
-                <a href="https://getbootstrap.com/" target="_blank" class="NoLoader"><img src="~/img/logos/technologies/bootstrap.png" class="tech-icon" alt="Bootstrap" /></a>
+            <p id="usedTechnologiesMini">
+                <a href="https://imdb-api.com/" target="_blank" class="NoLoader" rel="noopener"><img src="~/img/logos/technologies/imdb-api.png" class="tech-icon" alt="IMDb-API" /></a>
+                <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" target="_blank" class="NoLoader" rel="noopener"><img src="~/img/logos/technologies/aspnet.png" class="tech-icon" alt="ASP.NET" /></a>
+                <a href="https://cloudinary.com/" target="_blank" class="NoLoader" rel="noopener"><img src="~/img/logos/technologies/cloudinary.png" class="tech-icon" alt="Cloudinary" /></a>
+                <a href="https://getbootstrap.com/" target="_blank" class="NoLoader" rel="noopener"><img src="~/img/logos/technologies/bootstrap.png" class="tech-icon" alt="Bootstrap" /></a>
             </p>
             <p>
-                and <a href="" type="button" data-toggle="modal" data-target="#usedTechnologiesModal" class="NoLoader"><b>more...</b></a>
+                and <span type="button" data-toggle="modal" data-target="#usedTechnologiesModal" class="NoLoader"><b>more...</b></span>
             </p>
         </div>
-        <div class="col-lg-4">
-            <h5>Follow me</h5>
-            <hr />
+        <div class="col-lg-4 col-sm-12">
+            <h5>You can find me at</h5>
+            
             <ul id="socialMedias">
                 <li>
-                    <a href="#">
-                        <i class="fab fa-edge"></i>
+                    <div class="popup">
+                        <span class="popuptext" id="discordPopup">Copied discord name to clipboard!</span>
+                    </div>
+                    <a class="NoLoader" id="discordLink" onclick="copyDiscordName()">
+                        <i class="fab fa-discord"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fab fa-firefox"></i>
+                    <a class="NoLoader" href="https://www.instagram.com/ivailo_chavdarov/?hl=bg" aria-label="instagram" rel="noopener" target="_blank">
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fab fa-chrome"></i>
+                    <a class="NoLoader" href="https://www.facebook.com/ivailo.chavdarov.90" aria-label="facebook" rel="noopener" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
                     </a>
 
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fab fa-opera"></i>
+                    <a class="NoLoader" href="https://github.com/IvailoChavdarov" aria-label="github" rel="noopener" target="_blank">
+                        <i class="fab fa-github-alt"></i>
                     </a>
                 </li>
             </ul>
@@ -62,3 +65,15 @@
     </div>
 </footer>
 <partial name="_UsedTechnologiesModal" />
+<script>
+    function copyDiscordName() {
+        copyToClipboard('Ивайло Чавдаров#5796')
+        document.getElementById('discordLink').classList.add('used')
+        var popup = document.getElementById("discordPopup");
+        popup.classList.toggle("show");
+        setTimeout(() => {
+            document.getElementById('discordLink').classList.remove('used')
+            popup.classList.toggle("show");
+        }, 2500)
+    }
+</script>

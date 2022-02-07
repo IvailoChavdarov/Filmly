@@ -24,7 +24,9 @@ function collapseIconFunc(collapseIcon) {
 	}
 }
 
-
+function copyToClipboard(stringToCopy) {
+	navigator.clipboard.writeText(stringToCopy);
+}
 /*window.onscroll = function () { handleNavColor() };*/
 
 //function handleNavColor() {

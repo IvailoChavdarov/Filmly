@@ -1,6 +1,6 @@
 ﻿footer {
   background-color: #364954;
-  height: 260px;
+  height: 270px;
   position: relative;
   bottom: 0px;
   left: 0px;
@@ -8,7 +8,7 @@
   border-top: 1px solid #99AEBB;
   padding-left: 30px;
   padding-right: 30px;
-  padding-top: 10px; }
+  padding-top: 20px; }
   footer h5, footer h6, footer p, footer div {
     color: #E6F4F1;
     text-align: center; }
@@ -48,18 +48,18 @@
     transform: translate(-50%, -50%); }
   footer #socialMedias li {
     list-style: none;
-    margin: 0 15px; }
+    margin: 0 10px; }
   footer #socialMedias li a {
     position: relative;
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     text-align: center;
-    line-height: 39px;
+    line-height: 46.8px;
     background: #364954;
     border-radius: 50%;
-    font-size: 20px;
-    color: #666;
+    font-size: 24px;
+    color: #99AEBB;
     transition: .5s; }
   footer #socialMedias li a::before {
     content: '';
@@ -80,6 +80,28 @@
     color: #15AFE1;
     box-shadow: 0 0 5px #15AFE1;
     text-shadow: 0 0 5px #15AFE1; }
+  footer #discordLink {
+    cursor: pointer; }
+  footer #socialMedias li a.used {
+    color: #22BB33;
+    box-shadow: 0 0 5px #22BB33;
+    text-shadow: 0 0 5px #22BB33;
+    cursor: default; }
+  footer #socialMedias li a.used:hover {
+    color: #22BB33;
+    box-shadow: 0 0 5px #22BB33;
+    text-shadow: 0 0 5px #22BB33; }
+  footer #socialMedias li a.used::before {
+    background: #22BB33; }
+  footer #socialMedias li a.used:hover::before {
+    box-shadow: 0 0 15px #22BB33; }
+  @media only screen and (max-width: 991px) {
+    footer #socialMedias li a {
+      color: #15AFE1; } }
+  footer #usedTechnologiesMini a {
+    filter: brightness(70%); }
+  footer #usedTechnologiesMini a:hover {
+    filter: brightness(100%); }
 
 .darkTheme footer {
   background-color: #222e35; }
@@ -88,6 +110,8 @@
     color: #d4ece7; }
     .darkTheme footer .copyright-container a {
       color: #E6F4F1; }
+  .darkTheme footer #socialMedias li a {
+    background: #222e35; }
 
 #usedTechnologiesModal .modal-content .close {
   color: #15AFE1; }
@@ -101,6 +125,28 @@
 
 #usedTechnologiesModal .modal-content .closeButton:hover {
   opacity: 1; }
+
+#usedTechnologiesModal .modal-content .fab, #usedTechnologiesModal .modal-content img {
+  margin-right: 5px;
+  margin-left: 3px; }
+
+#usedTechnologiesModal .modal-content .fa-html5 {
+  color: orangered; }
+
+#usedTechnologiesModal .modal-content .fa-css3-alt {
+  color: aqua; }
+
+#usedTechnologiesModal .modal-content .fa-js-square {
+  color: yellow; }
+
+#usedTechnologiesModal .modal-content .fa-bootstrap {
+  color: mediumpurple; }
+
+#usedTechnologiesModal .modal-content .fa-font-awesome {
+  color: deepskyblue; }
+
+#usedTechnologiesModal .modal-content .fa-sass {
+  color: deeppink; }
 
 #usedTechnologiesModal button:focus {
   outline: none;
@@ -117,3 +163,88 @@
     border: 0px;
     box-shadow: none;
     border-radius: 0px; }
+
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #22BB33;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  margin-bottom: 7px;
+  animation: fadeOut 1s; }
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #22BB33 transparent transparent transparent; }
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s; }
+
+.popup.hide {
+  visibility: hidden;
+  -webkit-animation: fadeOut 1s;
+  animation: fadeOut 1s; }
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@media only screen and (max-width: 991px) {
+  footer {
+    height: fit-content; }
+    footer .copyright-container {
+      position: relative;
+      margin-left: -30px; }
+    footer #socialMedias {
+      display: block;
+      position: relative; }
+      footer #socialMedias li {
+        display: inline-block; }
+    footer #usedTechnologiesMini a {
+      filter: brightness(100%); }
+    footer .col-lg-4 {
+      margin-bottom: 30px; } }
