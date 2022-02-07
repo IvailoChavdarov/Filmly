@@ -1,0 +1,172 @@
+﻿@import '../Utility/_colors.scss';
+footer {
+    background-color: $secondaryColor-dark;
+    height: 260px;
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border-top: 1px solid $secondaryColor-light;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+
+    h5, h6, p, div {
+        color: $textColor;
+        text-align: center;
+
+        a {
+            color: $textColor;
+        }
+
+        a:hover {
+            color: $mainColor;
+        }
+
+        hr {
+            border-color: $secondaryColor-light;
+            width: 200px;
+        }
+    }
+
+    .col-lg-4 {
+        margin-bottom: 10px;
+    }
+
+    .tech-icon {
+        height: 40px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    .copyright-container {
+        background-color: darken($secondaryColor-dark, 10);
+        color: darken($textColor, 5);
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100vw;
+        padding: 20px;
+        border-top: 3px solid $secondaryColor-dark;
+
+        a {
+            color: $textColor;
+        }
+    }
+
+    #socialMedias {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #socialMedias li {
+        list-style: none;
+        margin: 0 15px;
+    }
+
+    #socialMedias li a {
+        position: relative;
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 39px;
+        background: $secondaryColor-dark;
+        border-radius: 50%;
+        font-size: 20px;
+        color: #666;
+        transition: .5s;
+    }
+
+    #socialMedias li a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: $mainColor;
+        transition: .5s;
+        transform: scale(.9);
+        z-index: -1;
+    }
+
+    #socialMedias li a:hover::before {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px $mainColor;
+    }
+
+    #socialMedias li a:hover {
+        color: $mainColor;
+        box-shadow: 0 0 5px $mainColor;
+        text-shadow: 0 0 5px $mainColor;
+    }
+}
+.darkTheme {
+    footer {
+        background-color: darken($secondaryColor-dark, 10);
+
+        .copyright-container {
+            background-color: darken($secondaryColor-dark, 20);
+            color: darken($textColor, 5);
+
+            a {
+                color: $textColor;
+            }
+        }
+    }
+}
+
+//used technologies modal
+#usedTechnologiesModal {
+    .modal-content {
+        .close {
+            color: $mainColor;
+        }
+
+        button.closeButton {
+            background-color: $mainColor;
+            border: 0px;
+            box-shadow: none;
+            border-radius: 0px;
+            opacity: 0.7;
+        }
+
+        .closeButton:hover {
+            opacity: 1;
+        }
+    }
+
+    button:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+.darkTheme {
+    #usedTechnologiesModal {
+        .modal-content {
+            background-color: $secondaryColor-dark;
+            color: $textColor;
+
+            .close {
+                text-shadow: none;
+                color: $mainColor;
+            }
+
+            button.closeButton {
+                background-color: $mainColor;
+                border:0px;
+                box-shadow:none;
+                border-radius:0px;
+            }
+        }
+    }
+}

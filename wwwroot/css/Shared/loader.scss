@@ -1,0 +1,58 @@
+﻿@import "../Utility/_colors.scss";
+#loaderContainer {
+    overflow:hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    top: 0;
+    background-color: rgba(255,255,255,.4);
+    display: none;
+}
+.lds-facebook {
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    //left: 6px;
+    width: 19.5px;
+    background: $mainColor;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: -30px;
+    animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+    left: 0px;
+    animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+    left: 30px;
+    animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+    0% {
+        top: 6px;
+        height: 114.75px;
+    }
+
+    50%, 100% {
+        top: 19px;
+        height: 58.5px;
+    }
+}

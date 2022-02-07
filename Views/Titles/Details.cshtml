@@ -1,0 +1,48 @@
+﻿@model TitleDetailsVM
+<partial name="_BreadcrumbPartial" />
+<table>
+    <tr>
+        <td>@Model.TitleFullData.FullTitle</td>
+        <td><img src="@Model.TitleFullData.Image" alt="Alternate Text" /></td>
+    </tr>
+    <tr>
+        <td>@Model.TitleFullData.Plot</td>
+    </tr>
+</table>
+@if (!Model.InUserFavourites)
+{
+    <a asp-action="AddTo" asp-route-collection="favourites" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO FAVOURITES</a>
+}
+else
+{
+    <a asp-action="RemoveFrom" asp-route-collection="favourites" asp-route-Movieid="@Model.TitleFullData.IdInApi">REMOVE FROM FAVOURITES</a>
+}
+@if (!Model.InUserWatchList)
+{
+    <a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>
+}
+else
+{
+    <a asp-action="RemoveFrom" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi">REMOVE FROM WATCHLIST</a>
+}
+
+    @if (Model.Success.HasValue)
+    {
+        @if (Model.Success.Value)
+        {
+            //PARTIAL VIEW WITH THE MESSAGE
+            <p class="text-success" id="AlertMessage">@Model.TitleFullData.FullTitle was successfully @Model.Change your @Model.Target!</p>
+        }
+        else
+        {
+            <p class="text-danger" id="AlertMessage">@Model.TitleFullData.FullTitle was not successfully @Model.Change your @Model.Target!</p>
+        }
+        <script>
+            setTimeout(() => {
+                if (document.getElementById("AlertMessage")) {
+                    document.getElementById("AlertMessage").style.display = "none"
+                }
+            }, 5000);
+            
+        </script>
+    }

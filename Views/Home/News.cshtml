@@ -1,0 +1,25 @@
+﻿@model NewsVM
+    <partial name="_BreadcrumbPartial" />
+@foreach (var item in Model.News)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Html.Raw(item.Title)</h5>
+            <p class="card-text">@Html.Raw(item.Description)</p>
+            <a href="#" class="btn btn-primary">@Html.Raw(item.PubDate)</a>
+        </div>
+    </div>
+@*<h1>@item.title</h1>
+    <p>@item.Description</p>
+    <p>@item.PubDate</p>*@
+}
+<script>
+    function Parse() {
+        var stringToHTML = function (str) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(str, 'text/html');
+            return doc.body;
+        }
+
+
+</script>

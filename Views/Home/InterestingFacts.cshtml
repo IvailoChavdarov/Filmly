@@ -1,0 +1,8 @@
+﻿@model InterestingFactsVM
+<partial name="_BreadcrumbPartial">
+    @foreach (var item in Model.Events)
+    {
+        <h1>@item.FactTitle</h1>
+        <p>@item.FactInfo</p>
+        <img src="@item.FactImage" alt="Alternate Text" />
+    }

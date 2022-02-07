@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Titles>
+    <H1>Watchlist</H1>
+    <table>
+        @foreach (var title in Model)
+        {
+            <tr>
+                <td>@title.FullTitle</td>
+                <td><a href="#"><img src="@title.Image" alt="Alternate Text" /></a></td>
+            </tr>
+        }
+
+    </table>

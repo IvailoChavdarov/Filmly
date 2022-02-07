@@ -1,0 +1,37 @@
+﻿@model IViewModelWithBreadcrumb
+<nav class="breadcrumb">
+    @if (Model.BreadcrumbData.ControllerName != "Home" && Model.BreadcrumbData.ControllerName != "home")
+    {
+        <a asp-controller="home" asp-action="index">Home</a>
+    }
+    @if (!Model.BreadcrumbData.HiddenController)
+    {
+        @if (Model.BreadcrumbData.ControllerName != "Home" && Model.BreadcrumbData.ControllerName != "home")
+        {
+            <span class="breadcrumbSeparator"> > </span>
+        }
+
+        <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="index">@Model.BreadcrumbData.ControllerPublicName</a>
+
+    }
+    @if (!string.IsNullOrEmpty(Model.BreadcrumbData.ActionName))
+    {
+        if (!Model.BreadcrumbData.HiddenAction)
+        {
+            <span class="breadcrumbSeparator"> > </span> <a asp-action="@Model.BreadcrumbData.ActionName">@Model.BreadcrumbData.ActionPublicName</a>
+        }
+        if (Model.BreadcrumbData.IdPublicName == "Cast")
+        {
+            <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.ActionPublicName</a>
+            <span class="breadcrumbSeparator"> > </span> <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="Cast" asp-route-id="@Model.BreadcrumbData.IdName">Cast</a>
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(Model.BreadcrumbData.IdPublicName))
+            {
+                <span class="breadcrumbSeparator"> > </span> <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.IdPublicName</a>
+            }
+        }
+
+    }
+</nav>

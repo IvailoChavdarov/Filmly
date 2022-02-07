@@ -1,0 +1,62 @@
+﻿@model TitleCastVM
+    <partial name="_BreadcrumbPartial" />
+<a asp-action="details" asp-route-id="@Model.TitleData.ImDbId">@Model.TitleData.FullTitle</a>
+@if (Model.TitleData.Actors.Length > 0)
+{
+    <h1>Actors:</h1>
+    @foreach (var actor in Model.TitleData.Actors)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@actor.Image" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@actor.Name in the role of @actor.AsCharacter</h5>
+            </div>
+        </div>
+    }
+}
+@if (Model.TitleData.Directors.Items.Length > 0)
+{
+    <h1>Directors:</h1>
+    @foreach (var director in Model.TitleData.Directors.Items)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@director.Name</h5>
+                <p>@director.Description</p>
+            </div>
+        </div>
+    }
+}
+@if (Model.TitleData.Writers.Items.Length > 0)
+{
+    <h1>Writen by:</h1>
+    @foreach (var writer in Model.TitleData.Writers.Items)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@writer.Name</h5>
+                <p>@writer.Description</p>
+            </div>
+        </div>
+    }
+}
+@if (Model.TitleData.Others.Length > 0)
+{
+    <h1>Others:</h1>
+    @foreach (var other in Model.TitleData.Others)
+    {
+        if (other.Items.Length>0)
+        {
+            <h3>@other.Job</h3>
+           @foreach (var otherMember in other.Items)
+           {
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@otherMember.Name</h5>
+        <p>@otherMember.Description</p>
+    </div>
+</div>
+           }
+        }
+    }
+}

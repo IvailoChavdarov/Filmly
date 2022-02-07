@@ -1,0 +1,21 @@
+﻿@model HomePageData
+<div class="CardCollectionContainer">
+    <h1>In theaters</h1>
+    <div class="CardContainer" id="inTheatersCardContainer">
+        @foreach (var movie in Model.InTheaters.Items)
+        {
+            <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
+                <div class="card" style="width:12rem;">
+                    <img class="card-img-top" src="@movie.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p>@movie.ReleaseState</p>
+                    </div>
+                </div>
+            </a>
+        }
+        <button class="ScrollRightButton NoLoader ScrollButton" id="inTheatersScrollRightButton"><i class="fas fa-chevron-circle-left fa-4x"></i></button>
+        <button class="ScrollLeftButton NoLoader ScrollButton" id="inTheatersScrollLeftButton"><i class="fas fa-chevron-circle-right fa-4x"></i></button>
+    </div>
+
+</div>

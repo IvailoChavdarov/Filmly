@@ -1,0 +1,124 @@
+﻿.cards-wrapper {
+  display: flex;
+  justify-content: center; }
+
+.card img {
+  max-width: 100%;
+  max-height: 100%; }
+
+.card {
+  margin: 0 0;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+  border-radius: 0;
+  word-wrap: break-word;
+  transform: scale(0.9);
+  overflow: hidden; }
+
+.carousel-inner {
+  padding: 0.5rem; }
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #e1e1e1;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%); }
+
+@media (min-width: 768px) {
+  .CardImage {
+    width: 5vw; } }
+
+@media (min-width: 1920px) {
+  .ComingSoonContainer {
+    width: 1920px;
+    margin: auto; } }
+
+.CardContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  padding: 10px 0;
+  overflow: auto;
+  scroll-behavior: smooth; }
+  @media (min-width: 768px) {
+    .CardContainer {
+      overflow: hidden; } }
+  .CardContainer .card {
+    box-sizing: border-box;
+    min-height: 300px;
+    box-shadow: 0 1px 2px #000;
+    flex-shrink: 0;
+    background: #fff;
+    height: 40vh; }
+  .CardContainer .card + .card {
+    margin-left: 10px; }
+
+.ScrollLeftButton, .ScrollRightButton {
+  all: unset;
+  position: absolute;
+  /*    top: 50%;*/
+  /*    transform: translateY(-50%);*/
+  margin-top: 7%;
+  z-index: 2; }
+
+.ScrollLeftButton {
+  right: -5rem; }
+
+.ScrollRightButton {
+  left: -5rem; }
+
+.card-body {
+  padding-top: 1vh; }
+
+@media (max-width: 768px) {
+  .ScrollButton {
+    display: none; } }
+
+.boxOfficeContainer {
+  overflow-y: scroll;
+  width: 50%;
+  /*    display:inline-block;
+    width:50%*/ }
+
+.boxOfficeContainer::-webkit-scrollbar {
+  width: 10px; }
+
+.sliders, #weeklyBoxOffice {
+  height: 900px;
+  margin-bottom: 40px; }
+
+.boxOfficeContainer {
+  height: 844px; }
+
+.boxOfficeOverlay {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s; }
+
+.boxOfficeCard:hover .boxOfficeOverlay {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0.5s; }
+
+@media (max-width: 768px) {
+  .boxOfficeOverlay {
+    visibility: visible;
+    opacity: 1; }
+  .boxOfficeContainer {
+    padding-left: 0;
+    overflow: unset;
+    width: 75vw; }
+    .boxOfficeContainer .card {
+      width: 80vw; }
+  .vertical-card-group-boxOffice {
+    display: inline-block;
+    max-height: 80vh;
+    overflow-y: scroll;
+    text-align: center; }
+  .vertical-card-group-boxOffice::-webkit-scrollbar {
+    width: 0;
+    height: 0; } }

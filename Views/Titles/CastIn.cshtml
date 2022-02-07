@@ -1,0 +1,23 @@
+﻿@model ActorCastInVM
+    <partial name="_BreadcrumbPartial" />
+<h1>@Model.ActorData.Name</h1>
+<h2>Popular works:</h2>
+@foreach (var title in Model.ActorData.KnownFor)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <img class="card-img-top" src="@title.Image" alt="Card image cap">
+            <h5 class="card-title">@title.Role in @title.FullTitle</h5>
+        </div>
+    </div>
+}
+<h2>All appearances:</h2>
+@foreach (var title in Model.ActorData.CastMovies)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@title.Role in @title.Title</h5>
+            <p>@title.Description</p>
+        </div>
+    </div>
+}

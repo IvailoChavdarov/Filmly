@@ -1,0 +1,132 @@
+﻿@{string randomTitleId = RandomTitle.GetRandomTitleId();}
+<nav id="topNav" class="navbar navbar-expand-lg">
+
+    <a class="navbar-brand" asp-controller="home" asp-action="index" id="homeIcon"><img src="~/img/logos/logo-transparent.svg" alt="Filmly" /></a>
+    <div class="collapse navbar-collapse" id="navBarContent">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item hiddenOnMobile">
+                <a class="nav-link NoLoader" id="homeDropdownButton"><i class="fas fa-caret-square-up" id="homeDropdownIndicator"></i> Menu</a>
+            </li>
+            <li class="nav-item hiddenOnTablet">
+                <a class="nav-link" asp-controller="titles" asp-action="details" asp-route-id="@randomTitleId"><i class="fas fa-random"></i> Random</a>
+            </li>
+            <li class="nav-item hiddenOnBigScreen" id="themeSwitcherMobile" onclick="switchTheme()">
+                <i class="fas fa-lg" id="themeIdenticatorMobile"></i>
+            </li>
+        </ul>
+
+    </div>
+    <partial name="_SearchPartial" />
+    <partial name="_UserNavigationPartial" />
+        <div id="mobileMenuToggler" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    <button id="themeSwitcher" class="NoLoader hiddenOnMobile" onclick="switchTheme()" title="switchTheme"><i class="fas fa-lg" id="themeIdenticator"></i></button>
+</nav>
+<nav id="topNavDropdown">
+    <hr  class="hiddenOnMobile" /> 
+    <content class="container row mx-auto hiddenOnMobile">
+        <div class="col-lg-3 col-sm-6 justify-content-center">
+            <a asp-controller="home" asp-action="index"><h4><i class="fas fa-sm fa-home text-mainColor"></i><span>Home</span></h4></a>
+            <a asp-controller="home" asp-action="history" class="dropdownNav-link">History</a>
+            <a asp-controller="home" asp-action="interestingfacts" class="dropdownNav-link">Interesting facts</a>
+            <a asp-controller="home" asp-action="news" class="dropdownNav-link">News</a>
+        </div>
+        <div class="col-lg-3 col-sm-6 justify-content-center">
+            <a asp-controller="titles" asp-action="index"><h4><i class="fas fa-sm fa-film text-mainColor"></i><span>Movies</span></h4></a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-movies" class="dropdownNav-link">Top 250 movies</a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-movies" class="dropdownNav-link">Most popular movies</a>
+            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended movies <i class="fas fa-spinner"></i></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 justify-content-center">
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows"><h4><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV shows</span></h4></a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows" class="dropdownNav-link">Top 250 TV shows</a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-shows" class="dropdownNav-link">Most popular TV shows</a>
+            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended TV shows <i class="fas fa-spinner"></i></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 justify-content-center">
+            <a asp-controller="social" asp-action="index"><h4><i class="fas fa-sm fa-users text-mainColor"></i><span>Social</span></h4></a>
+            <a asp-controller="social" asp-action="forum" class="dropdownNav-link">Forum</a>
+            <a asp-controller="social" asp-action="articles" class="dropdownNav-link">Articles</a>
+            <a asp-controller="social" asp-action="feedback" class="dropdownNav-link">Leave feedback</a>
+        </div>
+    </content>
+</nav>
+<i class="fas fa-lg text-mainColor fa-chevron-up" id="scrollArrow"></i>
+<menu id="mobileMenu">
+    <ul>
+        <li class="nav-item hiddenOnBigScreen">
+            <h5><i class="fas fa-sm fa-search text-mainColor"></i><span>Search</span></h5>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <form asp-controller="movies" asp-action="index" method="get">
+                <input type="search" aria-label="search" placeholder="Search for a title, actor or keyword">
+                <button type="submit" aria-label="start search"><i class="fas fa-search fa-sm"></i></button>
+            </form>
+        </li>
+        <hr />
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="home" asp-action="index"><h5><i class="fas fa-sm fa-home text-mainColor"></i><span>Home</span></h5></a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="home" asp-action="history" class="dropdownNav-link">History</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="home" asp-action="interestingfacts" class="dropdownNav-link">Interesting facts</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="home" asp-action="news" class="dropdownNav-link">News</a>
+        </li>
+        <hr />
+        <li class="nav-item hiddenOnBigScreen">
+            <h5><i class="fas fa-sm fa-user text-mainColor"></i><span>Account</span></h5>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a class="dropdownNav-link" asp-area="identity" asp-page="/account/manage/index">Manage</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a class="dropdownNav-link" asp-controller="collection" asp-action="index">Saved</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <form class="form-inline" asp-area="Identity" asp-page="/account/logout" asp-route-returnUrl="@Url.Action("index", "home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link">Sign out</button>
+            </form>
+        </li>
+        <hr />
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="titles" asp-action="index"><h5><i class="fas fa-sm fa-film text-mainColor"></i><span>Movies</span></h5></a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-movies" class="dropdownNav-link">Top 250 movies</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-movies" class="dropdownNav-link">Most popular movies</a>
+        </li>
+        <hr />
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows"><h5><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV shows</span></h5></a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows" class="dropdownNav-link">Top 250 TV shows</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-shows" class="dropdownNav-link">Most popular TV shows</a>
+        </li>
+        <hr />
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="social" asp-action="index"><h5><i class="fas fa-sm fa-users text-mainColor"></i><span>Social</span></h5></a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="social" asp-action="forum" class="dropdownNav-link">Forum</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="social" asp-action="articles" class="dropdownNav-link">Articles</a>
+        </li>
+        <li class="nav-item hiddenOnBigScreen">
+            <a asp-controller="social" asp-action="feedback" class="dropdownNav-link">Leave feedback</a>
+        </li>
+    </ul>
+</menu>

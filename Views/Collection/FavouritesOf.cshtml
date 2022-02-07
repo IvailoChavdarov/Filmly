@@ -1,0 +1,11 @@
+﻿@model AppUser_FavouritePairVM
+@if (string.IsNullOrEmpty(Model.ErrorMessage))
+    foreach (var item in Model.Favourites)
+    {
+		<h1>@item.FullTitle <img src="@item.Image" alt="Alternate Text" /></h1>
+    }
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <h1>@Model.ErrorMessage</h1>
+}

@@ -1,0 +1,50 @@
+﻿@model HomePageData
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*<partial name="_HomeJumbotronPartial" />*@
+<div class="row margin-md" id="newMoviesSlider">
+    @*<div class="sliders col-12 col-lg-8">
+            <partial name="_ComingSoonPartial" />
+            <partial name="_InTheatersPartial" />
+        </div>*@
+    @*<div class="col-12 col-lg-4" id="weeklyBoxOffice">
+            <h1 class="mx-auto">Weekly box office</h1>
+            <div class="vertical-card-group-boxOffice">
+                <div class="boxOfficeContainer mx-auto">
+                    @foreach (var item in Model.WeekendBoxOffice.Items)
+                    {
+                        <a asp-controller="movies" asp-action="details" asp-route-id="@item.Id">
+                            <div class="card bg-dark text-white mx-auto boxOfficeCard">
+                                <img class="card-img" src="@item.Image" alt="Card image">
+                                <div class="card-img-overlay boxOfficeOverlay" style="background-color:rgba(0,0,0,0.5)">
+                                    <h3 class="card-title">@item.Title</h3>
+                                    <h4 class="card-title">@item.Gross</h4>
+                                    <h5>
+                                        in @item.Weeks
+                                        @if (int.Parse(item.Weeks) > 1)
+                                        {
+                                            <span>weeks</span>
+                                        }
+                                        else
+                                        {
+                                            <span>week</span>
+                                        }
+                                    </h5>
+                                    <h5>@item.Weekend this weekend.</h5>
+                                </div>
+                            </div>
+                        </a>
+                    }
+
+                </div>
+            </div>
+        </div>*@
+    asd
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>
+<script src="~/js/CollectionScroller.js"></script>
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@

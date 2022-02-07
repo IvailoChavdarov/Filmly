@@ -1,0 +1,11 @@
+﻿@model ActorDetailsVM
+<partial name="_BreadcrumbPartial" />
+<table>
+    <tr>
+        <td>@Model.Data.Name</td>
+        <td><img src="@Model.Data.Image" alt="Alternate Text" /></td>
+    </tr>
+    <tr>
+        <td>@Model.Data.Summary</td>
+    </tr>
+</table>

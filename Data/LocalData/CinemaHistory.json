@@ -1,0 +1,32 @@
+[
+    {
+        "EventTitle": "Created event",
+        "EventInfo": "First created event ever happened on that date",
+        "EventImage": "https://i2.wp.com/www.dasym.com/wp-content/uploads/2017/07/Cinema-Image-by-Alexandre-Chassignon-on-Flickr.jpg?fit=2304%2C1728&ssl=1",
+        "EventDate": {
+            "EventYear": "1860",
+            "EventMonth": 9,
+            "EventDay": "26"
+        }
+    },
+    {
+        "EventTitle": "Created event 2",
+        "EventInfo": "Second created event ever happened on that date",
+        "EventImage": "https://www.cinemacity.bg/xmedia/img/10106/cinema_card.jpg",
+        "EventDate": {
+            "EventYear": "1861",
+            "EventMonth": 1,
+            "EventDay": "01"
+        }
+    },
+    {
+        "EventTitle": "Created event 3",
+        "EventInfo": "Third created event ever happened on that date",
+        "EventImage": "https://ichef.bbci.co.uk/news/976/cpsprodpb/18459/production/_117371499_gettyimages-1215359845.jpg",
+        "EventDate": {
+            "EventYear": "1862",
+            "EventMonth": 12,
+            "EventDay": "31"
+        }
+    }
+]

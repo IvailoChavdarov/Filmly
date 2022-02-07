@@ -1,0 +1,58 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/StyleSheet.css",
+    "inputFile": "wwwroot/css/StyleSheet.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Colors.css",
+    "inputFile": "wwwroot/css/Colors.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Loader.css",
+    "inputFile": "wwwroot/css/Loader.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/navigatior.css",
+    "inputFile": "wwwroot/css/navigatior.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/carousel.css",
+    "inputFile": "wwwroot/css/Home/carousel.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Main.css",
+    "inputFile": "wwwroot/css/Main.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/jumbotron.css",
+    "inputFile": "wwwroot/css/Home/jumbotron.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/colorThemes.css",
+    "inputFile": "wwwroot/css/colorThemes.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/history.css",
+    "inputFile": "wwwroot/css/Home/history.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/loader.css",
+    "inputFile": "wwwroot/css/Shared/loader.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/colorThemes.css",
+    "inputFile": "wwwroot/css/Shared/colorThemes.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/main.css",
+    "inputFile": "wwwroot/css/Shared/main.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/navigatior.css",
+    "inputFile": "wwwroot/css/Shared/navigatior.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/footer.css",
+    "inputFile": "wwwroot/css/Shared/footer.scss"
+  }
+]

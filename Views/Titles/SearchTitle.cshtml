@@ -1,0 +1,18 @@
+﻿@model SearchResultVM
+@if (Model == null)
+{
+    <h1>search for</h1>
+}
+else
+{
+    <h1>Results for: @Model.Expression</h1>
+    <table>
+        @foreach (var result in Model.Results)
+        {
+            <tr>
+                <td>@result.Title</td>
+                <td><a asp-controller="movies" asp-action="details" asp-route-id="@result.Id"><img src="@result.Image" alt="Alternate Text" /></a></td>
+            </tr>
+        }
+    </table>
+}

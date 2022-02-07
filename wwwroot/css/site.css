@@ -1,0 +1,13 @@
+﻿/*#collapseToggler{
+    display:none;
+}
+@media only screen and (max-width : 576px) {
+    #logo{
+        display:none;
+    }
+    #collapseToggler{
+        display:inline-block;
+    }
+}
+
+*/

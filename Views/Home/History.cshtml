@@ -1,0 +1,26 @@
+﻿@model HistoryEventsVM
+<link rel="stylesheet" href="~/css/Home/history.css" />
+<partial name="_BreadcrumbPartial" />
+
+<div class="vl"></div>
+<nav id="eventsNav">
+
+    <ul>
+
+        @foreach (var item in Model.Events)
+        {
+            <li><a id="@item.EventDate.ToStringWithConnector()" class="NoLoader EventScroll"><span>@NameSimplifiers.Months[item.EventDate.EventMonth] @item.EventDate.EventYear</span></a></li>
+        }
+    </ul>
+</nav>
+<div class="margin-md_lg" id="eventsContainer">
+    @foreach (var item in Model.Events)
+    {
+    <div class="event" id="@item.EventDate.ToStringWithConnector()_data">
+        <h1 >@item.EventTitle</h1>
+        <p>@item.EventInfo</p>
+        <img src="@item.EventImage" alt="Alternate Text" />
+    </div>
+    }
+</div>
+<script src="~/js/TimelineScroller.js"></script>
