@@ -1,20 +1,19 @@
-﻿<link rel="stylesheet" href="~/css/Home/jumbotron.css" />
-<div class="jumbotron-fluid">
-
-
+﻿<div class="jumbotron-fluid">
     <content class="jumbotron-container text-center">
-        @if (User.Identity.IsAuthenticated)
-        {
-            <h1 class="display-3 jumbotron-text"><span class="welcomeText">Welcome again to</span> Filmly!</h1>
-            <p class="lead jumbotron-text">Discover new movies and TV series. Find ratings and reviews for the newest movie and TV shows. Create your watchlist. Share your favourites.</p>
-            <a class="jumbotron-button jumbotron-text" asp-controller="collection">Go to your watchlist</a>
-        }
-        else
-        {
-            <h1 class="display-3 jumbotron-text"><span class="welcomeText">Welcome to</span> Filmly!</h1>
-            <p class="lead jumbotron-text">Discover new movies and TV series. Find ratings and reviews for the newest movie and TV shows. Create your watchlist. Share your favourites.</p>
-            <a class="jumbotron-button jumbotron-text" asp-area="Identity" asp-page="/Account/Register">Register now</a>
-        }
+        <div class="jumbotron-textbox">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h1 class="display-3 jumbotron-text"><span class="welcomeText">Welcome again to</span> Filmly!</h1>
+                <p class="lead jumbotron-text">Discover new movies and TV series. Find ratings and reviews for the newest movie and TV shows. Create your watchlist. Share your favourites.</p>
+                <a class="jumbotron-button" asp-controller="collection">Go to your watchlist</a>
+            }
+            else
+            {
+                <h1 class="display-3 jumbotron-text"><span class="welcomeText">Welcome to</span> Filmly!</h1>
+                <p class="lead jumbotron-text">Discover new movies and TV series. Find ratings and reviews for the newest movie and TV shows. Create your watchlist. Share your favourites.</p>
+                <a class="jumbotron-button" asp-area="Identity" asp-page="/Account/Register">Register now</a>
+            }
+        </div>
     </content>
 
 </div>

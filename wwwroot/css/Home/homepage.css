@@ -1,0 +1,25 @@
+﻿@import url(jumbotron.css);
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+#topNav {
+  background-color: transparent;
+  backdrop-filter: blur(4px);
+  position: absolute;
+  width: 100%;
+  animation: 0.3s ease-out 0s 0.3 slideInFromTop; }
+
+#topNavDropdown {
+  top: 70px;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  border-bottom: 0px; }

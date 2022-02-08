@@ -2,7 +2,11 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-@*<partial name="_HomeJumbotronPartial" />*@
+@section heads
+{
+    <link href="@Url.Content("~/css/Home/homepage.css")" rel="stylesheet" type="text/css" />
+}
+<partial name="_HomeJumbotronPartial" />
 <div class="row margin-md" id="newMoviesSlider">
     @*<div class="sliders col-12 col-lg-8">
             <partial name="_ComingSoonPartial" />
@@ -40,11 +44,11 @@
                 </div>
             </div>
         </div>*@
-    asd
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    @*asd
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />*@
 </div>
 <script src="~/js/CollectionScroller.js"></script>
 @*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@

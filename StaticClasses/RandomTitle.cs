@@ -57,7 +57,8 @@ namespace Filmly.StaticClasses
             {"tt1951264", "The Hunger Games: Catching Fire" },
             {"tt0087928", "Police Academy" },
             {"tt1291150", "Teenage Mutant Ninja Turtles" },
-            {"tt0477347", "Night at the Museum" }
+            {"tt0477347", "Night at the Museum" },
+            {"tt6966692", "Green Book" }
         };
         public static string GetRandomTitleId()
         {

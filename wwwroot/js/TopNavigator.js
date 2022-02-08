@@ -65,6 +65,6 @@ function toggleMobileMenu() {
 }
 handleScrollArrow()
 handleIcon()
-if (document.getElementsByTagName('body')[0].clientHeight < window.innerHeight) {
+if (document.getElementsByTagName('body')[0].height < window.innerHeight - 100) {
     document.getElementById('pageFooter').style.position="absolute"
 }

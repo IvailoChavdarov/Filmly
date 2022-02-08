@@ -1,8 +1,10 @@
 ﻿@import '../Utility/_colors.scss';
+@import '../Utility/_timings.scss';
 $dropdownNavOpeningDuration:0.5s;
 $dropdownNavClosingDuration: 0.3s;
 $searchBarRounding:3px;
 $searchBarHeight:35px;
+
 #topNav {
     background-color: $secondaryColor-dark;
     padding-bottom: 5px;
@@ -80,10 +82,13 @@ $searchBarHeight:35px;
             width: 100px;
             color: $secondaryColor-dark;
             cursor: pointer;
+            transition: color $changeThemeAnimationTime ease, background-color $changeThemeAnimationTime ease;
         }
-        option{
-            cursor:pointer;
+
+        option {
+            cursor: pointer;
         }
+
         input {
             padding-left: 5px;
             border: 2px solid $secondaryColor-light;
@@ -93,6 +98,7 @@ $searchBarHeight:35px;
             width: 600px;
             background-color: white;
             color: $secondaryColor-dark;
+            transition: color $changeThemeAnimationTime ease, background-color $changeThemeAnimationTime ease;
         }
 
         button {
@@ -104,6 +110,7 @@ $searchBarHeight:35px;
             background-color: white;
             width: 35px;
             color: $textColor;
+            transition: color $changeThemeAnimationTime ease, background-color $changeThemeAnimationTime ease;
         }
     }
 
@@ -192,7 +199,6 @@ $searchBarHeight:35px;
             padding-right: 15px;
             color: white;
         }
-
     }
 
     @media only screen and (max-width : 1305px) {
@@ -254,6 +260,7 @@ $searchBarHeight:35px;
         color: #F4F6F0;
     }
 }
+
 #topNavDropdown {
     position: absolute;
     border-bottom: 5px solid $mainColor;
@@ -304,6 +311,7 @@ $searchBarHeight:35px;
         cursor: pointer;
     }
 }
+
 #topNavDropdown.open {
     height: 280px;
     -webkit-transition: height, $dropdownNavOpeningDuration linear;
@@ -312,30 +320,36 @@ $searchBarHeight:35px;
     -o-transition: height, $dropdownNavOpeningDuration linear;
     transition: height, $dropdownNavOpeningDuration linear;
 }
+
 #scrollArrow{
     cursor:pointer;
     position:fixed;
     left:15px;
     top:30px;
 }
+
 .darkTheme {
     #topNav {
         #navSearchBar {
             select {
                 background-color: $secondaryColor-light;
                 color: white;
+                transition: color $changeThemeAnimationTime ease, background-color $changeThemeAnimationTime ease;
             }
 
             input {
                 background-color: $secondaryColor-light;
                 color: white;
+                transition: color $changeThemeAnimationTime ease, background-color $changeThemeAnimationTime ease;
             }
 
             button {
                 background-color: $secondaryColor-light;
+                transition: color $changeThemeAnimationTime ease, background-color $changeThemeAnimationTime ease;
 
                 .fas {
                     color: white;
+                    transition: color $changeThemeAnimationTime ease;
                 }
             }
         }
@@ -359,11 +373,11 @@ $searchBarHeight:35px;
     }
 }
 
-    #mobileMenu {
+#mobileMenu {
         display: none;
     }
 
-    @media only screen and (max-width : 991px) {
+@media only screen and (max-width : 991px) {
         body {
             padding-top: 70px;
             height: 100%;

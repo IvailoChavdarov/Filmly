@@ -67,10 +67,12 @@ h1 {
     display: none !important; } }
 
 .darkTheme {
-  background-color: #364954; }
+  background-color: #364954;
+  transition: background-color 0.7s ease; }
 
 .overflow-hidden {
   overflow: hidden; }
 
 body {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  transition: background-color 0.7s ease; }
