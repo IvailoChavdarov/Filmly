@@ -11,5 +11,9 @@ namespace Filmly.ViewModels
         public NewTitleCollection InTheaters { get; set; }
         public NewTitleCollection ComingSoon { get; set; }
         public BoxOfficeWeekendData WeekendBoxOffice { get; set; }
+        public List<RankingTitleItem> Top10MostPopularMovies { get; set; }
+        public List<RankingTitleItem> Top10BestMovies { get; set; }
+        public List<RankingTitleItem> Top10MostPopularTVSeries { get; set; }
+        public List<RankingTitleItem> Top10BestTVSeries { get; set; }
     }
 }

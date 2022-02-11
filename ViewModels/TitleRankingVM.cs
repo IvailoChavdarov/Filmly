@@ -9,23 +9,24 @@ namespace Filmly.ViewModels
     public class TitleRanking
         {
             //collection of the movies in the classation
-            public Item[] Items { get; set; }
+            public RankingTitleItem[] Items { get; set; }
             public string LastUpdate { get; set; }
             public string ErrorMessage { get; set; }
 
-        //Classation Item (movie)
-        public class Item
-        {
-                public string Id { get; set; }
-                public string Rank { get; set; }
-                public string Title { get; set; }
-                public string FullTitle { get; set; }
-                public string Year { get; set; }
-                public string Image { get; set; }
-                public string Crew { get; set; }
-                public string ImDbRating { get; set; }
-                public string ImDbRatingCount { get; set; }
-        }
+
+    }
+    //Classation Item (movie)
+    public class RankingTitleItem
+    {
+        public string Id { get; set; }
+        public string Rank { get; set; }
+        public string Title { get; set; }
+        public string FullTitle { get; set; }
+        public string Year { get; set; }
+        public string Image { get; set; }
+        public string Crew { get; set; }
+        public string ImDbRating { get; set; }
+        public string ImDbRatingCount { get; set; }
     }
     public class TitleRankingVM : IViewModelWithBreadcrumb
     {

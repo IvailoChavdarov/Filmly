@@ -1,0 +1,177 @@
+﻿@model HomePageData
+@section Styles{
+    <link rel="stylesheet" href="~/css/Home/carousel.css" />
+}
+<div class="showcase">
+    <h2>Movies coming soon</h2>
+    <div class="container card-deck align-content-center">
+        @foreach (var title in Model.ComingSoon.Items)
+        {
+            <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
+                <div class="card">
+                    <div class="image-container">
+                        <img src="@title.Image" alt="@title.FullTitle" />
+                    </div>
+                    <content>
+                        <h4>@title.Title</h4>
+                        <h6>Releasing: @title.ReleaseState</h6>
+                        @*@if (title.GenreList.Length > 0)
+                            {
+                                <div class="genre-container">
+                                    @foreach (var genre in title.GenreList)
+                                    {
+                                        <span class="@genre.Key ">@genre.Key</span>
+                                    }
+                                </div>
+                            }*@
+
+                        <p><span>@string.Join(' ', title.Plot.Split().Take(8).ToArray()) ...</span></p>
+                        <p>
+                            <span>
+                                @title.Plot.Substring(0, 50)
+                            </span>
+                        </p>
+
+                    </content>
+                </div>
+            </a>
+        }
+
+    </div>
+</div>
+<div class="showcase">
+    <h2>Movies playing in theaters now</h2>
+    <div class="container card-deck align-content-center" id="card-deck-2">
+        @foreach (var title in Model.InTheaters.Items)
+            {
+                <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
+                    <div class="card">
+                        <div class="image-container">
+                            <img src="@title.Image" alt="@title.FullTitle" />
+                        </div>
+                        <content>
+                            <h4>@title.Title</h4>
+                            <p><span>@string.Join(' ', title.Plot.Split().Take(8).ToArray()) ...</span></p>
+                            <p>
+                                <span>
+                                    @title.Plot.Substring(0, 50)
+                                </span>
+                            </p>
+                        </content>
+                    </div>
+                </a>
+            }
+    </div>
+</div>
+<div class="showcase">
+    <h2>Highest gross this weekend</h2>
+    <div class="container card-deck align-content-center">
+        @foreach (var title in Model.WeekendBoxOffice.Items.Take(10).ToArray())
+        {
+            <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
+                <div class="card">
+                    <div class="image-container">
+                        <img src="@title.Image" alt="@title.Title" />
+                    </div>
+                    <content>
+                        <h4>@title.Title</h4>
+                        <h6>Up for: @title.Weeks weeks</h6>
+                        <h6>This weekend: @title.Weekend</h6>
+                        <h6>All time: @title.Gross</h6>
+                        @*@if (title.GenreList.Length > 0)
+                            {
+                                <div class="genre-container">
+                                    @foreach (var genre in title.GenreList)
+                                    {
+                                        <span class="@genre.Key ">@genre.Key</span>
+                                    }
+                                </div>
+                            }*@
+                    </content>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+<div class="showcase">
+    <h2>Most popular movies at the moment</h2>
+    <div class="container card-deck align-content-center">
+        @foreach (var title in Model.Top10MostPopularMovies)
+        {
+        <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
+            @if (title.Rank == "1" || title.Rank == "2"||title.Rank=="3")
+            {
+                if (title.Rank == "1")
+                {
+                    <i class="fas fa-crown first hiddenOnMobile"></i>
+                }
+                else if (title.Rank == "3")
+                {
+                    <i class="fas fa-crown third hiddenOnMobile"></i>
+                }
+                else
+                {
+                    <i class="fas fa-crown hiddenOnMobile"></i>
+                }
+            }
+            <div class="card">
+                <div class="image-container">
+                    <img src="@title.Image" alt="@title.FullTitle" />
+                </div>
+                <content>
+                    <h4>@title.Title</h4>
+                    @if (title.ImDbRating != "")
+                    {
+                        <div class="rating-container">
+                            <i class="star fas fa-star"></i><span>@title.ImDbRating on IMDb</span>
+                        </div>
+                        <p class="small">from @title.ImDbRatingCount votes</p>
+                    }
+                    <p class="medium">Staring @title.Crew</p>
+                </content>
+            </div>
+        </a>
+        }
+    </div>
+</div>
+<div class="showcase">
+    <h2>Best rated movies of all time</h2>
+    <div class="container card-deck align-content-center">
+        @foreach (var title in Model.Top10BestMovies)
+        {
+        <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
+            @if (title.Rank == "1" || title.Rank == "2" || title.Rank == "3")
+            {
+                if (title.Rank == "1")
+                {
+                    <i class="fas fa-crown first hiddenOnMobile"></i>
+                }
+                else if (title.Rank == "3")
+                {
+                    <i class="fas fa-crown third hiddenOnMobile"></i>
+                }
+                else
+                {
+                    <i class="fas fa-crown hiddenOnMobile"></i>
+                }
+            }
+            <div class="card">
+                <div class="image-container">
+                    <img src="@title.Image" alt="@title.FullTitle" />
+                </div>
+                <content>
+                    <h4>@title.Title</h4>
+                    @if (title.ImDbRating != "")
+                    {
+                        <div class="rating-container">
+                            <i class="star fas fa-star"></i><span>@title.ImDbRating on IMDb</span>
+                        </div>
+                        <p class="small">from @title.ImDbRatingCount votes</p>
+                    }
+                    <p class="medium">Staring @title.Crew</p>
+                </content>
+            </div>
+        </a>
+        }
+    </div>
+</div>

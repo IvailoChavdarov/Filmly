@@ -27,18 +27,22 @@ namespace Filmly.Controllers
 
         public IActionResult Index()
         {
-            HomePageData newsInfo = new HomePageData();
+            APIHelper.DailyDataRefill();
+            HomePageData data = new HomePageData();
             var ComingSoonWithImages = JSONHelper.GetLocalDataAsObject<NewTitleCollection>("ComingSoon");
             ComingSoonWithImages.Items = ComingSoonWithImages.Items.Where(x => x.Image != "https://imdb-api.com/images/128x176/nopicture.jpg").ToArray();
-            newsInfo.ComingSoon = ComingSoonWithImages;
+            data.ComingSoon = ComingSoonWithImages;
             NewTitleCollection InTheatersWithImages = JSONHelper.GetLocalDataAsObject<NewTitleCollection>("InTheaters");
             InTheatersWithImages.Items = InTheatersWithImages.Items.Where(x => x.Image != "https://imdb-api.com/images/128x176/nopicture.jpg").ToArray();
-            newsInfo.InTheaters = InTheatersWithImages;
+            data.InTheaters = InTheatersWithImages;
             BoxOfficeWeekendData BoxOfficesRanked = JSONHelper.GetLocalDataAsObject<BoxOfficeWeekendData>("BoxOffice");
             BoxOfficesRanked.Items = BoxOfficesRanked.Items.OrderByDescending(x => x.Gross).ToArray();
-            newsInfo.WeekendBoxOffice = BoxOfficesRanked;
-            APIHelper.DailyDataRefill();
-            return View(newsInfo);
+            data.WeekendBoxOffice = BoxOfficesRanked;
+            data.Top10MostPopularMovies = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-100-most-popular-movies"]).Items.Take(10).ToList();
+            data.Top10BestMovies = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-250-movies"]).Items.Take(10).ToList();
+            data.Top10MostPopularTVSeries = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-100-most-popular-tv-series"]).Items.Take(10).ToList();
+            data.Top10BestTVSeries = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-250-tv-shows"]).Items.Take(10).ToList();
+            return View(data);
         }
         public IActionResult News()
         {

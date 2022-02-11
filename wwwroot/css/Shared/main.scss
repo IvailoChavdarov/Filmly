@@ -91,4 +91,5 @@ h1 {
 body {
     overflow-x: hidden;
     transition: background-color $changeThemeAnimationTime ease;
+    background-color: $textColor;
 }

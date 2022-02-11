@@ -63,7 +63,7 @@ footer {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -40%);
     }
 
     #socialMedias li {
@@ -135,11 +135,6 @@ footer {
         box-shadow: 0 0 15px $successColor;
     }
 
-    @media only screen and (max-width : 991px) {
-        #socialMedias li a {
-            color: $mainColor;
-        }
-    }
 
     #usedTechnologiesMini a {
         filter: brightness(70%);
@@ -147,6 +142,21 @@ footer {
 
     #usedTechnologiesMini a:hover {
         filter: brightness(100%);
+    }
+
+    .socialMediaTitle {
+        margin-bottom: 100px;
+    }
+}
+@media only screen and (max-width : 991px) {
+    footer {
+        #socialMedias li a {
+            color: $mainColor;
+        }
+
+        .socialMediaTitle {
+            margin-bottom: 25px;
+        }
     }
 }
 .darkTheme {

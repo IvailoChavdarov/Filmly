@@ -16,3 +16,30 @@
         transform: translateY(0);
     }
 }
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%)
+    }
+
+    to {
+        transform: translateX(0)
+    }
+}
+@keyframes slideInFromBottom{
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes zoomIn-small{
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}

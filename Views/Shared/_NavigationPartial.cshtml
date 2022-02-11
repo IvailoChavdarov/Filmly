@@ -1,7 +1,7 @@
 ﻿@{string randomTitleId = RandomTitle.GetRandomTitleId();}
 <nav id="topNav" class="navbar navbar-expand-lg">
 
-    <a class="navbar-brand" asp-controller="home" asp-action="index" id="homeIcon"><img src="~/img/logos/logo-transparent.svg" alt="Filmly" /></a>
+    <a class="navbar-brand" asp-controller="home" asp-action="index" id="homeIcon"><img src="~/img/logos/logo-transparent.svg" alt="Filmly" height="40" width="160"/></a>
     <div class="collapse navbar-collapse" id="navBarContent">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item hiddenOnMobile">
@@ -10,7 +10,7 @@
             <li class="nav-item hiddenOnTablet">
                 <a class="nav-link" asp-controller="titles" asp-action="details" asp-route-id="@randomTitleId"><i class="fas fa-random"></i> Random</a>
             </li>
-            <li class="nav-item hiddenOnBigScreen" id="themeSwitcherMobile" onclick="switchTheme()">
+            <li class="nav-item hiddenOnBigScreen" id="themeSwitcherMobile" onclick="switchTheme()" title="Switch theme" >
                 <i class="fas fa-lg" id="themeIdenticatorMobile"></i>
             </li>
         </ul>
@@ -18,16 +18,16 @@
     </div>
     <partial name="_SearchPartial" />
     <partial name="_UserNavigationPartial" />
-        <div id="mobileMenuToggler" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    <button id="themeSwitcher" class="NoLoader hiddenOnMobile" onclick="switchTheme()" title="switchTheme"><i class="fas fa-lg" id="themeIdenticator"></i></button>
+    <div id="mobileMenuToggler" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <button id="themeSwitcher" class="NoLoader hiddenOnMobile" onclick="switchTheme()" title="Switch theme"><i class="fas fa-lg" id="themeIdenticator"></i></button>
 </nav>
 <nav id="topNavDropdown">
-    <hr  class="hiddenOnMobile" /> 
+    <hr class="hiddenOnMobile" />
     <content class="container row mx-auto hiddenOnMobile">
         <div class="col-lg-3 col-sm-6 justify-content-center">
             <a asp-controller="home" asp-action="index"><h4><i class="fas fa-sm fa-home text-mainColor"></i><span>Home</span></h4></a>
@@ -55,7 +55,7 @@
         </div>
     </content>
 </nav>
-<i class="fas fa-lg text-mainColor fa-chevron-up" id="scrollArrow"></i>
+
 <menu id="mobileMenu">
     <ul>
         <li class="nav-item hiddenOnBigScreen">

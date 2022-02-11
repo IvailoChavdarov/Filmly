@@ -1,4 +1,34 @@
 ﻿@import url(jumbotron.css);
+/*$secondaryColor-light: #DAF3FF;
+$secondaryColor-dark: #607999;
+$mainColor: #ff4400;
+$textColor: #FFF6F1;
+
+*/
+/*$secondaryColor-light: #A4AE9E;
+$secondaryColor-dark: #40493B;
+$mainColor: #4DFF00;
+$textColor: #F2FCEC;*/
+/*$secondaryColor-light: #d2c4ae;
+$secondaryColor-dark: #403535;
+$mainColor: #294023;
+$textColor: #ffeccf;*/
+/*$secondaryColor-light: #006E61;
+$secondaryColor-dark: #522700;
+$mainColor: #FCBA03;
+$textColor: #DFE0DF;*/
+/*$secondaryColor-light: #AEAC99;
+$secondaryColor-dark: #494738;
+$mainColor: #FFFF33;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #DFE0DF;
+$secondaryColor-dark: #693B22;
+$mainColor: #FF6700;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #9DB0A2;
+$secondaryColor-dark: #3B4A3F;
+$mainColor: #03FC90;
+$textColor: #FCFAEE;*/
 @keyframes fadeIn {
   0% {
     opacity: 0; }
@@ -11,15 +41,153 @@
   100% {
     transform: translateY(0); } }
 
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
 #topNav {
   background-color: transparent;
   backdrop-filter: blur(4px);
   position: absolute;
   width: 100%;
-  animation: 0.3s ease-out 0s 0.3 slideInFromTop; }
+  animation: 0.3s ease-out 0s slideInFromTop; }
 
 #topNavDropdown {
   top: 70px;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
   border-bottom: 0px; }
+
+.coloredCircle {
+  background-color: red;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative; }
+  .coloredCircle i {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 40px; }
+
+.coloredCircle.blue {
+  background-color: dodgerblue;
+  color: white; }
+
+.coloredCircle.yellow {
+  background-color: #fcad03;
+  color: white; }
+
+.coloredCircle.orange-red {
+  background-color: orangered;
+  color: white; }
+
+.coloredCircle.green {
+  background-color: #89e200;
+  color: white; }
+
+.serviceSuggestionBox {
+  display: inline-block;
+  width: 370px;
+  height: 340px;
+  margin: 10px;
+  padding: 30px;
+  background-color: #364954;
+  border-radius: 10px;
+  word-break: break-word;
+  transition: background-color 0.7s linear;
+  color: #E6F4F1; }
+  .serviceSuggestionBox h5 {
+    margin-top: 30px; }
+
+.servicesContainer {
+  align-items: center;
+  /*    background-color: rgba(0,0,0,0.6);
+    padding-top: 30px;
+    padding-bottom: 30px;*/
+  animation: 1s fadeIn;
+  margin-top: 150px;
+  z-index: 1; }
+
+.slideFromLeft {
+  animation: 1.5s slideInFromLeft; }
+
+.showcaseSectionTitle {
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  margin-top: 100px; }
+  .showcaseSectionTitle .right-border {
+    display: inline-block;
+    width: 7.5vw; }
+    .showcaseSectionTitle .right-border hr {
+      border-top: 3px solid #15AFE1; }
+  .showcaseSectionTitle h1 {
+    display: inline-block;
+    width: 45vw;
+    padding-left: 1.5vw;
+    border-left: 3px solid #15AFE1;
+    color: #364954;
+    font-weight: 600; }
+  .showcaseSectionTitle .left-border {
+    display: inline-block;
+    width: 47.5vw; }
+    .showcaseSectionTitle .left-border hr {
+      border-top: 3px solid #15AFE1; }
+
+html, body {
+  overflow-x: hidden;
+  width: 100vw;
+  position: relative; }
+
+body {
+  background: url("../../img/backgrounds/icons_pattern.png"); }
+
+@media only screen and (max-width: 667px) {
+  #topNav {
+    background-color: #364954; }
+  .showcaseSectionTitle {
+    padding: 0;
+    margin: 0;
+    font-size: 0; }
+    .showcaseSectionTitle .right-border {
+      display: inline-block;
+      width: 7.5vw; }
+      .showcaseSectionTitle .right-border hr {
+        border-top: 3px solid #15AFE1; }
+    .showcaseSectionTitle h1 {
+      display: inline-block;
+      width: 92.5vw;
+      padding-left: 1.5vw;
+      border-left: 3px solid #15AFE1; }
+    .showcaseSectionTitle .left-border {
+      display: inline-block;
+      width: 0; } }
+
+.darkTheme .serviceSuggestionBox {
+  background-color: #99AEBB;
+  color: #364954; }
+
+.darkTheme .showcaseSectionTitle h1 {
+  color: #E6F4F1; }
+
+.darkTheme .showcase h2 {
+  color: #E6F4F1; }

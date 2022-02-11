@@ -5,50 +5,82 @@
 @section heads
 {
     <link href="@Url.Content("~/css/Home/homepage.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Home/carousel.css")" rel="stylesheet" type="text/css" />
 }
 <partial name="_HomeJumbotronPartial" />
-<div class="row margin-md" id="newMoviesSlider">
-    @*<div class="sliders col-12 col-lg-8">
-            <partial name="_ComingSoonPartial" />
-            <partial name="_InTheatersPartial" />
-        </div>*@
-    @*<div class="col-12 col-lg-4" id="weeklyBoxOffice">
-            <h1 class="mx-auto">Weekly box office</h1>
-            <div class="vertical-card-group-boxOffice">
-                <div class="boxOfficeContainer mx-auto">
-                    @foreach (var item in Model.WeekendBoxOffice.Items)
-                    {
-                        <a asp-controller="movies" asp-action="details" asp-route-id="@item.Id">
-                            <div class="card bg-dark text-white mx-auto boxOfficeCard">
-                                <img class="card-img" src="@item.Image" alt="Card image">
-                                <div class="card-img-overlay boxOfficeOverlay" style="background-color:rgba(0,0,0,0.5)">
-                                    <h3 class="card-title">@item.Title</h3>
-                                    <h4 class="card-title">@item.Gross</h4>
-                                    <h5>
-                                        in @item.Weeks
-                                        @if (int.Parse(item.Weeks) > 1)
-                                        {
-                                            <span>weeks</span>
-                                        }
-                                        else
-                                        {
-                                            <span>week</span>
-                                        }
-                                    </h5>
-                                    <h5>@item.Weekend this weekend.</h5>
-                                </div>
-                            </div>
-                        </a>
-                    }
-
-                </div>
+<div class="row servicesContainer">
+    <div class="col-lg-3 col-sm-12 d-flex justify-content-center align-items-center" align="center">
+        <div class="serviceSuggestionBox">
+            <div class="coloredCircle blue">
+                <i class="fas fa-info"></i>
             </div>
-        </div>*@
-    @*asd
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />*@
+            <h5>See info about different titles</h5>
+            <p>
+                Filmly has extensive data about milions various films, animes, TV series and other streaming content.
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-12 d-flex justify-content-center align-items-center" align="center">
+        <div class="serviceSuggestionBox">
+            <div class="coloredCircle yellow">
+                <i class="fas fa-list"></i>
+            </div>
+            <h5>Create your list of favourites and titles you plan to watch</h5>
+            <p>
+                Once you register on Filmly you can save and remove titles from your watchlist or your favourites list
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-12 d-flex justify-content-center align-items-center" align="center">
+        <div class="serviceSuggestionBox">
+            <div class="coloredCircle orange-red">
+                <i class="fas fa-share"></i>
+            </div>
+            <h5>Share your favourites</h5>
+            <p>
+                Filmly allows you to share your favourites list with anyone by link, id, or QR code
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-12 d-flex justify-content-center align-items-center" align="center">
+        <div class="serviceSuggestionBox">
+            <div class="coloredCircle green">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h5>Discuss with others</h5>
+            <p>
+                You can discuss different topics and titles on our forum, see our articles and news about the cinema industry
+            </p>
+        </div>
+    </div>
 </div>
-<script src="~/js/CollectionScroller.js"></script>
-@*<div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>*@
+<div class="showcaseSectionTitle">
+    <div class="right-border">
+        <hr />
+    </div>
+    <h1>Hundreds of thousands movies</h1>
+    <div class="left-border">
+        <hr />
+    </div>
+</div>
+
+<div class="container align-content-center slidersContainer">
+    <partial name="_MoviesShowcasePartial" />
+</div>
+<div class="showcaseSectionTitle">
+    <div class="right-border">
+        <hr />
+    </div>
+    <h1>Hundreds of thousands TV series</h1>
+    <div class="left-border">
+        <hr />
+    </div>
+</div>
+<div class="container align-content-center slidersContainer">
+    <partial name="_TVSShowcasePartial" />
+    </div>
+    @section Scripts
+{
+        <script src="~/js/CollectionScroller.js"></script>
+        <script src="~/js/homepage.js"></script>
+    }

@@ -23,7 +23,7 @@
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
-
+    <i class="fas fa-lg text-mainColor fa-chevron-up" id="scrollArrow"></i>
     <partial name="_LoaderPartial" />
     <partial name="_Footer" />
 
@@ -38,6 +38,18 @@
     <script src="~/js/Themes.js" asp-append-version="true"></script>
     <script src="~/js/TopNavigator.js" asp-append-version="true"></script>
     @*<script>scrollFunction();</script>*@
+    <script>
+        function copyDiscordName() {
+            copyToClipboard('Ивайло Чавдаров#5796')
+            document.getElementById('discordLink').classList.add('used')
+            var popup = document.getElementById("discordPopup");
+            popup.classList.toggle("show");
+            setTimeout(() => {
+                document.getElementById('discordLink').classList.remove('used')
+                popup.classList.toggle("show");
+            }, 2500)
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
