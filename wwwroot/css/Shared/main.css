@@ -99,6 +99,8 @@ h1 {
 .darkTheme {
   background-color: #364954;
   transition: background-color 0.7s ease; }
+  .darkTheme .showcaseSectionTitle h1 {
+    color: #E6F4F1; }
 
 .overflow-hidden {
   overflow: hidden; }
@@ -107,3 +109,45 @@ body {
   overflow-x: hidden;
   transition: background-color 0.7s ease;
   background-color: #E6F4F1; }
+
+@media only screen and (max-width: 667px) {
+  .showcaseSectionTitle {
+    padding: 0;
+    margin: 0;
+    font-size: 0; }
+    .showcaseSectionTitle .right-border {
+      display: inline-block;
+      width: 7.5vw; }
+      .showcaseSectionTitle .right-border hr {
+        border-top: 3px solid #15AFE1; }
+    .showcaseSectionTitle h1 {
+      display: inline-block;
+      width: 92.5vw;
+      padding-left: 1.5vw;
+      border-left: 3px solid #15AFE1; }
+    .showcaseSectionTitle .left-border {
+      display: inline-block;
+      width: 0; } }
+
+.showcaseSectionTitle {
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  margin-top: 100px; }
+  .showcaseSectionTitle .right-border {
+    display: inline-block;
+    width: 7.5vw; }
+    .showcaseSectionTitle .right-border hr {
+      border-top: 3px solid #15AFE1; }
+  .showcaseSectionTitle h1 {
+    display: inline-block;
+    width: 45vw;
+    padding-left: 1.5vw;
+    border-left: 3px solid #15AFE1;
+    color: #364954;
+    font-weight: 600; }
+  .showcaseSectionTitle .left-border {
+    display: inline-block;
+    width: 47.5vw; }
+    .showcaseSectionTitle .left-border hr {
+      border-top: 3px solid #15AFE1; }

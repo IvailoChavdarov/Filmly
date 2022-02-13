@@ -153,6 +153,23 @@ $textColor: #FCFAEE;*/
     .showcaseSectionTitle .left-border hr {
       border-top: 3px solid #15AFE1; }
 
+.seeAllLink {
+  border-radius: 15px;
+  border: 3px solid #15AFE1;
+  color: #364954;
+  background-color: #E6F4F1;
+  font-size: 14px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 500; }
+  .seeAllLink i {
+    font-weight: 550; }
+
+.seeAllLink:hover {
+  text-decoration: none;
+  color: #15AFE1; }
+
 html, body {
   overflow-x: hidden;
   width: 100vw;
@@ -163,31 +180,19 @@ body {
 
 @media only screen and (max-width: 667px) {
   #topNav {
-    background-color: #364954; }
-  .showcaseSectionTitle {
-    padding: 0;
-    margin: 0;
-    font-size: 0; }
-    .showcaseSectionTitle .right-border {
-      display: inline-block;
-      width: 7.5vw; }
-      .showcaseSectionTitle .right-border hr {
-        border-top: 3px solid #15AFE1; }
-    .showcaseSectionTitle h1 {
-      display: inline-block;
-      width: 92.5vw;
-      padding-left: 1.5vw;
-      border-left: 3px solid #15AFE1; }
-    .showcaseSectionTitle .left-border {
-      display: inline-block;
-      width: 0; } }
+    background-color: #364954; } }
 
 .darkTheme .serviceSuggestionBox {
   background-color: #99AEBB;
   color: #364954; }
 
-.darkTheme .showcaseSectionTitle h1 {
-  color: #E6F4F1; }
-
 .darkTheme .showcase h2 {
   color: #E6F4F1; }
+
+.darkTheme .seeAllLink {
+  color: #E6F4F1;
+  background-color: #364954; }
+
+.darkTheme .seeAllLink:hover {
+  text-decoration: none;
+  color: #15AFE1; }

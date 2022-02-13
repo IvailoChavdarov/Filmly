@@ -5,9 +5,10 @@
 @section heads
 {
     <link href="@Url.Content("~/css/Home/homepage.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/Home/carousel.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Home/homeSliders.css")" rel="stylesheet" type="text/css" />
 }
 <partial name="_HomeJumbotronPartial" />
+
 <div class="row servicesContainer">
     <div class="col-lg-3 col-sm-12 d-flex justify-content-center align-items-center" align="center">
         <div class="serviceSuggestionBox">
@@ -63,7 +64,6 @@
         <hr />
     </div>
 </div>
-
 <div class="container align-content-center slidersContainer">
     <partial name="_MoviesShowcasePartial" />
 </div>
@@ -78,9 +78,21 @@
 </div>
 <div class="container align-content-center slidersContainer">
     <partial name="_TVSShowcasePartial" />
+</div>
+<div class="showcaseSectionTitle">
+    <div class="right-border">
+        <hr />
     </div>
-    @section Scripts
+    <h1>Hundreds of thousands anime</h1>
+    <div class="left-border">
+        <hr />
+    </div>
+</div>
+<div class="container align-content-center slidersContainer">
+    <partial name="_AnimeShowcasePartial" />
+</div>
+@section Scripts
 {
-        <script src="~/js/CollectionScroller.js"></script>
-        <script src="~/js/homepage.js"></script>
-    }
+    <script src="~/js/CollectionScroller.js"></script>
+    <script src="~/js/homepage.js"></script>
+}

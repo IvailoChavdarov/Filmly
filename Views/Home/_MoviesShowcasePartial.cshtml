@@ -1,7 +1,7 @@
 ﻿@model HomePageData
-@section Styles{
+@*@section Styles{
     <link rel="stylesheet" href="~/css/Home/carousel.css" />
-}
+}*@
 <div class="showcase">
     <h2>Movies coming soon</h2>
     <div class="container card-deck align-content-center">
@@ -94,7 +94,7 @@
     </div>
 </div>
 <div class="showcase">
-    <h2>Most popular movies at the moment</h2>
+    <h2>Most popular movies at the moment <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-movies" class="seeAllLink">See all <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a></h2>
     <div class="container card-deck align-content-center">
         @foreach (var title in Model.Top10MostPopularMovies)
         {
@@ -135,7 +135,7 @@
     </div>
 </div>
 <div class="showcase">
-    <h2>Best rated movies of all time</h2>
+    <h2>Best rated movies of all time <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-movies" class="seeAllLink">See all <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a></h2>
     <div class="container card-deck align-content-center">
         @foreach (var title in Model.Top10BestMovies)
         {

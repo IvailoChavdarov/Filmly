@@ -32,16 +32,23 @@ namespace Filmly.Controllers
             var ComingSoonWithImages = JSONHelper.GetLocalDataAsObject<NewTitleCollection>("ComingSoon");
             ComingSoonWithImages.Items = ComingSoonWithImages.Items.Where(x => x.Image != "https://imdb-api.com/images/128x176/nopicture.jpg").ToArray();
             data.ComingSoon = ComingSoonWithImages;
+
             NewTitleCollection InTheatersWithImages = JSONHelper.GetLocalDataAsObject<NewTitleCollection>("InTheaters");
             InTheatersWithImages.Items = InTheatersWithImages.Items.Where(x => x.Image != "https://imdb-api.com/images/128x176/nopicture.jpg").ToArray();
             data.InTheaters = InTheatersWithImages;
+
             BoxOfficeWeekendData BoxOfficesRanked = JSONHelper.GetLocalDataAsObject<BoxOfficeWeekendData>("BoxOffice");
             BoxOfficesRanked.Items = BoxOfficesRanked.Items.OrderByDescending(x => x.Gross).ToArray();
             data.WeekendBoxOffice = BoxOfficesRanked;
+
             data.Top10MostPopularMovies = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-100-most-popular-movies"]).Items.Take(10).ToList();
             data.Top10BestMovies = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-250-movies"]).Items.Take(10).ToList();
+
             data.Top10MostPopularTVSeries = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-100-most-popular-tv-series"]).Items.Take(10).ToList();
-            data.Top10BestTVSeries = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-250-tv-shows"]).Items.Take(10).ToList();
+            data.Top10BestTVSeries = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary["top-250-tv-series"]).Items.Take(10).ToList();
+
+            data.Top10MostPopularAnime = JSONHelper.GetLocalDataAsObject<ThemedRanking>(NameSimplifiers.RankingNamesDictionary["top-100-most-popular-anime"]).Results.Take(10).ToList();
+            data.Top10BestAnime = JSONHelper.GetLocalDataAsObject<ThemedRanking>(NameSimplifiers.RankingNamesDictionary["top-250-anime"]).Results.Take(10).ToList();
             return View(data);
         }
         public IActionResult News()

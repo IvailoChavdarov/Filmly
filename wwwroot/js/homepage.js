@@ -1,6 +1,6 @@
 ﻿const slideFromLeftElements = [
     '.servicesContainer',
-    '.card-deck',
+    /*'.card-deck',*/
     '.showcase'
 ]
 const observer = new IntersectionObserver(entries => {

@@ -50,6 +50,28 @@ namespace Filmly.StaticClasses
             throw new ArgumentException($"Classation {ranking} is not available");
         }
 
+        public static ThemedRanking GetBonusRanking(string ranking)
+        {
+            if (Validators.BonusRankings.Contains(ranking))
+            {
+                if (ranking.Contains("Anime"))
+                {
+                    string URL = $"https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?title_type=tv_series&num_votes=1000,&genres=animation&keywords=anime&sort=user_rating,desc";
+                    string JSONResponse = GetResponseContent(URL);
+                    return DeserializeStringTo<ThemedRanking>(JSONResponse);
+
+                }
+                else
+                {
+                    string URL = $"https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?title_type=tv_movie,tv_series&num_votes=10000,&genres={ranking}&sort=user_rating,desc";
+                    string JSONResponse = GetResponseContent(URL);
+                    return DeserializeStringTo<ThemedRanking>(JSONResponse);
+                }
+
+            }
+            throw new ArgumentException($"Classation {ranking} is not available");
+        }
+
         //Returns collection of movies coming soon, released soon
         public static NewTitleCollection GetComingSoon()
         {
@@ -103,6 +125,24 @@ namespace Filmly.StaticClasses
             string JSONResponse = GetResponseContent(URL);
             return DeserializeStringTo<TitleCastModel>(JSONResponse);
         }
+        public static ThemedRanking GetAnimeRanking(string ranking)
+        {
+            string URL = "";
+            if (Validators.AnimeRankings.Contains(ranking))
+            {
+                if (ranking == "Top250Anime")
+                {
+                    URL = "https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?num_votes=1000,&genres=animation&countries=jp&keywords=anime&count=250&sort=user_rating,desc";
+                }
+                else
+                {
+                    URL = "https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?num_votes=1000,&genres=animation&countries=jp&keywords=anime&count=100";
+                }
+                string JSONResponse = GetResponseContent(URL);
+                return DeserializeStringTo<ThemedRanking>(JSONResponse);
+            }
+            throw new ArgumentException($"Classation {ranking} is not available");
+        }
         public static void DailyDataRefill()
         {
             foreach (var ranking in Validators.AvailableRankings)
@@ -111,26 +151,63 @@ namespace Filmly.StaticClasses
                 {
                     TitleRanking newData = GetRanking(ranking);
                     newData.LastUpdate = DateTime.Today.ToString();
-                    JSONHelper.RewriteLocalData<TitleRanking>(newData, ranking);
+                    if (newData.ErrorMessage==null)
+                    {
+                        JSONHelper.RewriteLocalData<TitleRanking>(newData, ranking);
+                    } 
+                }
+            }
+            foreach (var bonusRanking in Validators.BonusRankings)
+            {
+                if (JSONHelper.GetLocalDataAsObject<ThemedRanking>(bonusRanking).LastUpdate.ToString() != DateTime.Today.ToString())
+                {
+                    ThemedRanking newData = GetBonusRanking(bonusRanking);
+                    newData.LastUpdate = DateTime.Today.ToString();
+                    if (newData.ErrorMessage == null)
+                    {
+                        JSONHelper.RewriteLocalData<ThemedRanking>(newData, bonusRanking);
+                    }
+                }
+            }
+            foreach (var animeRanking in Validators.AnimeRankings)
+            {
+                ThemedRanking ranking = JSONHelper.GetLocalDataAsObject<ThemedRanking>(animeRanking);
+                if (ranking.LastUpdate.ToString() != DateTime.Today.ToString())
+                {
+                    ThemedRanking newData = GetAnimeRanking(animeRanking);
+                    newData.LastUpdate = DateTime.Today.ToString();
+                    if (newData.ErrorMessage == null)
+                    {
+                        JSONHelper.RewriteLocalData<ThemedRanking>(newData, animeRanking);
+                    }
                 }
             }
             if (JSONHelper.GetLocalDataAsObject<BoxOfficeWeekendData>("BoxOffice").LastUpdate.ToString() != DateTime.Today.ToString())
             {
                 BoxOfficeWeekendData newData = GetWeekendBoxOffice();
                 newData.LastUpdate = DateTime.Today.ToString();
-                JSONHelper.RewriteLocalData<BoxOfficeWeekendData>(newData, "BoxOffice");
+                if (newData.ErrorMessage == null)
+                {
+                    JSONHelper.RewriteLocalData<BoxOfficeWeekendData>(newData, "BoxOffice");
+                }
             }
             if (JSONHelper.GetLocalDataAsObject<NewTitleCollection>("ComingSoon").LastUpdate.ToString() != DateTime.Today.ToString())
             {
                 NewTitleCollection newData = GetComingSoon();
                 newData.LastUpdate = DateTime.Today.ToString();
-                JSONHelper.RewriteLocalData<NewTitleCollection>(newData, "ComingSoon");
+                if (newData.ErrorMessage == null)
+                {
+                    JSONHelper.RewriteLocalData<NewTitleCollection>(newData, "ComingSoon");
+                }
             }
             if (JSONHelper.GetLocalDataAsObject<NewTitleCollection>("InTheaters").LastUpdate.ToString() != DateTime.Today.ToString())
             {
                 NewTitleCollection newData = GetMoviesInTheaters();
                 newData.LastUpdate = DateTime.Today.ToString();
-                JSONHelper.RewriteLocalData<NewTitleCollection>(newData, "InTheaters");
+                if (newData.ErrorMessage == null)
+                {
+                    JSONHelper.RewriteLocalData<NewTitleCollection>(newData, "InTheaters");
+                }
             }
         }
         //Private helper methods

@@ -220,6 +220,9 @@ $textColor: #FCFAEE;*/
   color: #E6F4F1; }
   #topNavDropdown i.fas {
     margin-right: 3px; }
+    #topNavDropdown i.fas span {
+      font-family: Georgia, serif;
+      font-weight: 900; }
   #topNavDropdown hr {
     border-color: #99AEBB;
     margin: 0; }
@@ -227,7 +230,7 @@ $textColor: #FCFAEE;*/
     padding: 2vw;
     padding-left: 0vw;
     padding-right: 0vw;
-    width: 80%;
+    width: 90%;
     max-width: 100%; }
     #topNavDropdown content h4 span {
       padding-left: 10px;

@@ -111,6 +111,26 @@
         }
     }
 }
+.seeAllLink {
+    border-radius: 15px;
+    border: 3px solid $mainColor;
+    color: $secondaryColor-dark;
+    background-color: $textColor;
+    font-size: 14px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 500;
+
+    i {
+        font-weight: 550;
+    }
+}
+
+.seeAllLink:hover {
+    text-decoration: none;
+    color: $mainColor;
+}
 html, body {
     overflow-x: hidden;
     width: 100vw;
@@ -123,33 +143,6 @@ body{
     #topNav {
         background-color: $secondaryColor-dark;
     }
-    .showcaseSectionTitle {
-        padding: 0;
-        margin: 0;
-        font-size: 0;
-
-        .right-border {
-            display: inline-block;
-            width: 7.5vw;
-
-
-            hr {
-                border-top: 3px solid $mainColor;
-            }
-        }
-
-        h1 {
-            display: inline-block;
-            width: 92.5vw;
-            padding-left: 1.5vw;
-            border-left: 3px solid $mainColor;
-        }
-
-        .left-border {
-            display: inline-block;
-            width:0;
-        }
-    }
 }
 .darkTheme {
     .serviceSuggestionBox {
@@ -157,15 +150,19 @@ body{
         color: $secondaryColor-dark;
     }
 
-    .showcaseSectionTitle {
-        h1 {
-            color: $textColor;
-        }
-    }
-
     .showcase {
         h2 {
             color: $textColor;
         }
+    }
+
+    .seeAllLink {
+        color: $textColor;
+        background-color: $secondaryColor-dark;
+    }
+
+    .seeAllLink:hover {
+        text-decoration: none;
+        color: $mainColor;
     }
 }

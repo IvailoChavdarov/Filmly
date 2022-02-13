@@ -28,6 +28,7 @@ $textColor: #FCFAEE;*/
 $secondaryColor-dark: #3B4A3F;
 $mainColor: #03FC90;
 $textColor: #FCFAEE;*/
+@import url(genresShowcase.css);
 footer {
   background-color: #364954;
   height: 270px;
@@ -116,7 +117,8 @@ footer {
     color: #22BB33;
     box-shadow: 0 0 5px #22BB33;
     text-shadow: 0 0 5px #22BB33;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
   footer #socialMedias li a.used:hover {
     color: #22BB33;
     box-shadow: 0 0 5px #22BB33;

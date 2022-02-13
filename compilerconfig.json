@@ -58,5 +58,13 @@
   {
     "outputFile": "wwwroot/css/Home/homepage.css",
     "inputFile": "wwwroot/css/Home/homepage.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/genresShowcase.css",
+    "inputFile": "wwwroot/css/Shared/genresShowcase.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/homeSliders.css",
+    "inputFile": "wwwroot/css/Home/homeSliders.scss"
   }
 ]

@@ -1,17 +1,17 @@
 ﻿@model HomePageData
 <div class="showcase">
-    <h2>Most popular TV series at the moment <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-series" class="seeAllLink">See all <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a></h2>
+    <h2>Most popular anime at the moment <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-anime" class="seeAllLink">See all <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a></h2>
     <div class="container card-deck align-content-center">
-        @foreach (var title in Model.Top10MostPopularTVSeries)
+        @for (int i = 0; i < 10; i++)
         {
-            <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
-                @if (title.Rank == "1" || title.Rank == "2" || title.Rank == "3")
+            <a asp-controller="titles" asp-action="details" asp-route-id="@Model.Top10MostPopularAnime[i].Id">
+                @if (i == 0 || i == 1 || i == 2)
                 {
-                    if (title.Rank == "1")
+                    if (i == 0)
                     {
                         <i class="fas fa-crown first hiddenOnMobile"></i>
                     }
-                    else if (title.Rank == "3")
+                    else if (i == 2)
                     {
                         <i class="fas fa-crown third hiddenOnMobile"></i>
                     }
@@ -22,18 +22,18 @@
                 }
                 <div class="card">
                     <div class="image-container">
-                        <img src="@title.Image" alt="@title.FullTitle" />
+                        <img src="@Model.Top10MostPopularAnime[i].Image" alt="@Model.Top10MostPopularAnime[i].Title" />
                     </div>
                     <content>
-                        <h4>@title.Title</h4>
-                        @if (title.ImDbRating != "")
+                        <h4>@Model.Top10MostPopularAnime[i].Title</h4>
+                        @if (Model.Top10MostPopularAnime[i].IMDbRating != "")
                         {
                             <div class="rating-container">
-                                <i class="star fas fa-star"></i><span>@title.ImDbRating on IMDb</span>
+                                <i class="star fas fa-star"></i><span>@Model.Top10MostPopularAnime[i].IMDbRating on IMDb</span>
                             </div>
-                            <p class="small">from @title.ImDbRatingCount votes</p>
+                            <p class="small">from @Model.Top10MostPopularAnime[i].IMDbRatingVotes votes</p>
                         }
-                        <p class="medium">Staring @title.Crew</p>
+                        <p class="medium">Staring @Model.Top10MostPopularAnime[i].Stars</p>
                     </content>
                 </div>
             </a>
@@ -43,16 +43,16 @@
 <div class="showcase">
     <h2>Best rated TV series of all time <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series" class="seeAllLink">See all <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a></h2>
     <div class="container card-deck align-content-center">
-        @foreach (var title in Model.Top10BestTVSeries)
+        @for (int i = 0; i < 10; i++)
         {
-            <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
-                @if (title.Rank == "1" || title.Rank == "2" || title.Rank == "3")
+            <a asp-controller="titles" asp-action="details" asp-route-id="@Model.Top10BestAnime[i].Id">
+                @if (i == 0 || i == 1 || i == 2)
                 {
-                    if (title.Rank == "1")
+                    if (i == 0)
                     {
                         <i class="fas fa-crown first hiddenOnMobile"></i>
                     }
-                    else if (title.Rank == "3")
+                    else if (i == 2)
                     {
                         <i class="fas fa-crown third hiddenOnMobile"></i>
                     }
@@ -63,18 +63,18 @@
                 }
                 <div class="card">
                     <div class="image-container">
-                        <img src="@title.Image" alt="@title.FullTitle" />
+                        <img src="@Model.Top10BestAnime[i].Image" alt="@Model.Top10BestAnime[i].Title" />
                     </div>
                     <content>
-                        <h4>@title.Title</h4>
-                        @if (title.ImDbRating != "")
+                        <h4>@Model.Top10BestAnime[i].Title</h4>
+                        @if (Model.Top10BestAnime[i].IMDbRating != "")
                         {
                             <div class="rating-container">
-                                <i class="star fas fa-star"></i><span>@title.ImDbRating on IMDb</span>
+                                <i class="star fas fa-star"></i><span>@Model.Top10BestAnime[i].IMDbRating on IMDb</span>
                             </div>
-                            <p class="small">from @title.ImDbRatingCount votes</p>
+                            <p class="small">from @Model.Top10BestAnime[i].IMDbRatingVotes votes</p>
                         }
-                        <p class="medium">Staring @title.Crew</p>
+                        <p class="medium">Staring @Model.Top10BestAnime[i].Stars</p>
                     </content>
                 </div>
             </a>

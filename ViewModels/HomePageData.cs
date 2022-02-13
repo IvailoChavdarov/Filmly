@@ -15,5 +15,7 @@ namespace Filmly.ViewModels
         public List<RankingTitleItem> Top10BestMovies { get; set; }
         public List<RankingTitleItem> Top10MostPopularTVSeries { get; set; }
         public List<RankingTitleItem> Top10BestTVSeries { get; set; }
+        public List<Entries> Top10BestAnime { get; set; }
+        public List<Entries> Top10MostPopularAnime { get; set; }
     }
 }

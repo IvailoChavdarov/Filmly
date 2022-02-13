@@ -168,7 +168,7 @@ $cardWidthPhone: calc(#{$cardScale}*183,6px);
             overflow-x: scroll;
             overflow-y: hidden;
             white-space: nowrap;
-
+            margin-bottom:30px;
             .card {
                 display: inline-block;
             }
@@ -180,16 +180,16 @@ $cardWidthPhone: calc(#{$cardScale}*183,6px);
 
         .card-deck::-webkit-scrollbar-thumb {
             height:3px;
-            background-color: $mainColor;
+            background-color: $secondaryColor-light;
             border-radius:50px;
         }
     }
 }
 
 .slidersContainer{
-    margin-top:100px;
+    margin-top:70px;
     h2{
-        margin-top:50px;
+        margin-top:0px;
         color:$secondaryColor-dark;
         margin-bottom:30px;
     }

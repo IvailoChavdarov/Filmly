@@ -21,7 +21,8 @@ namespace Filmly.StaticClasses
         public static void RewriteLocalData<T>(T dataToAdd, string fileName)
         {
             string json = System.Text.Json.JsonSerializer.Serialize(dataToAdd);
-            File.WriteAllText(@$"./Data/LocalData/{fileName}.json", json);
+            //replacing string, because original quality is heavy
+            File.WriteAllText(@$"./Data/LocalData/{fileName}.json", json.Replace("images/original/", "images/240x330/"));
         }
         public static List<T> GetLocalDataAsListOfObjects<T>(string fileName)
         {

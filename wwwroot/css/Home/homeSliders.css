@@ -179,20 +179,21 @@ $textColor: #FCFAEE;*/
     height: 250px;
     overflow-x: scroll;
     overflow-y: hidden;
-    white-space: nowrap; }
+    white-space: nowrap;
+    margin-bottom: 30px; }
     .showcase .card-deck .card {
       display: inline-block; }
   .showcase .card-deck::-webkit-scrollbar {
     height: 3px; }
   .showcase .card-deck::-webkit-scrollbar-thumb {
     height: 3px;
-    background-color: #15AFE1;
+    background-color: #99AEBB;
     border-radius: 50px; } }
 
 .slidersContainer {
-  margin-top: 100px; }
+  margin-top: 70px; }
   .slidersContainer h2 {
-    margin-top: 50px;
+    margin-top: 0px;
     color: #364954;
     margin-bottom: 30px; }
 

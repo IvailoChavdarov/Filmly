@@ -10,8 +10,10 @@ namespace Filmly.StaticClasses
         public static Dictionary<string, string> RankingNamesDictionary { get; private set; } = new Dictionary<string, string>() {
             {"top-100-most-popular-movies", "MostPopularMovies" },
             {"top-100-most-popular-tv-series", "MostPopularTVs" },
+            {"top-100-most-popular-anime", "MostPopularAnime" },
             {"top-250-movies", "Top250Movies" },
-            {"top-250-tv-shows", "Top250TVs" }
+            {"top-250-tv-series", "Top250TVs" },
+            {"top-250-anime", "Top250Anime" },
         };
         public static Dictionary<string, string> RankingNamesDictionaryUserView { get; private set; } = new Dictionary<string, string>() {
             {"top-100-most-popular-movies", "Top 100 most popular movies" },

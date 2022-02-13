@@ -279,6 +279,12 @@ $searchBarHeight:35px;
 
     i.fas {
         margin-right: 3px;
+
+        span {
+            font-family: Georgia, serif;
+            font-weight: 900;
+
+        }
     }
 
     hr {
@@ -290,7 +296,7 @@ $searchBarHeight:35px;
         padding: 2vw;
         padding-left: 0vw;
         padding-right: 0vw;
-        width: 80%;
+        width: 90%;
         max-width: 100%;
 
         h4 span {
