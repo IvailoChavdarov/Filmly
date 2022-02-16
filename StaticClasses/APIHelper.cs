@@ -63,7 +63,7 @@ namespace Filmly.StaticClasses
                 }
                 else
                 {
-                    string URL = $"https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?title_type=tv_movie,tv_series&num_votes=10000,&genres={ranking}&sort=user_rating,desc";
+                    string URL = $"https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?title_type=tv_movie,tv_series&num_votes=10000,&genres={NameSimplifiers.BonusRankingSimplifiedName[ranking]}&sort=user_rating,desc";
                     string JSONResponse = GetResponseContent(URL);
                     return DeserializeStringTo<ThemedRanking>(JSONResponse);
                 }
@@ -151,7 +151,7 @@ namespace Filmly.StaticClasses
                 {
                     TitleRanking newData = GetRanking(ranking);
                     newData.LastUpdate = DateTime.Today.ToString();
-                    if (newData.ErrorMessage==null)
+                    if (string.IsNullOrEmpty(newData.ErrorMessage))
                     {
                         JSONHelper.RewriteLocalData<TitleRanking>(newData, ranking);
                     } 
@@ -163,7 +163,7 @@ namespace Filmly.StaticClasses
                 {
                     ThemedRanking newData = GetBonusRanking(bonusRanking);
                     newData.LastUpdate = DateTime.Today.ToString();
-                    if (newData.ErrorMessage == null)
+                    if (string.IsNullOrEmpty(newData.ErrorMessage))
                     {
                         JSONHelper.RewriteLocalData<ThemedRanking>(newData, bonusRanking);
                     }
@@ -176,7 +176,7 @@ namespace Filmly.StaticClasses
                 {
                     ThemedRanking newData = GetAnimeRanking(animeRanking);
                     newData.LastUpdate = DateTime.Today.ToString();
-                    if (newData.ErrorMessage == null)
+                    if (string.IsNullOrEmpty(newData.ErrorMessage))
                     {
                         JSONHelper.RewriteLocalData<ThemedRanking>(newData, animeRanking);
                     }
@@ -186,7 +186,7 @@ namespace Filmly.StaticClasses
             {
                 BoxOfficeWeekendData newData = GetWeekendBoxOffice();
                 newData.LastUpdate = DateTime.Today.ToString();
-                if (newData.ErrorMessage == null)
+                if (string.IsNullOrEmpty(newData.ErrorMessage))
                 {
                     JSONHelper.RewriteLocalData<BoxOfficeWeekendData>(newData, "BoxOffice");
                 }
@@ -195,7 +195,7 @@ namespace Filmly.StaticClasses
             {
                 NewTitleCollection newData = GetComingSoon();
                 newData.LastUpdate = DateTime.Today.ToString();
-                if (newData.ErrorMessage == null)
+                if (string.IsNullOrEmpty(newData.ErrorMessage))
                 {
                     JSONHelper.RewriteLocalData<NewTitleCollection>(newData, "ComingSoon");
                 }
@@ -204,7 +204,7 @@ namespace Filmly.StaticClasses
             {
                 NewTitleCollection newData = GetMoviesInTheaters();
                 newData.LastUpdate = DateTime.Today.ToString();
-                if (newData.ErrorMessage == null)
+                if (string.IsNullOrEmpty(newData.ErrorMessage))
                 {
                     JSONHelper.RewriteLocalData<NewTitleCollection>(newData, "InTheaters");
                 }

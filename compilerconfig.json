@@ -66,5 +66,9 @@
   {
     "outputFile": "wwwroot/css/Home/homeSliders.css",
     "inputFile": "wwwroot/css/Home/homeSliders.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Titles/ranking.css",
+    "inputFile": "wwwroot/css/Titles/ranking.scss"
   }
 ]

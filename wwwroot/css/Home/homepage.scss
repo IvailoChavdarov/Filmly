@@ -136,9 +136,7 @@ html, body {
     width: 100vw;
     position: relative;
 }
-body{
-    background:url('../../img/backgrounds/icons_pattern.png')
-}
+
 @media only screen and (max-width : 667px) {
     #topNav {
         background-color: $secondaryColor-dark;

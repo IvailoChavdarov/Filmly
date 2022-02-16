@@ -38,7 +38,6 @@
     <Folder Include="wwwroot\css\Community\" />
     <Folder Include="wwwroot\css\Identity\" />
     <Folder Include="wwwroot\css\Collections\" />
-    <Folder Include="wwwroot\css\Titles\" />
   </ItemGroup>
 
 </Project>

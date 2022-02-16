@@ -1,0 +1,46 @@
+﻿@model ThemedRankingVM
+@*<partial name="_BreadcrumbPartial" />*@
+@{
+    ViewData["Title"] = Model.RankingName;
+}
+@section heads
+{
+    <link href="@Url.Content("~/css/Titles/ranking.css")" rel="stylesheet" type="text/css" />
+}
+<div class="ranking-header">
+    @*<img src="~/img/genres/@(NameSimplifiers.RankingNamesDictionaryUserView.Where(x=>x.Value==Model.RankingName).First().Key + ".jpg")" alt="Alternate Text" />*@
+    <img src="~/img/genres/@(NameSimplifiers.RankingNamesDictionaryUserView.Where(x=>x.Value==Model.RankingName).First().Key + ".jpg")" alt="Alternate Text" />
+    <div class="ranking-title-underlay"></div>
+    <div class="ranking-title"><h1>@Model.RankingName</h1></div>
+    @*<div class="ranking-title-additional-underlay"></div>
+        <div class="ranking-title-additional"></div>*@
+</div>
+<div class="container ranking-container">
+    <table style="width: 100%">
+        <colgroup>
+            <col span="1" style="width: 5%;">
+            <col span="1" style="width: 5%;">
+            <col span="1" style="width: 50%;">
+            <col span="1" style="width: 25%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th class="table-image"></th>
+                <th>Title</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Ranking.Results.Length; i++)
+            {
+                <tr>
+                    <td>@(i+1)</td>
+                    <td><img src="@Model.Ranking.Results[i].Image" height="140"></td>
+                    <td>@Model.Ranking.Results[i].Title</td>
+                    <td><i class="fas fa-star"></i>@Model.Ranking.Results[i].IMDbRating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

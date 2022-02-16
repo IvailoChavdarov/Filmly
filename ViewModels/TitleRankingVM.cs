@@ -33,6 +33,7 @@ namespace Filmly.ViewModels
         public string RankingName { get; set; }
         public TitleRanking Ranking { get; set; }
         public BreadcrumbData BreadcrumbData { get; set; }
+        public string Image { get; set; }
     } 
 }
 

@@ -108,7 +108,8 @@ h1 {
 body {
   overflow-x: hidden;
   transition: background-color 0.7s ease;
-  background-color: #E6F4F1; }
+  background-color: #E6F4F1;
+  background: url("../../img/backgrounds/icons_pattern.png"); }
 
 @media only screen and (max-width: 667px) {
   .showcaseSectionTitle {

@@ -2,11 +2,11 @@
 <partial name="_BreadcrumbPartial" />
     <h1>@Model.RankingName</h1>
     <table>
-        @foreach (var movie in Model.Ranking.Items)
+        @foreach (var title in Model.Ranking.Items)
         {
         <tr>
-            <td>@movie.Title</td>
-            <td><a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"><img src="@movie.Image" alt="Alternate Text" /></a></td>
+            <td>@title.Title</td>
+            <td><a asp-controller="Movies" asp-action="Details" asp-route-id="@title.Id"><img src="@title.Image" alt="Alternate Text" /></a></td>
         </tr>
         }
     </table>

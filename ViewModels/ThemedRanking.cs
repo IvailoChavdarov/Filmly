@@ -9,7 +9,7 @@ namespace Filmly.ViewModels
     {
             public string QueryString { get; set; }
             public Entries[] Results { get; set; }
-            public object ErrorMessage { get; set; }
+            public string ErrorMessage { get; set; }
             public string LastUpdate { get; set; }
     }
     public class Entries

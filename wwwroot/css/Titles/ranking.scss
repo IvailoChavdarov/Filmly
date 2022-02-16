@@ -1,0 +1,90 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Shared/animations.scss";
+@import "../Utility/_timings.scss";
+$header-height:400px;
+.ranking-header {
+    position: static;
+    height: $header-height;
+    margin-bottom: 100px;
+
+    img {
+        position: absolute;
+        z-index: -2;
+        left: 28vw;
+        height: $header-height;
+        width: 1620px;
+    }
+}
+.ranking-title {
+    height: $header-height;
+    width: 1267px;
+    clip-path: polygon(0 0, 63% 0, 53% 100%, 0 100%);
+    background-color: $secondaryColor-light;
+    display: inline-block;
+    position: absolute;
+    z-index: -1;
+    padding: 30px;
+    transition:background-color $changeThemeAnimationTime ease;
+    h1 {
+        font-family: 'Trebuchet MS';
+        font-size: 70px;
+        font-weight: 900;
+        color: $secondaryColor-dark;
+        display: inline-block;
+        width: 50%;
+        transition:color $changeThemeAnimationTime ease;
+    }
+}
+
+.ranking-title-underlay {
+    height: $header-height;
+    width: 1265px;
+    clip-path: polygon(0 0, 63% 0, 53% 100%, 0 100%);
+    background-color: $mainColor;
+    display: inline-block;
+    position: absolute;
+    z-index: -2;
+    content: '';
+}
+.darkTheme {
+    .ranking-title {
+        background-color: $secondaryColor-dark;
+
+        h1 {
+            color:$textColor;
+        }
+    }
+ }
+.ranking-container{
+    background-color:white;
+    border:3px solid $secondaryColor-light; 
+    padding:20px;
+    text-align:center;
+    table{
+        tr{
+            border-bottom:1px solid $secondaryColor-light;
+            padding-top:5px;
+            padding-bottom:5px;
+        }
+    }
+}
+    /*.ranking-title-additional-underlay {
+    width: 320px;
+    height: 300px;
+    clip-path: polygon(42.5% 0, 68.5% 0, 22.5% 100%, 0% 100%);
+    background-color: $mainColor;
+    display: inline-block;
+    position:absolute;
+    left:1290px;
+}
+
+.ranking-title-additional {
+    width: 300px;
+    height: 300px;
+    clip-path: polygon(46% 0, 66% 0, 18% 100%, 0% 100%);
+    background-color: $secondaryColor-light;
+    display: inline-block;
+    position:absolute;
+    margin-left: 1300px;
+}
+*/

@@ -126,10 +126,29 @@ namespace Filmly.Controllers
         public IActionResult Ranking(string id)
         {
             APIHelper.DailyDataRefill();
-            TitleRankingVM RankingData = new TitleRankingVM() { RankingName = id, Ranking = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary[id])};
-            RankingData.BreadcrumbData = new BreadcrumbData() { ControllerName = "titles", ControllerPublicName = "Titles", ActionName = "ranking", HiddenAction = true, IdName=id, IdPublicName=NameSimplifiers.RankingNamesDictionaryUserView[id]};
+            if (Validators.AnimeRankings.Contains(NameSimplifiers.RankingNamesDictionary[id])||Validators.BonusRankings.Contains(NameSimplifiers.RankingNamesDictionary[id]))
+            {
+                return RedirectToAction("themedranking", new { id = id});
+            }
+            else
+            {
+                TitleRankingVM RankingData = new TitleRankingVM() { RankingName = NameSimplifiers.RankingNamesDictionaryUserView[id], Ranking = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary[id]) };
+                RankingData.BreadcrumbData = new BreadcrumbData() { ControllerName = "titles", ControllerPublicName = "Titles", ActionName = "ranking", HiddenAction = true, IdName = id, IdPublicName = NameSimplifiers.RankingNamesDictionaryUserView[id] };
+                return View(RankingData);
+            }
+        }
+        [HttpGet]
+        public IActionResult ThemedRanking(string id)
+        {
+            ThemedRankingVM RankingData = new ThemedRankingVM() { RankingName = NameSimplifiers.RankingNamesDictionaryUserView[id], Ranking = JSONHelper.GetLocalDataAsObject<ThemedRanking>(NameSimplifiers.RankingNamesDictionary[id]) };
+            RankingData.BreadcrumbData = new BreadcrumbData() { ControllerName = "titles", ControllerPublicName = "Titles", ActionName = "ranking", HiddenAction = true, IdName = id, IdPublicName = NameSimplifiers.RankingNamesDictionaryUserView[id] };
+            if (!Validators.AnimeRankings.Contains(NameSimplifiers.RankingNamesDictionary[id]))
+            {
+                RankingData.Image = id+".jpg";
+            }
             return View(RankingData);
         }
+
         [Authorize]
         public IActionResult AddTo(string collection, string movieid, string title, string image)
         {

@@ -98,6 +98,7 @@ body {
     overflow-x: hidden;
     transition: background-color $changeThemeAnimationTime ease;
     background-color: $textColor;
+    background: url('../../img/backgrounds/icons_pattern.png')
 }
 @media only screen and (max-width : 667px) {
     .showcaseSectionTitle {

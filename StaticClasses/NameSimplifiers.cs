@@ -14,12 +14,31 @@ namespace Filmly.StaticClasses
             {"top-250-movies", "Top250Movies" },
             {"top-250-tv-series", "Top250TVs" },
             {"top-250-anime", "Top250Anime" },
+            {"action", "ActionTitles" },
+            {"fantasy", "FantasyTitles" },
+            {"comedy", "ComedyTitles" },
+            {"family", "FamilyTitles" },
+            {"horror", "HorrorTitles" },
+            {"romance", "RomanceTitles" },
+            {"documentary", "DocumentaryTitles" },
+            {"drama", "DramaTitles" }
         };
         public static Dictionary<string, string> RankingNamesDictionaryUserView { get; private set; } = new Dictionary<string, string>() {
             {"top-100-most-popular-movies", "Top 100 most popular movies" },
             {"top-100-most-popular-tv-shows", "Top 100 most popular TV shows" },
+            {"top-100-most-popular-anime", "Top 100 most popular anime" },
             {"top-250-movies", "Top 250 best rated movies" },
-            {"top-250-tv-shows", "Top 250 best rated TV shows" }
+            {"top-250-tv-shows", "Top 250 best rated TV shows" },
+            {"top-250-anime", "Top 250 best rated anime" },
+            {"action", "Top 50 best action titles" },
+            {"fantasy", "Top 50 best fantasy titles" },
+            {"comedy", "Top 50 best comedy titles" },
+            {"family", "Top 50 best family titles" },
+            {"horror", "Top 50 best horror titles" },
+            {"romance", "Top 50 best romance titles" },
+            {"documentary", "Top 50 best documentary titles" },
+            {"drama", "Top 50 best drama titles" }
+
         };
         public static Dictionary<string, string> TypeNames { get; private set; } = new Dictionary<string, string>() {
             {"all", "SearchTitle" },
@@ -27,6 +46,16 @@ namespace Filmly.StaticClasses
             {"series", "SearchSeries" },
             {"keywords", "SearchKeyword" },
             {"actors", "SearchName"}
+        };
+        public static Dictionary<string, string> BonusRankingSimplifiedName = new Dictionary<string, string>() {
+            {"ActionTitles", "action" },
+            {"FantasyTitles", "fantasy" },
+            {"ComedyTitles", "comedy" },
+            {"FamilyTitles", "family" },
+            {"HorrorTitles", "horror" },
+            {"RomanceTitles", "romance" },
+            {"DocumentaryTitles", "documentary" },
+            {"DramaTitles", "drama" },
         };
         public static Dictionary<int?, string> Months { get; private set; } = new Dictionary<int?, string>()
         {
@@ -43,6 +72,5 @@ namespace Filmly.StaticClasses
             {11, "November" },
             {12, "December" }
         };
-
     }
 }
