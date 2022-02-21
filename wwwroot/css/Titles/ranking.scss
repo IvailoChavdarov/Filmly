@@ -1,12 +1,12 @@
 ﻿@import "../Utility/_colors.scss";
 @import "../Shared/animations.scss";
 @import "../Utility/_timings.scss";
-$header-height:400px;
+$header-height:420px;
 .ranking-header {
-    position: static;
+    position: relative;
     height: $header-height;
-    margin-bottom: 100px;
 
+    z-index:-1;
     img {
         position: absolute;
         z-index: -2;
@@ -36,38 +36,123 @@ $header-height:400px;
     }
 }
 
-.ranking-title-underlay {
-    height: $header-height;
-    width: 1265px;
-    clip-path: polygon(0 0, 63% 0, 53% 100%, 0 100%);
-    background-color: $mainColor;
-    display: inline-block;
-    position: absolute;
-    z-index: -2;
-    content: '';
-}
-.darkTheme {
-    .ranking-title {
-        background-color: $secondaryColor-dark;
+.ranking-container {
+    background-color: white;
+    border: 3px solid $mainColor;
+    text-align: center;
+    padding-bottom: 0px;
+    line-height: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    animation: $renderAnimationTime slideInFromLeft;
 
-        h1 {
-            color:$textColor;
+    .table {
+        display: table;
+        border-collapse: unset;
+        margin-bottom:0px;
+        .table-row {
+            display: table-row;
+            width: 100%;
+            max-height: 140px;
+        }
+
+        .table-cell {
+            display: table-cell;
+            border-bottom: 1.5px solid $mainColor;
+            height: 140px;
+        }
+
+        .table-text {
+            text-align: left;
+            padding-left: 35px;
+            width: 55%;
+            height: 140px;
+            line-height: 0px;
+        }
+
+        .table-image {
+            width: 5%;
+        }
+
+        .table-rank {
+            width: 10%;
+        }
+
+        .table-titleRating {
+            width: 15%;
+        }
+
+        .fa-star {
+            color: $starColor;
+            margin-right: 7px;
+        }
+
+
+
+        a {
+            text-decoration: none;
+            color: unset;
+            display: inline-block;
+            width: 100%;
+            padding-top: 1.5px;
+            max-height: 141.5px;
+            transition: background-color $rankingHoverAnimationTime ease, color $changeThemeAnimationTime ease;
+        }
+
+        a:hover {
+            background-color: $secondaryColor-light-semiTransparent;
         }
     }
- }
-.ranking-container{
-    background-color:white;
-    border:3px solid $secondaryColor-light; 
-    padding:20px;
-    text-align:center;
-    table{
-        tr{
-            border-bottom:1px solid $secondaryColor-light;
-            padding-top:5px;
-            padding-bottom:5px;
+
+    transition: background-color $changeThemeAnimationTime ease;
+}
+.table a:last-child .table-cell{
+    border-bottom:0px;
+}
+    .darkTheme {
+        .ranking-title {
+            background-color: #008CBC;
+
+            h1 {
+                color: $textColor;
+            }
+        }
+
+        .ranking-container {
+            background-color: $secondaryColor-dark;
+            border: 3px solid $mainColor;
+
+            .table {
+                color: $textColor;
+            }
+        }
+
+        .table {
+            .table-cell {
+                border-bottom: 1.5px solid $mainColor;
+            }
+        }
+    }
+/* typical phone screen resolution */
+@media only screen and (max-width : 667px) {
+    .ranking-container {
+        border-left: 1px solid $mainColor;
+        border-right: 1px solid $mainColor;
+
+        .table {
+            .table-text {
+                line-height: 16px;
+            }
+        }
+    }
+    .ranking-title {
+        h1{
+            width:100vw;
+            word-break:break-word;
         }
     }
 }
+
     /*.ranking-title-additional-underlay {
     width: 320px;
     height: 300px;

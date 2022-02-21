@@ -1,16 +1,16 @@
 ﻿@{string randomTitleId = RandomTitle.GetRandomTitleId();}
 <nav id="topNav" class="navbar navbar-expand-lg">
 
-    <a class="navbar-brand" asp-controller="home" asp-action="index" id="homeIcon"><img src="~/img/logos/logo-transparent.svg" alt="Filmly" height="40" width="160"/></a>
+    <a class="navbar-brand" asp-controller="home" asp-action="index" id="homeIcon"><img src="~/img/logos/logo-transparent.svg" alt="Filmly" height="40" width="160" /></a>
     <div class="collapse navbar-collapse" id="navBarContent">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item hiddenOnMobile">
-                <a class="nav-link NoLoader" id="homeDropdownButton"><i class="fas fa-caret-square-up" id="homeDropdownIndicator"></i> Menu</a>
+                <button style="all:unset" class="nav-link NoLoader" id="homeDropdownButton"><i class="fas fa-caret-square-up" id="homeDropdownIndicator"></i> Menu</button>
             </li>
             <li class="nav-item hiddenOnTablet">
-                <a class="nav-link" asp-controller="titles" asp-action="details" asp-route-id="@randomTitleId"><i class="fas fa-random"></i> Random</a>
+                <a class="nav-link" asp-controller="titles" asp-action="details" asp-route-id="@randomTitleId" id="randomButton"><i class="fas fa-random"></i> Random</a>
             </li>
-            <li class="nav-item hiddenOnBigScreen" id="themeSwitcherMobile" onclick="switchTheme()" title="Switch theme" >
+            <li class="nav-item hiddenOnBigScreen" id="themeSwitcherMobile" onclick="switchTheme()" title="Switch theme">
                 <i class="fas fa-lg" id="themeIdenticatorMobile"></i>
             </li>
         </ul>
@@ -18,13 +18,14 @@
     </div>
     <partial name="_SearchPartial" />
     <partial name="_UserNavigationPartial" />
+    <button id="themeSwitcher" class="NoLoader" onclick="switchTheme()" title="Switch theme"><i class="fas fa-lg" id="themeIdenticator"></i></button>
     <div id="mobileMenuToggler" onclick="toggleMobileMenu()">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
     </div>
-    <button id="themeSwitcher" class="NoLoader hiddenOnMobile" onclick="switchTheme()" title="Switch theme"><i class="fas fa-lg" id="themeIdenticator"></i></button>
+
 </nav>
 <nav id="topNavDropdown">
     <hr class="hiddenOnMobile" />
@@ -42,12 +43,12 @@
             <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended movies <i class="fas fa-spinner"></i></a>
         </div>
         <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;">
-            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows"><h4><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV shows</span></h4></a>
-            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows" class="dropdownNav-link">Top 250 TV shows</a>
-            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-shows" class="dropdownNav-link">Most popular TV shows</a>
-            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended TV shows <i class="fas fa-spinner"></i></a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series"><h4><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV series</span></h4></a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series" class="dropdownNav-link">Top 250 TV series</a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-series" class="dropdownNav-link">Most popular TV series</a>
+            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended TV series <i class="fas fa-spinner"></i></a>
         </div>
-        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;">
+        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;z-index:100;position:relative">
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-anime"><h4><i class="fas text-mainColor"><span>A</span></i><span>Anime</span></h4></a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-anime" class="dropdownNav-link">Top 250 anime</a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-anime" class="dropdownNav-link">Most popular anime</a>
@@ -98,7 +99,7 @@
         </li>
         <li class="nav-item hiddenOnBigScreen">
             <form class="form-inline" asp-area="Identity" asp-page="/account/logout" asp-route-returnUrl="@Url.Action("index", "home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link">Sign out</button>
+                <button type="submit" class="nav-item" id="signOutButton-mobile">Sign out</button>
             </form>
         </li>
         <hr />
@@ -113,13 +114,13 @@
         </li>
         <hr />
         <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows"><h5><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV shows</span></h5></a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series"><h5><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV series</span></h5></a>
         </li>
         <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-shows" class="dropdownNav-link">Top 250 TV shows</a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series" class="dropdownNav-link">Top 250 TV series</a>
         </li>
         <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-shows" class="dropdownNav-link">Most popular TV shows</a>
+            <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-series" class="dropdownNav-link">Most popular TV series</a>
         </li>
         <hr />
         <li class="nav-item hiddenOnBigScreen">

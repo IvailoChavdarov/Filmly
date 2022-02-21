@@ -48,7 +48,8 @@ $textColor: #FCFAEE;*/
       width: 330px;
       padding: 10px;
       padding-top: 10px;
-      height: 200px; }
+      height: 200px;
+      transition: background-color 0.7s ease; }
     .genreSlider .genreCard h5 {
       text-align: center;
       margin-bottom: 0; }
@@ -59,38 +60,56 @@ $textColor: #FCFAEE;*/
     background-color: rgba(170, 0, 0, 0.7);
     color: #E6F4F1;
     border: 3px solid red; }
+  .genreSlider .red .card:hover {
+    background-color: #aa0000; }
   .genreSlider .blue .card {
     background-color: rgba(0, 138, 170, 0.7);
     color: #E6F4F1;
     border: 3px solid #00d0ff; }
+  .genreSlider .blue .card:hover {
+    background-color: #008aaa; }
   .genreSlider .orange .card {
     background-color: rgba(220, 99, 0, 0.8);
     color: #E6F4F1;
     border: 3px solid #ff7300; }
+  .genreSlider .orange .card:hover {
+    background-color: #dc6300; }
   .genreSlider .green .card {
     background-color: rgba(0, 180, 0, 0.7);
     color: #E6F4F1;
     border: 3px solid lime; }
+  .genreSlider .green .card:hover {
+    background-color: #00b400; }
   .genreSlider .yellow .card {
     background-color: rgba(200, 200, 0, 0.8);
     color: #E6F4F1;
     border: 3px solid yellow; }
+  .genreSlider .yellow .card:hover {
+    background-color: #c8c800; }
   .genreSlider .black .card {
     background-color: rgba(25, 25, 25, 0.8);
     color: #E6F4F1;
     border: 3px solid #191919; }
+  .genreSlider .black .card:hover {
+    background-color: #191919; }
   .genreSlider .pink .card {
     background-color: rgba(170, 0, 143, 0.7);
     color: #E6F4F1;
     border: 3px solid #ff00d0; }
+  .genreSlider .pink .card:hover {
+    background-color: #aa008f; }
   .genreSlider .light-grey .card {
     background-color: rgba(0, 201, 92, 0.7);
     color: #E6F4F1;
     border: 3px solid #00c95c; }
+  .genreSlider .light-grey .card:hover {
+    background-color: #00c95c; }
   .genreSlider .brown .card {
     background-color: rgba(139, 69, 19, 0.8);
     color: #E6F4F1;
     border: 3px solid #964b1a; }
+  .genreSlider .brown .card:hover {
+    background-color: saddlebrown; }
   .genreSlider .genreCard:hover {
     text-decoration: none; }
 

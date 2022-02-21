@@ -25,19 +25,19 @@ namespace Filmly.StaticClasses
         };
         public static Dictionary<string, string> RankingNamesDictionaryUserView { get; private set; } = new Dictionary<string, string>() {
             {"top-100-most-popular-movies", "Top 100 most popular movies" },
-            {"top-100-most-popular-tv-shows", "Top 100 most popular TV shows" },
+            {"top-100-most-popular-tv-series", "Top 100 most popular TV series" },
             {"top-100-most-popular-anime", "Top 100 most popular anime" },
             {"top-250-movies", "Top 250 best rated movies" },
-            {"top-250-tv-shows", "Top 250 best rated TV shows" },
+            {"top-250-tv-series", "Top 250 best rated TV series" },
             {"top-250-anime", "Top 250 best rated anime" },
-            {"action", "Top 50 best action titles" },
-            {"fantasy", "Top 50 best fantasy titles" },
-            {"comedy", "Top 50 best comedy titles" },
-            {"family", "Top 50 best family titles" },
-            {"horror", "Top 50 best horror titles" },
-            {"romance", "Top 50 best romance titles" },
-            {"documentary", "Top 50 best documentary titles" },
-            {"drama", "Top 50 best drama titles" }
+            {"action", "Best action titles" },
+            {"fantasy", "Best fantasy titles" },
+            {"comedy", "Best comedy titles" },
+            {"family", "Best family titles" },
+            {"horror", "Best horror titles" },
+            {"romance", "Best romance titles" },
+            {"documentary", "Best documentary titles" },
+            {"drama", "Best drama titles" }
 
         };
         public static Dictionary<string, string> TypeNames { get; private set; } = new Dictionary<string, string>() {

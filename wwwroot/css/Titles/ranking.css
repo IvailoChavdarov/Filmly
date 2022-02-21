@@ -59,18 +59,18 @@ $textColor: #FCFAEE;*/
     transform: scale(1.2); } }
 
 .ranking-header {
-  position: static;
-  height: 400px;
-  margin-bottom: 100px; }
+  position: relative;
+  height: 420px;
+  z-index: -1; }
   .ranking-header img {
     position: absolute;
     z-index: -2;
     left: 28vw;
-    height: 400px;
+    height: 420px;
     width: 1620px; }
 
 .ranking-title {
-  height: 400px;
+  height: 420px;
   width: 1267px;
   clip-path: polygon(0 0, 63% 0, 53% 100%, 0 100%);
   background-color: #99AEBB;
@@ -78,7 +78,7 @@ $textColor: #FCFAEE;*/
   position: absolute;
   z-index: -1;
   padding: 30px;
-  transition: background-color 0.7s ease; }
+  transition: background-color 250ms ease; }
   .ranking-title h1 {
     font-family: 'Trebuchet MS';
     font-size: 70px;
@@ -86,32 +86,83 @@ $textColor: #FCFAEE;*/
     color: #364954;
     display: inline-block;
     width: 50%;
-    transition: color 0.7s ease; }
-
-.ranking-title-underlay {
-  height: 400px;
-  width: 1265px;
-  clip-path: polygon(0 0, 63% 0, 53% 100%, 0 100%);
-  background-color: #15AFE1;
-  display: inline-block;
-  position: absolute;
-  z-index: -2;
-  content: ''; }
-
-.darkTheme .ranking-title {
-  background-color: #364954; }
-  .darkTheme .ranking-title h1 {
-    color: #E6F4F1; }
+    transition: color 250ms ease; }
 
 .ranking-container {
   background-color: white;
-  border: 3px solid #99AEBB;
-  padding: 20px;
-  text-align: center; }
-  .ranking-container table tr {
-    border-bottom: 1px solid #99AEBB;
-    padding-top: 5px;
-    padding-bottom: 5px; }
+  border: 3px solid #15AFE1;
+  text-align: center;
+  padding-bottom: 0px;
+  line-height: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  animation: 1s slideInFromLeft;
+  transition: background-color 250ms ease; }
+  .ranking-container .table {
+    display: table;
+    border-collapse: unset;
+    margin-bottom: 0px; }
+    .ranking-container .table .table-row {
+      display: table-row;
+      width: 100%;
+      max-height: 140px; }
+    .ranking-container .table .table-cell {
+      display: table-cell;
+      border-bottom: 1.5px solid #15AFE1;
+      height: 140px; }
+    .ranking-container .table .table-text {
+      text-align: left;
+      padding-left: 35px;
+      width: 55%;
+      height: 140px;
+      line-height: 0px; }
+    .ranking-container .table .table-image {
+      width: 5%; }
+    .ranking-container .table .table-rank {
+      width: 10%; }
+    .ranking-container .table .table-titleRating {
+      width: 15%; }
+    .ranking-container .table .fa-star {
+      color: #f5c518;
+      margin-right: 7px; }
+    .ranking-container .table a {
+      text-decoration: none;
+      color: unset;
+      display: inline-block;
+      width: 100%;
+      padding-top: 1.5px;
+      max-height: 141.5px;
+      transition: background-color 0.5s ease, color 250ms ease; }
+    .ranking-container .table a:hover {
+      background-color: rgba(153, 174, 187, 0.5); }
+
+.table a:last-child .table-cell {
+  border-bottom: 0px; }
+
+.darkTheme .ranking-title {
+  background-color: #008CBC; }
+  .darkTheme .ranking-title h1 {
+    color: #E6F4F1; }
+
+.darkTheme .ranking-container {
+  background-color: #364954;
+  border: 3px solid #15AFE1; }
+  .darkTheme .ranking-container .table {
+    color: #E6F4F1; }
+
+.darkTheme .table .table-cell {
+  border-bottom: 1.5px solid #15AFE1; }
+
+/* typical phone screen resolution */
+@media only screen and (max-width: 667px) {
+  .ranking-container {
+    border-left: 1px solid #15AFE1;
+    border-right: 1px solid #15AFE1; }
+    .ranking-container .table .table-text {
+      line-height: 16px; }
+  .ranking-title h1 {
+    width: 100vw;
+    word-break: break-word; } }
 
 /*.ranking-title-additional-underlay {
     width: 320px;

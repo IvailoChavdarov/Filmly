@@ -98,7 +98,7 @@ h1 {
 
 .darkTheme {
   background-color: #364954;
-  transition: background-color 0.7s ease; }
+  transition: background-color 250ms ease; }
   .darkTheme .showcaseSectionTitle h1 {
     color: #E6F4F1; }
 
@@ -107,7 +107,7 @@ h1 {
 
 body {
   overflow-x: hidden;
-  transition: background-color 0.7s ease;
+  transition: background-color 250ms ease;
   background-color: #E6F4F1;
   background: url("../../img/backgrounds/icons_pattern.png"); }
 

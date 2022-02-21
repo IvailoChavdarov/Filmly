@@ -9,19 +9,31 @@ $('#homeDropdownButton').on('click', function () {
 		document.getElementById('homeDropdownIndicator-triggered').id = 'homeDropdownIndicator'
 	}
 });
+
 $('#scrollArrow').on('click', function () {
-	window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('scrollArrow').style.display = "none"
 })
 
-window.onscroll = function () { handleScrollArrow()};
+$(document.body).on('touchmove', handleScrollArrow);
+window.onscroll = function () { handleScrollArrow() };
+
 function handleScrollArrow() {
 	if (window.scrollY > window.innerHeight/1.5) {
-		document.getElementById('scrollArrow').style.display = "inline-block"
+        document.getElementById('scrollArrow').style.display = "inline-block";
 	}
 	else {
 		document.getElementById('scrollArrow').style.display = "none"
-	}
+    }
+    if (document.body.scrollTop >= window.innerHeight / 1.5) {
+        document.getElementById('scrollArrow').style.display = "inline-block";
+    }
+    else {
+        document.getElementById('scrollArrow').style.display = "none"
+    }
 }
+
 var theme = localStorage.getItem("theme")
 function switchTheme() {
     if (theme == "dark") {

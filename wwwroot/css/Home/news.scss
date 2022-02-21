@@ -1,0 +1,62 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Shared/animations.scss";
+@import "../Utility/_timings.scss";
+.articles-list {
+    background-color: white;
+    border-radius: 5px;
+    list-style: none;
+    border: 3px solid $mainColor;
+    padding-left: 0px;
+
+    a {
+        color: $mainColor;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+        color:$secondaryColor-dark;
+        font-size:x-large;
+        span{
+            font-size:large;
+        }
+    }
+    span{
+        color:$secondaryColor-light;
+    }
+    li {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+        border-bottom: 3px solid $mainColor;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+.articles-list:last-child{
+    border-bottom:0px;
+}
+.news-heading{
+    position:relative;
+    z-index:-1;
+    img{
+        position:absolute;
+        z-index:-1;
+        width:1920px;
+    }
+    h1{
+        padding:30px;
+        color:$secondaryColor-dark;
+        font-weight:900;
+        font-size:40px;
+        z-index:1;
+        position:relative;
+    }
+    background-color:$textColor;
+    height:420px;
+}
+.darkTheme {
+}
+body {
+    background: url('../../img/backgrounds/icons_pattern-news.png')
+
+}

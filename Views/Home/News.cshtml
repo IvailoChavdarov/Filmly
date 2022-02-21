@@ -1,25 +1,34 @@
 ﻿@model NewsVM
-    <partial name="_BreadcrumbPartial" />
-@foreach (var item in Model.News)
-{
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">@Html.Raw(item.Title)</h5>
-            <p class="card-text">@Html.Raw(item.Description)</p>
-            <a href="#" class="btn btn-primary">@Html.Raw(item.PubDate)</a>
-        </div>
-    </div>
-@*<h1>@item.title</h1>
-    <p>@item.Description</p>
-    <p>@item.PubDate</p>*@
+@{
+    ViewData["Title"] = "Home Page";
 }
-<script>
-    function Parse() {
-        var stringToHTML = function (str) {
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(str, 'text/html');
-            return doc.body;
-        }
+@section heads
+{ 
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Home/news.css")" rel="stylesheet" type="text/css" />
+}
 
 
-</script>
+<div class="news-heading">
+    <img src="~/img/genres/news.png" width="1920" alt="News" />
+    <h1>News about cinema and movies</h1>
+</div>
+<div class="brand-icons">
+    <a asp-route-id="netflix"><img src="~/img/brands/netflix.jpg" alt="Netflix" /></a>
+    
+</div>
+<partial name="_BreadcrumbPartial" />
+<div class="container mx-auto">
+
+    <ul class="articles-list">
+        @foreach (var article in Model.News.Take(50))
+	     {
+		    <li class="article">
+                <h2>@article.Title <span>- <a href="@article.Link" class="NoLoader" target="_blank">See full info</a></span></h2>
+                <span>@Html.Raw(article.PubDate)</span>
+                
+            </li>
+	     }
+    </ul>
+</div>
+@*@Html.Raw(item.Title)*@

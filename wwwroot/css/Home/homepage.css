@@ -113,7 +113,7 @@ $textColor: #FCFAEE;*/
   background-color: #364954;
   border-radius: 10px;
   word-break: break-word;
-  transition: background-color 0.7s linear;
+  transition: background-color 250ms linear;
   color: #E6F4F1; }
   .serviceSuggestionBox h5 {
     margin-top: 30px; }

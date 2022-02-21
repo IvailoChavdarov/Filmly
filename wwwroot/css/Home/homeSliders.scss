@@ -85,7 +85,7 @@ $cardWidthPhone: calc(#{$cardScale}*183,6px);
         .rating-container {
             i {
                 margin-right: 5px;
-                color: rgb(245, 197, 24);
+                color: $starColor;
             }
         }
 

@@ -70,5 +70,13 @@
   {
     "outputFile": "wwwroot/css/Titles/ranking.css",
     "inputFile": "wwwroot/css/Titles/ranking.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/breadcrumb.css",
+    "inputFile": "wwwroot/css/Shared/breadcrumb.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/news.css",
+    "inputFile": "wwwroot/css/Home/news.scss"
   }
 ]

@@ -125,17 +125,20 @@ namespace Filmly.Controllers
         [HttpGet]
         public IActionResult Ranking(string id)
         {
+            IRankingData rankingData;
             APIHelper.DailyDataRefill();
             if (Validators.AnimeRankings.Contains(NameSimplifiers.RankingNamesDictionary[id])||Validators.BonusRankings.Contains(NameSimplifiers.RankingNamesDictionary[id]))
             {
-                return RedirectToAction("themedranking", new { id = id});
+                rankingData = new ThemedRankingVM() { RankingName = NameSimplifiers.RankingNamesDictionaryUserView[id], Ranking = JSONHelper.GetLocalDataAsObject<ThemedRanking>(NameSimplifiers.RankingNamesDictionary[id]) };
             }
             else
             {
-                TitleRankingVM RankingData = new TitleRankingVM() { RankingName = NameSimplifiers.RankingNamesDictionaryUserView[id], Ranking = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary[id]) };
-                RankingData.BreadcrumbData = new BreadcrumbData() { ControllerName = "titles", ControllerPublicName = "Titles", ActionName = "ranking", HiddenAction = true, IdName = id, IdPublicName = NameSimplifiers.RankingNamesDictionaryUserView[id] };
-                return View(RankingData);
+                rankingData = new TitleRankingVM() { RankingName = NameSimplifiers.RankingNamesDictionaryUserView[id], Ranking = JSONHelper.GetLocalDataAsObject<TitleRanking>(NameSimplifiers.RankingNamesDictionary[id]) };
             }
+
+            rankingData.BreadcrumbData = new BreadcrumbData() { ControllerName = "titles", ControllerPublicName = "Titles", ActionName = "ranking", HiddenAction = true, IdName = id, IdPublicName = NameSimplifiers.RankingNamesDictionaryUserView[id] };
+            rankingData.Image = id + ".jpg";
+            return View(rankingData);
         }
         [HttpGet]
         public IActionResult ThemedRanking(string id)
@@ -146,10 +149,11 @@ namespace Filmly.Controllers
             {
                 RankingData.Image = id+".jpg";
             }
-            return View(RankingData);
+            return View("Ranking", RankingData);
         }
 
         [Authorize]
+        //[HttpPost]
         public IActionResult AddTo(string collection, string movieid, string title, string image)
         {
             var AppUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
@@ -184,6 +188,7 @@ namespace Filmly.Controllers
             }
             
             _db.SaveChanges();
+            TempData["notice"] = "Successfully registered";
             if (collection == "favourites")
             {
                 return RedirectToAction("Details", new { id = movieToAdd.IdInApi, success = TitleInDatabaseId(movieid) >= 0&& _db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(movieid)).ToArray().Length != 0, target = collection, change = "added to" });
@@ -195,26 +200,18 @@ namespace Filmly.Controllers
             //Response.InUserFavourites = _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.MovieId == TitleInDatabaseId(id)).ToArray().Length != 0;
         }
         [Authorize]
-        [HttpDelete]
+        //[HttpDelete]
         public IActionResult RemoveFrom(string collection, string titleid)
         {
             var AppUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
             int InDatabaseId = TitleInDatabaseId(titleid);
             if (collection == "favourites")
             {
-                _db.User_Favourites.Remove(new ApplicationUser_Favourites()
-                {
-                    ApplicationUser = AppUser,
-                    TitleId = InDatabaseId
-                });
+                AppUser.ApplicationUser_Favourites.Remove(_db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id && x.TitleId == InDatabaseId).First());
             }
             else if (collection == "watchlist")
             {
-                _db.User_WatchList.Remove(new ApplicationUser_ToWatch()
-                {
-                    ApplicationUser = AppUser,
-                    TitleId = InDatabaseId
-                });
+                AppUser.ApplicationUser_WatchList.Remove(_db.User_WatchList.Where(x=> x.ApplicationUserID==AppUser.Id&&x.TitleId==InDatabaseId).First());
             }
 
             _db.SaveChanges();

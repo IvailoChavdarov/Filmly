@@ -8,11 +8,11 @@ namespace Filmly.ViewModels
     public class ThemedRanking
     {
             public string QueryString { get; set; }
-            public Entries[] Results { get; set; }
+            public List<Entries> Results { get; set; }
             public string ErrorMessage { get; set; }
             public string LastUpdate { get; set; }
     }
-    public class Entries
+    public class Entries:IRankingTitle
     {
         public string Id { get; set; }
         public string Image { get; set; }

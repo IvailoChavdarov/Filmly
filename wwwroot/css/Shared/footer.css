@@ -80,7 +80,9 @@ footer {
   footer #socialMedias li {
     list-style: none;
     margin: 0 10px; }
-  footer #socialMedias li a {
+  footer #socialMedias li a, footer #socialMedias li button {
+    all: unset;
+    background-color: #364954;
     position: relative;
     display: block;
     width: 48px;
@@ -92,7 +94,7 @@ footer {
     font-size: 24px;
     color: #99AEBB;
     transition: .5s; }
-  footer #socialMedias li a::before {
+  footer #socialMedias li a::before, footer #socialMedias li button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -104,28 +106,28 @@ footer {
     transition: .5s;
     transform: scale(0.9);
     z-index: -1; }
-  footer #socialMedias li a:hover::before {
+  footer #socialMedias li a:hover::before, footer #socialMedias li button:hover::before {
     transform: scale(1.1);
     box-shadow: 0 0 15px #15AFE1; }
-  footer #socialMedias li a:hover {
+  footer #socialMedias li a:hover, footer #socialMedias li button:hover {
     color: #15AFE1;
     box-shadow: 0 0 5px #15AFE1;
     text-shadow: 0 0 5px #15AFE1; }
   footer #discordLink {
     cursor: pointer; }
-  footer #socialMedias li a.used {
+  footer #socialMedias li button.used {
     color: #22BB33;
     box-shadow: 0 0 5px #22BB33;
     text-shadow: 0 0 5px #22BB33;
     cursor: default;
     pointer-events: none; }
-  footer #socialMedias li a.used:hover {
+  footer #socialMedias li button.used:hover {
     color: #22BB33;
     box-shadow: 0 0 5px #22BB33;
     text-shadow: 0 0 5px #22BB33; }
-  footer #socialMedias li a.used::before {
+  footer #socialMedias li button.used::before {
     background: #22BB33; }
-  footer #socialMedias li a.used:hover::before {
+  footer #socialMedias li button.used:hover::before {
     box-shadow: 0 0 15px #22BB33; }
   footer #usedTechnologiesMini a {
     filter: brightness(70%); }
@@ -147,7 +149,7 @@ footer {
     color: #d4ece7; }
     .darkTheme footer .copyright-container a {
       color: #E6F4F1; }
-  .darkTheme footer #socialMedias li a {
+  .darkTheme footer #socialMedias li a, .darkTheme footer #socialMedias li button {
     background: #222e35; }
 
 #usedTechnologiesModal .modal-content .close {

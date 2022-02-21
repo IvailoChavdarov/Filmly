@@ -1,12 +1,34 @@
-﻿@model TitleRankingVM
+﻿@model IRankingData
+@{
+    ViewData["Title"] = Model.RankingName;
+}
+@section heads
+{
+    <link href="@Url.Content("~/css/Titles/ranking.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="ranking-header">
+    <img src="~/img/genres/@(NameSimplifiers.RankingNamesDictionaryUserView.Where(x=>x.Value==Model.RankingName).First().Key + ".jpg")" alt="Alternate Text" />
+    <div class="ranking-title"><h1>@Model.RankingName</h1></div>
+    @*<div class="ranking-title-additional-underlay"></div>
+        <div class="ranking-title-additional"></div>*@
+</div>
 <partial name="_BreadcrumbPartial" />
-    <h1>@Model.RankingName</h1>
-    <table>
-        @foreach (var title in Model.Ranking.Items)
-        {
-        <tr>
-            <td>@title.Title</td>
-            <td><a asp-controller="Movies" asp-action="Details" asp-route-id="@title.Id"><img src="@title.Image" alt="Alternate Text" /></a></td>
-        </tr>
-        }
-    </table>
+<div class="container ranking-container">
+    <div class="table">
+        <div class="table-body">
+            @for (int i = 0; i < Model.Entries.Count; i++)
+            {
+                <a asp-controller="titles" asp-action="details" asp-route-id="@Model.Entries[i].Id" title="@Model.Entries[i].Title">
+                    <div class="table-row">
+                        <div class="table-cell table-rank">@(i+1)</div>
+                        <div class="table-cell table-image"><img src="@Model.Entries[i].Image" height="140" width="101" alt="@Model.Entries[i].Image"></div>
+                        <div class="table-cell table-text">@Model.Entries[i].Title</div>
+                        <div class="table-cell table-titleRating"><i class="fas fa-star"></i>@Model.Entries[i].IMDbRating</div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

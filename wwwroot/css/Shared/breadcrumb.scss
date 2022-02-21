@@ -1,0 +1,35 @@
+﻿@import '../Utility/_colors.scss';
+@import '../Utility/_timings.scss';
+@import '../Shared/animations.scss';
+.breadcrumb {
+    background-color: #C8F8FF;
+    margin-bottom: 0px;
+    border-radius: 0;
+    margin-bottom: 70px;
+
+    a {
+        color: #008CBC;
+        text-decoration: none;
+        font-weight: 700;
+        border-bottom: 2px solid transparent;
+        border-bottom-color: transparent;
+        transition: border-bottom-color .2s ease;
+    }
+
+    a:hover {
+        border-bottom-color: #008CBC;
+    }
+
+    .breadcrumb-separator {
+        font-size: small;
+        padding-top: 2.5px;
+
+        i {
+            color: $secondaryColor-dark;
+            font-weight: 600;
+        }
+
+        margin-left: 7.5px;
+        margin-right: 7.5px;
+    }
+}

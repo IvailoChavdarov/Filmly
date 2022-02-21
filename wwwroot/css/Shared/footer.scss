@@ -72,7 +72,9 @@ footer {
         margin: 0 10px;
     }
 
-    #socialMedias li a {
+    #socialMedias li a, #socialMedias li button {
+        all: unset;
+        background-color: $secondaryColor-dark;
         position: relative;
         display: block;
         width: 48px;
@@ -86,7 +88,7 @@ footer {
         transition: .5s;
     }
 
-    #socialMedias li a::before {
+    #socialMedias li a::before, #socialMedias li button::before {
         content: '';
         position: absolute;
         top: 0;
@@ -100,12 +102,12 @@ footer {
         z-index: -1;
     }
 
-    #socialMedias li a:hover::before {
+    #socialMedias li a:hover::before, #socialMedias li button:hover::before {
         transform: scale(1.1);
         box-shadow: 0 0 15px $mainColor;
     }
 
-    #socialMedias li a:hover {
+    #socialMedias li a:hover, #socialMedias li button:hover {
         color: $mainColor;
         box-shadow: 0 0 5px $mainColor;
         text-shadow: 0 0 5px $mainColor;
@@ -115,25 +117,25 @@ footer {
         cursor: pointer;
     }
     //used
-    #socialMedias li a.used {
+    #socialMedias li button.used {
         color: $successColor;
         box-shadow: 0 0 5px $successColor;
         text-shadow: 0 0 5px $successColor;
         cursor: default;
-        pointer-events:none;
+        pointer-events: none;
     }
 
-    #socialMedias li a.used:hover {
+    #socialMedias li button.used:hover {
         color: $successColor;
         box-shadow: 0 0 5px $successColor;
         text-shadow: 0 0 5px $successColor;
     }
 
-    #socialMedias li a.used::before {
+    #socialMedias li button.used::before {
         background: $successColor;
     }
 
-    #socialMedias li a.used:hover::before {
+    #socialMedias li button.used:hover::before {
         box-shadow: 0 0 15px $successColor;
     }
 
@@ -174,7 +176,7 @@ footer {
             }
         }
 
-        #socialMedias li a {
+        #socialMedias li a, #socialMedias li button {
             background: darken($secondaryColor-dark, 10);
         }
     }

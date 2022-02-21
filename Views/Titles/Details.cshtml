@@ -15,7 +15,7 @@
 }
 else
 {
-    <a asp-action="RemoveFrom" asp-route-collection="favourites" asp-route-Movieid="@Model.TitleFullData.IdInApi">REMOVE FROM FAVOURITES</a>
+    <a asp-action="RemoveFrom" asp-route-collection="favourites" asp-route-titleid="@Model.TitleFullData.IdInApi">REMOVE FROM FAVOURITES</a>
 }
 @if (!Model.InUserWatchList)
 {
@@ -23,26 +23,30 @@ else
 }
 else
 {
-    <a asp-action="RemoveFrom" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi">REMOVE FROM WATCHLIST</a>
+    <a asp-action="RemoveFrom" asp-route-collection="watchlist" asp-route-titleid="@Model.TitleFullData.IdInApi">REMOVE FROM WATCHLIST</a>
 }
 
-    @if (Model.Success.HasValue)
+@if (Model.Success.HasValue)
+{
+    @if (Model.Success.Value)
     {
-        @if (Model.Success.Value)
-        {
-            //PARTIAL VIEW WITH THE MESSAGE
-            <p class="text-success" id="AlertMessage">@Model.TitleFullData.FullTitle was successfully @Model.Change your @Model.Target!</p>
-        }
-        else
-        {
-            <p class="text-danger" id="AlertMessage">@Model.TitleFullData.FullTitle was not successfully @Model.Change your @Model.Target!</p>
-        }
-        <script>
-            setTimeout(() => {
-                if (document.getElementById("AlertMessage")) {
-                    document.getElementById("AlertMessage").style.display = "none"
-                }
-            }, 5000);
-            
-        </script>
+        //PARTIAL VIEW WITH THE MESSAGE
+        <p class="text-success" id="AlertMessage">@Model.TitleFullData.FullTitle was successfully @Model.Change your @Model.Target!</p>
     }
+    else
+    {
+        <p class="text-danger" id="AlertMessage">@Model.TitleFullData.FullTitle was not successfully @Model.Change your @Model.Target!</p>
+    }
+    <script>
+        setTimeout(() => {
+            if (document.getElementById("AlertMessage")) {
+                document.getElementById("AlertMessage").style.display = "none"
+            }
+        }, 5000);
+
+    </script>
+}
+@if (TempData["notice"] != null)
+{
+    <p style="background-color:red;">@TempData["notice"]</p>
+}

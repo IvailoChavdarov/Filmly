@@ -35,7 +35,7 @@ function renderTheme() {
     } else {
         themeSwitchContainer.style.display = none;
     }
-    console.log(theme);
+    /*console.log(theme);*/
 }
 //(function () {
 //    if (localStorage.getItem('theme') === 'dark') {

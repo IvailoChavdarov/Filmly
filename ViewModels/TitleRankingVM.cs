@@ -16,7 +16,7 @@ namespace Filmly.ViewModels
 
     }
     //Classation Item (movie)
-    public class RankingTitleItem
+    public class RankingTitleItem:IRankingTitle
     {
         public string Id { get; set; }
         public string Rank { get; set; }
@@ -25,15 +25,16 @@ namespace Filmly.ViewModels
         public string Year { get; set; }
         public string Image { get; set; }
         public string Crew { get; set; }
-        public string ImDbRating { get; set; }
+        public string IMDbRating { get; set; }
         public string ImDbRatingCount { get; set; }
     }
-    public class TitleRankingVM : IViewModelWithBreadcrumb
+    public class TitleRankingVM : IViewModelWithBreadcrumb, IRankingData
     {
         public string RankingName { get; set; }
         public TitleRanking Ranking { get; set; }
         public BreadcrumbData BreadcrumbData { get; set; }
         public string Image { get; set; }
+        public List<IRankingTitle> Entries { get { return this.Ranking.Items.ToList<IRankingTitle>(); } }
     } 
 }
 

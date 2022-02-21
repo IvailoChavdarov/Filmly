@@ -12,6 +12,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace Filmly.Controllers
 {
@@ -51,13 +52,18 @@ namespace Filmly.Controllers
             data.Top10BestAnime = JSONHelper.GetLocalDataAsObject<ThemedRanking>(NameSimplifiers.RankingNamesDictionary["top-250-anime"]).Results.Take(10).ToList();
             return View(data);
         }
-        public IActionResult News()
+        public IActionResult News(string id)
         {
-            List<NewsItem> Details = new List<NewsItem>();
             string searchFor = "cinema";
+            if (!string.IsNullOrEmpty(id))
+            {
+                searchFor = id;
+            }
+            List<NewsItem> Details = new List<NewsItem>();
+            
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://news.google.com/news?q="+ searchFor + "&output=rss");
-
+            request.Headers.Add("Cache-Control: no-store");
             request.Method = "GET";
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -86,7 +92,7 @@ namespace Filmly.Controllers
                     foreach (DataRow dtRow in dtGetNews.Rows)
                     {
                         NewsItem DataObj = new NewsItem();
-                        DataObj.Title = dtRow["title"].ToString();
+                        DataObj.Title = Regex.Replace(dtRow["title"].ToString(), "<.*?>", String.Empty);
                         DataObj.Link = dtRow["link"].ToString();
                         DataObj.Item_id = dtRow["item_id"].ToString();
                         DataObj.PubDate = dtRow["pubDate"].ToString();

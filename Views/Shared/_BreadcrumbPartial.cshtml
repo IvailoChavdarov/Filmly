@@ -8,7 +8,7 @@
     {
         @if (Model.BreadcrumbData.ControllerName != "Home" && Model.BreadcrumbData.ControllerName != "home")
         {
-            <span class="breadcrumbSeparator"> > </span>
+            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i> </span>
         }
 
         <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="index">@Model.BreadcrumbData.ControllerPublicName</a>
@@ -18,20 +18,26 @@
     {
         if (!Model.BreadcrumbData.HiddenAction)
         {
-            <span class="breadcrumbSeparator"> > </span> <a asp-action="@Model.BreadcrumbData.ActionName">@Model.BreadcrumbData.ActionPublicName</a>
+            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+            <a asp-action="@Model.BreadcrumbData.ActionName">@Model.BreadcrumbData.ActionPublicName</a>
         }
         if (Model.BreadcrumbData.IdPublicName == "Cast")
         {
             <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.ActionPublicName</a>
-            <span class="breadcrumbSeparator"> > </span> <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="Cast" asp-route-id="@Model.BreadcrumbData.IdName">Cast</a>
+            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span><a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="Cast" asp-route-id="@Model.BreadcrumbData.IdName">Cast</a>
         }
         else
         {
             if (!string.IsNullOrEmpty(Model.BreadcrumbData.IdPublicName))
             {
-                <span class="breadcrumbSeparator"> > </span> <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.IdPublicName</a>
+                <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.IdPublicName</a>
             }
         }
 
     }
 </nav>
+@section heads
+{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+}
