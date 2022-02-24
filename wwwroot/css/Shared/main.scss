@@ -1,5 +1,6 @@
 ﻿@import "../Utility/_colors.scss";
 @import "../Utility/_timings.scss";
+@import "../Shared/animations.scss";
 body::-webkit-scrollbar {
     width:0px;
 }
@@ -162,4 +163,20 @@ body {
             border-top: 3px solid $mainColor;
         }
     }
+}
+::-moz-selection {
+    color: $textColor;
+    background: $mainColor;
+}
+
+::selection {
+    color: $textColor;
+    background: $mainColor;
+}
+.slideInFromLeftContainer{
+    animation:slideInFromLeft $renderAnimationTime;
+}
+.slideOutToLeftContainer {
+    animation: slideOutToLeft $renderAnimationTime;
+    transform:translateX(-120%)
 }

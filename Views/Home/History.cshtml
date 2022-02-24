@@ -1,26 +1,157 @@
 ﻿@model HistoryEventsVM
-<link rel="stylesheet" href="~/css/Home/history.css" />
-<partial name="_BreadcrumbPartial" />
-
-<div class="vl"></div>
-<nav id="eventsNav">
-
-    <ul>
-
-        @foreach (var item in Model.Events)
-        {
-            <li><a id="@item.EventDate.ToStringWithConnector()" class="NoLoader EventScroll"><span>@NameSimplifiers.Months[item.EventDate.EventMonth] @item.EventDate.EventYear</span></a></li>
-        }
-    </ul>
-</nav>
-<div class="margin-md_lg" id="eventsContainer">
-    @foreach (var item in Model.Events)
-    {
-    <div class="event" id="@item.EventDate.ToStringWithConnector()_data">
-        <h1 >@item.EventTitle</h1>
-        <p>@item.EventInfo</p>
-        <img src="@item.EventImage" alt="Alternate Text" />
+@section heads{
+    <link rel="stylesheet" href="~/css/Shared/breadcrumb.css" />
+    <link rel="stylesheet" href="~/css/Home/history.css" />
+}
+@{
+    ViewData["Title"] = "The history of cinema";
+}
+<header class="history-header">
+    <div class="dark-filter-wrap">
+        <h1>The history of cinema and entertainment</h1>
+        <h2>From fights and plays in colosseums and amphitheatres to our favourite movies and series on convenient smart TVs</h2>
+        <h3>How entertainment and cinematography evolved throughout the ages?</h3>
     </div>
-    }
-</div>
-<script src="~/js/TimelineScroller.js"></script>
+</header>
+<partial name="_BreadcrumbPartial" />
+<article class="timeline">
+    <nav class="timeline__nav">
+        <ul>
+            @foreach (var historyEvent in Model.Events)
+            {
+                <li><span>@historyEvent.Key</span></li>
+            }
+        </ul>
+    </nav>
+    <section class="timeline__section">
+        <div class="wrapper">
+            <div class="history-introduction">
+                <h1>Introduction</h1>
+                <p>Cinematography is the illusion of movement by the recording and subsequent rapid projection of many still photographic pictures on a screen. Originally a product of 19th-century scientific endeavour, cinema has become a medium of mass entertainment and communication, and today it is a multi-billion-pound industry.</p>
+            </div>
+            @foreach (var historyEventYear in Model.Events)
+            {
+                <h2 class="milestone">@historyEventYear.Key</h2>
+                foreach (var historyEvent in historyEventYear.AsEnumerable())
+                {
+                    <h3>@historyEvent.EventTitle</h3>
+                    if (!string.IsNullOrEmpty(historyEvent.EventDate.ToStringWithoutYear()))
+                    {
+                        <p class="event-date">@historyEvent.EventDate.ToStringWithoutYear()</p>
+                    }
+                    @if (!string.IsNullOrEmpty(historyEvent.EventImage))
+                    {
+                        <p class="half">@historyEvent.EventInfo</p>
+                        <img src="@historyEvent.EventImage" alt="Alternate Text" class="half" />
+                    }
+                    else
+                    {
+                        <p>@historyEvent.EventInfo</p>
+                    }
+                }
+                @*<h2 class="milestone">@historyEvent.Key</h2>
+                    <h3>@historyEvent.EventTitle</h3>*@
+                @*<p>@historyEvent.V</p>
+                    <p>@historyEvent.EventInfo</p>*@
+            }
+        </div>
+    </section>
+</article>
+@section scripts{
+    <script>
+        $(() => {
+            let stickyTop = 0,
+                scrollTarget = false;
+
+            let timeline = $('.timeline__nav'),
+                items = $('li', timeline),
+                milestones = $('.timeline__section .milestone'),
+                offsetTop = parseInt(timeline.css('top'));
+
+            const TIMELINE_VALUES = {
+                start: 190,
+                step: 30
+            };
+
+
+            $(window).resize(function () {
+                timeline.removeClass('fixed');
+
+                stickyTop = timeline.offset().top - offsetTop;
+
+                $(window).trigger('scroll');
+            }).trigger('resize');
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > stickyTop) {
+                    timeline.addClass('fixed');
+                } else {
+                    timeline.removeClass('fixed');
+                }
+            }).trigger('scroll');
+
+            items.find('span').click(function () {
+                let li = $(this).parent(),
+                    index = li.index(),
+                    milestone = milestones.eq(index);
+
+                if (!li.hasClass('active') && milestone.length) {
+                    scrollTarget = index;
+
+                    let scrollTargetTop = milestone.offset().top - 80;
+
+                    $('html, body').animate({ scrollTop: scrollTargetTop }, {
+                        duration: 400,
+                        complete: function complete() {
+                            scrollTarget = false;
+                        }
+                    });
+
+                }
+            });
+
+            $(window).scroll(function () {
+                let viewLine = $(window).scrollTop() + $(window).height() / 3,
+                    active = -1;
+
+                if (scrollTarget === false) {
+                    milestones.each(function () {
+                        if ($(this).offset().top - viewLine > 0) {
+                            return false;
+                        }
+
+                        active++;
+                    });
+                } else {
+                    active = scrollTarget;
+                }
+
+                timeline.css('top', -1 * active * TIMELINE_VALUES.step + TIMELINE_VALUES.start + 'px');
+
+                items.filter('.active').removeClass('active');
+
+                items.eq(active != -1 ? active : 0).addClass('active');
+            }).trigger('scroll');
+        });
+    </script>
+    <script>
+        window.onscroll = function () {
+            if (window.scrollY >= document.getElementsByClassName("timeline")[0].offsetTop-200 && window.scrollY <= (document.getElementsByClassName("timeline")[0].scrollHeight+350)) {
+                document.getElementsByClassName("timeline__nav")[0].style.opacity = 1;
+                document.getElementsByClassName("timeline__nav")[0].style.pointerEvents = "auto"
+            }
+            else {
+                document.getElementsByClassName("timeline__nav")[0].style.opacity = 0
+                document.getElementsByClassName("timeline__nav")[0].style.pointerEvents = "none"
+            }
+        };
+        if (window.scrollY >= document.getElementsByClassName("timeline")[0].offsetTop - 200 && window.scrollY <= (document.getElementsByClassName("timeline")[0].scrollHeight + 350)) {
+            document.getElementsByClassName("timeline__nav")[0].style.opacity = 1;
+            document.getElementsByClassName("timeline__nav")[0].style.pointerEvents = "auto"
+        }
+        else {
+            document.getElementsByClassName("timeline__nav")[0].style.opacity = 0
+            document.getElementsByClassName("timeline__nav")[0].style.pointerEvents = "none"
+        }
+    </script>
+}

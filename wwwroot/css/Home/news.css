@@ -58,9 +58,14 @@ $textColor: #FCFAEE;*/
   100% {
     transform: scale(1.2); } }
 
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
 .articles-list {
   background-color: white;
-  border-radius: 5px;
   list-style: none;
   border: 3px solid #15AFE1;
   padding-left: 0px; }
@@ -77,10 +82,14 @@ $textColor: #FCFAEE;*/
   .articles-list li {
     padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     border-bottom: 3px solid #15AFE1;
     padding-top: 15px;
-    padding-bottom: 15px; }
+    padding-bottom: 15px;
+    transition: all 0.5s ease;
+    color: #364954; }
+  .articles-list li:hover {
+    background-color: rgba(153, 174, 187, 0.5); }
 
 .articles-list:last-child {
   border-bottom: 0px; }
@@ -98,9 +107,63 @@ $textColor: #FCFAEE;*/
     padding: 30px;
     color: #364954;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 60px;
     z-index: 1;
-    position: relative; }
+    position: relative;
+    width: 50vw; }
 
 body {
   background: url("../../img/backgrounds/icons_pattern-news.png"); }
+
+.brand-icons {
+  word-spacing: 0px;
+  width: 100vw;
+  flex-wrap: wrap;
+  display: flex; }
+  .brand-icons img {
+    float: left;
+    width: 192px;
+    padding: 0;
+    margin: 0; }
+  .brand-icons a {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    border-bottom: 3px solid #E6F4F1;
+    border-bottom-color: transparent;
+    margin: 30px;
+    transition: border-bottom-color 0.3s ease; }
+  .brand-icons a:hover {
+    border-bottom-color: #364954; }
+
+.breadcrumb {
+  margin-bottom: 0; }
+
+.news-topics {
+  animation: slideInFromLeft 1s; }
+  .news-topics .showcaseSectionTitle {
+    margin-top: 60px;
+    margin-bottom: 30px; }
+
+.news-content {
+  animation: slideInFromLeft 1s; }
+  .news-content .showcaseSectionTitle {
+    margin-top: 45px;
+    margin-bottom: 70px; }
+
+@media only screen and (max-width: 991px) {
+  .news-heading h1 {
+    width: 100vw; } }
+
+.darkTheme .brand-icons a:hover {
+  border-bottom-color: #E6F4F1; }
+
+.darkTheme .articles-list li {
+  background-color: #364954;
+  color: #E6F4F1; }
+
+.darkTheme .articles-list li:hover {
+  background-color: #4a6473; }
+
+.darkTheme .articles-list h2 {
+  color: #E6F4F1; }

@@ -1,6 +1,6 @@
 ﻿@model NewsVM
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "News";
 }
 @section heads
 { 
@@ -13,22 +13,47 @@
     <img src="~/img/genres/news.png" width="1920" alt="News" />
     <h1>News about cinema and movies</h1>
 </div>
-<div class="brand-icons">
-    <a asp-route-id="netflix"><img src="~/img/brands/netflix.jpg" alt="Netflix" /></a>
-    
-</div>
 <partial name="_BreadcrumbPartial" />
-<div class="container mx-auto">
-
-    <ul class="articles-list">
-        @foreach (var article in Model.News.Take(50))
-	     {
-		    <li class="article">
-                <h2>@article.Title <span>- <a href="@article.Link" class="NoLoader" target="_blank">See full info</a></span></h2>
-                <span>@Html.Raw(article.PubDate)</span>
-                
-            </li>
-	     }
-    </ul>
+<div class="news-topics">
+    <div class="showcaseSectionTitle">
+        <div class="right-border">
+            <hr />
+        </div>
+        <h1>Popular topics</h1>
+        <div class="left-border">
+            <hr />
+        </div>
+    </div>
+    <div class="brand-icons d-flex justify-content-center">
+        <a asp-controller="home" asp-action="news" asp-route-id="Netflix" title="News about Netflix"><img src="~/img/brands/netflix.jpg" alt="Netflix" width="240" height="100" /></a>
+        <a asp-controller="home" asp-action="news" asp-route-id="Amazon Prime Video" title="News about Amazon Prime"><img src="~/img/brands/amazon_prime.png" alt="Amazon Prime" width="240" height="100" /></a>
+        <a asp-controller="home" asp-action="news" asp-route-id="Crunchyroll" title="News about Crunchyroll"><img src="~/img/brands/crunchyroll.png" alt="Crunchyroll" width="240" height="100" /></a>
+        <a asp-controller="home" asp-action="news" asp-route-id="IMDb" title="News about IMDb"><img src="~/img/brands/imdb.png" alt="IMDb" width="240" height="100" /></a>
+        <a asp-controller="home" asp-action="news" asp-route-id="Funimation" title="News about Funimation"><img src="~/img/brands/funimation.jpg" alt="Funimation" width="240" height="100" /></a>
+        <a asp-controller="home" asp-action="news" asp-route-id="Marvel" title="News about Marvel Comics"><img src="~/img/brands/marvel.png" alt="Marvel" width="240" height="100" /></a>
+        <a asp-controller="home" asp-action="news" asp-route-id="HBO" title="News about HBO"><img src="~/img/brands/hbo.png" alt="HBO" width="240" height="100" /></a>
+    </div>
+</div>
+<div class="news-content">
+    <div class="showcaseSectionTitle">
+        <div class="right-border">
+            <hr />
+        </div>
+        <h1>@Model.BreadcrumbData.ActionPublicName</h1>
+        <div class="left-border">
+            <hr />
+        </div>
+    </div>
+    <div class="container mx-auto">
+        <ul class="articles-list">
+            @foreach (var article in Model.News.Take(50))
+            {
+                <li class="article">
+                    <h2>@article.Title <span>- <a href="@article.Link" class="NoLoader" title="This will take you to other website" target="_blank">See full info</a></span></h2>
+                    <span>@Html.Raw(article.PubDate)</span>
+                </li>
+            }
+        </ul>
+    </div>
 </div>
 @*@Html.Raw(item.Title)*@

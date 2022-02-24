@@ -10,7 +10,7 @@ namespace Filmly.ViewModels
         public List<IRankingTitle> Entries { get; }
         public string RankingName { get; set; }
         public string Image { get; set; }
-        public BreadcrumbData BreadcrumbData { get; set; }
+
     }
     public interface IRankingTitle
     {

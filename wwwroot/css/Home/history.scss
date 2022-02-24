@@ -1,74 +1,244 @@
 ﻿@import "../Utility/_colors.scss";
-body{
-    overflow:hidden;
-    height:100vh
-}
-#eventsNav {
-    width: 150px;
-    display: inline-block;
-    position: fixed;
-    top:0px;
-    left: 0;
-    /*height: 87.5vh;*/
-    height: 100vh;
-    overflow-y: scroll;
-    text-align: center;
-    z-index:1;
-    ul {
-        padding-left: 5px;
-        padding-top: 70px;
+@import "../Shared/animations.scss";
+@import "../Utility/_timings.scss";
+header.history-header {
+    background: url(../../img/backgrounds/cinema-history.png);
+    background-size: 100vw;
+    height: 29vw;
 
-        li {
-            z-index: 2;
-            background-color: white;
-            height: 110px;
-            width: 110px;
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
-            /*border: 3px solid $secondaryColor;*/
-            margin-bottom:1vh;
-            span {
-                margin: 0;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-                text-align: center
+    .dark-filter-wrap {
+        background-color: rgba(0,0,0,0.6);
+        height: 100%;
+        color: $textColor;
+        text-align: center;
+        animation: fadeIn $renderAnimationTime;
+        padding-top: 120px;
+    }
+
+    h1 {
+        color: $textColor;
+    }
+
+    h2 {
+        padding-top:25px;
+        color: #BBD0DE
+    }
+
+    h3 {
+        color: $mainColor;
+        margin-bottom: 0;
+        margin-top:35px;
+    }
+}
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    line-height: 1.5;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 25px 16.66% 50px;
+    width: 100%;
+    font-size:0px;
+    p{
+        font-size:large;
+    }
+}
+
+article {
+    position: relative;
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+.timeline {
+    background-color: $textColor;
+    overflow: hidden;
+    animation: slideInFromLeft $renderAnimationTime;
+    transition: background-color $changeThemeAnimationTime ease;
+    color: $secondaryColor-dark;
+    border: 2px solid transparent;
+    border-top: none;
+
+    .event-date {
+        color: $secondaryColor-light;
+    }
+
+    h1, h3 {
+        color: $mainColor;
+    }
+
+    p {
+        vertical-align: top;
+    }
+
+    .milestone {
+        margin-top: 20px;
+    }
+
+    h3 {
+        margin-top: 20px;
+    }
+
+    &__nav {
+        opacity: 0;
+        position: fixed;
+        z-index: 99;
+        top: 0;
+        transition: top .3s ease-out, opacity .3s linear;
+
+        ul {
+            list-style: none;
+            list-style-position: inside;
+            margin: 15px 0;
+
+            li {
+                margin: 15px 0;
+                padding-left: 0;
+                list-style-type: none;
+                color: $secondaryColor-light;
+                border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+                cursor: pointer;
+                transition: all .3s ease-out, font-weight 0s ease;
+                text-align: center;
+
+                &.active {
+                    font-weight: bold;
+                    color: $mainColor;
+                    border-bottom: 1px solid $mainColor;
+                    transform: scale(1.2);
+                }
+
+
+
+                &.active:hover {
+                    border-bottom: 1px solid $secondaryColor-dark;
+                }
+
+                &:hover {
+                    color: $secondaryColor-dark;
+                    border-bottom: 1px dotted $secondaryColor-dark;
+                }
+            }
+        }
+    }
+
+    .history-introduction {
+        font-size: initial;
+    }
+}
+.breadcrumb{
+    margin-bottom:0px;
+}
+.half {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    font-size: large;
+    height: 100%;
+    color: $secondaryColor-dark;
+
+    img {
+        max-width: 100%;
+        max-height: 40vw;
+    }
+}
+
+.full {
+    display: block;
+    font-size: large;
+    margin: 0;
+    padding: 0;
+    color: $secondaryColor-dark;
+    overflow-wrap: break-word;
+}
+@media only screen and (max-width : 991px) {
+    .timeline {
+        &__nav{
+            display:none;
+        }
+    }
+}
+.milestone{
+    margin-top:35px
+}
+h3{
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.darkTheme {
+    .timeline {
+        background-color: $secondaryColor-dark;
+        border: 2px solid $mainColor;
+        border-top:none;
+        .event-date {
+            color: $secondaryColor-light;
+        }
+        p{
+            color:$textColor;
+        }
+        .milestone{
+            color:$textColor;
+        }
+        &__nav {
+            opacity: 0;
+            position: fixed;
+            z-index: 99;
+            top: 0;
+            transition: top .3s ease-out, opacity .3s linear;
+
+            ul {
+                list-style: none;
+                list-style-position: inside;
+                margin: 15px 0;
+
+                li {
+                    margin: 15px 0;
+                    padding-left: 0;
+                    list-style-type: none;
+                    color: $secondaryColor-light;
+                    border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+                    cursor: pointer;
+                    transition: all .3s ease-out, font-weight 0s ease;
+                    text-align: center;
+
+                    &.active {
+                        font-weight: bold;
+                        color: $mainColor;
+                        border-bottom: 1px solid $mainColor;
+                        transform: scale(1.2);
+                    }
+
+
+
+                    &.active:hover {
+                        border-bottom: 1px solid $textColor;
+                    }
+
+                    &:hover {
+                        color: $textColor;
+                        border-bottom: 1px dotted $textColor;
+                    }
+                }
             }
         }
     }
 }
-#eventsNav::-webkit-scrollbar {
-    width: 0px;
+/* typical phone screen resolution */
+@media only screen and (max-width : 991px) {
+    header.history-header {
+        background: url('https://miro.medium.com/max/768/1*Lzjk71qN2KKvoGajU1tkiQ.jpeg');
+        background-size:cover;
+        height:fit-content;
+    }
 }
-
-.vl {
-    position:fixed;
-    /*border-left: 7px solid $secondaryColor;*/
-    height:100vh;
-    left:75px;
-    z-index:1;
-}
-#eventsContainer {
-    margin-top:30px;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-    overflow-x: initial;
-    height: 100vh;
-    width: 100%;
-}
-/*.vl::before {
-    content:"";
-    top:0;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background-color: $secondaryColor;
-    position: fixed;
-    left: 70px;
-    z-index:1;
-}
-*/

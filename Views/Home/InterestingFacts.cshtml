@@ -1,8 +1,86 @@
 ﻿@model InterestingFactsVM
+@{
+    ViewData["Title"] = "Interesting facts";
+}
+@section heads
+{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Home/interestingFacts.css")" rel="stylesheet" type="text/css" />
+}
+<div class="interestingFacts-header">
+    <h1>Interesting facts about movies, cinema, actors and more...</h1>
+</div>
 <partial name="_BreadcrumbPartial">
-    @foreach (var item in Model.Events)
+    
+<button aria-label="facts side navigation" onclick="toggleListNav()" class="NoLoader open" id="sidenav-toggler-facts"></button>
+
+<nav class="interestingFacts-scrollNav">
+    @for (int i = 0; i < Model.Facts.Count; i++)
     {
-        <h1>@item.FactTitle</h1>
-        <p>@item.FactInfo</p>
-        <img src="@item.FactImage" alt="Alternate Text" />
+        @if (i == 0)
+        {
+            <a href="#1" class="NoLoader">1</a>
+        }
+        else if (i % 10 == 0)
+        {
+            <a href="#@i" class="NoLoader">@i</a>
+        }
     }
+</nav>
+<div class="container facts-content">
+    <ol class="interestingFacts-list">
+        @for (int i = 0; i < Model.Facts.Count; i++)
+        {
+
+        <li><h2 id="@(i+1)">@Model.Facts[i].FactTitle</h2>
+            @if (string.IsNullOrEmpty(Model.Facts[i].FactImage))
+            {
+                <p class="full">
+                    @Html.Raw(Model.Facts[i].FactInfo)
+                </p>
+            }
+            else
+            {
+                <p class="half">
+                    @Html.Raw(Model.Facts[i].FactInfo)
+                </p>
+                <span class="half"><img src="@Model.Facts[i].FactImage" alt="@Model.Facts[i].FactImage" /></span>
+            }
+        </li>
+        }
+    </ol>
+</div>
+@section scripts
+{
+    <script>
+        function toggleListNav() {
+            document.getElementById("sidenav-toggler-facts").classList.toggle("open")
+            document.getElementsByClassName("interestingFacts-scrollNav")[0].classList.toggle("open")
+        }
+        document.addEventListener('mouseup', function (e) {
+            var container = document.getElementsByClassName("interestingFacts-scrollNav")[0]
+            if (!container.contains(e.target)) {
+                if (document.getElementsByClassName("interestingFacts-scrollNav")[0].classList.contains("open")) {
+                    document.getElementsByClassName("interestingFacts-scrollNav")[0].classList.toggle("open")
+                    document.getElementById("sidenav-toggler-facts").classList.toggle("open")
+                }
+                    
+            }
+        });
+    </script>
+    <script>
+        window.onscroll = function () { handleFactsScrollNav() };
+        handleFactsScrollNav()
+        function handleFactsScrollNav() {
+            handleScrollArrow();
+            if (window.scrollY >= 275 && window.scrollY <= (150+document.getElementsByClassName("facts-content")[0].scrollHeight)) {
+                document.getElementById('sidenav-toggler-facts').style.opacity = 1
+                document.getElementsByClassName("interestingFacts-scrollNav")[0].style.opacity = 1
+            }
+            else {
+                document.getElementById('sidenav-toggler-facts').style.opacity = 0
+                document.getElementsByClassName("interestingFacts-scrollNav")[0].style.opacity = 0
+            }
+        };
+    </script>
+}

@@ -10,9 +10,9 @@ namespace Filmly.ViewModels
     {
         public InterestingFactsVM()
         {
-          this.Events = JSONHelper.GetLocalDataAsListOfObjects<InterestingFact>("InterestingFacts");
+          this.Facts = JSONHelper.GetLocalDataAsListOfObjects<InterestingFact>("InterestingFacts");
         }
-            public List<InterestingFact> Events { get; set; }
+            public List<InterestingFact> Facts { get; set; }
             public BreadcrumbData BreadcrumbData { get; set; }
 
     }

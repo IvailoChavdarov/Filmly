@@ -28,6 +28,42 @@ $textColor: #FCFAEE;*/
 $secondaryColor-dark: #3B4A3F;
 $mainColor: #03FC90;
 $textColor: #FCFAEE;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
 body::-webkit-scrollbar {
   width: 0px; }
 
@@ -152,3 +188,18 @@ body {
     width: 47.5vw; }
     .showcaseSectionTitle .left-border hr {
       border-top: 3px solid #15AFE1; }
+
+::-moz-selection {
+  color: #E6F4F1;
+  background: #15AFE1; }
+
+::selection {
+  color: #E6F4F1;
+  background: #15AFE1; }
+
+.slideInFromLeftContainer {
+  animation: slideInFromLeft 1s; }
+
+.slideOutToLeftContainer {
+  animation: slideOutToLeft 1s;
+  transform: translateX(-120%); }

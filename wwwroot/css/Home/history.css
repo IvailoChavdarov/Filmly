@@ -28,71 +28,214 @@ $textColor: #FCFAEE;*/
 $secondaryColor-dark: #3B4A3F;
 $mainColor: #03FC90;
 $textColor: #FCFAEE;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
+header.history-header {
+  background: url(../../img/backgrounds/cinema-history.png);
+  background-size: 100vw;
+  height: 29vw; }
+  header.history-header .dark-filter-wrap {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    color: #E6F4F1;
+    text-align: center;
+    animation: fadeIn 1s;
+    padding-top: 120px; }
+  header.history-header h1 {
+    color: #E6F4F1; }
+  header.history-header h2 {
+    padding-top: 25px;
+    color: #BBD0DE; }
+  header.history-header h3 {
+    color: #15AFE1;
+    margin-bottom: 0;
+    margin-top: 35px; }
+
+html {
+  box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
 body {
+  line-height: 1.5; }
+
+.wrapper {
+  margin: 0 auto;
+  padding: 25px 16.66% 50px;
+  width: 100%;
+  font-size: 0px; }
+  .wrapper p {
+    font-size: large; }
+
+article {
+  position: relative;
+  max-width: 1260px;
+  margin: 0 auto; }
+
+.timeline {
+  background-color: #E6F4F1;
   overflow: hidden;
-  height: 100vh; }
-
-#eventsNav {
-  width: 150px;
-  display: inline-block;
-  position: fixed;
-  top: 0px;
-  left: 0;
-  /*height: 87.5vh;*/
-  height: 100vh;
-  overflow-y: scroll;
-  text-align: center;
-  z-index: 1; }
-  #eventsNav ul {
-    padding-left: 5px;
-    padding-top: 70px; }
-    #eventsNav ul li {
-      z-index: 2;
-      background-color: white;
-      height: 110px;
-      width: 110px;
-      border-radius: 50%;
-      display: inline-block;
-      position: relative;
-      /*border: 3px solid $secondaryColor;*/
-      margin-bottom: 1vh; }
-      #eventsNav ul li span {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center; }
-
-#eventsNav::-webkit-scrollbar {
-  width: 0px; }
-
-.vl {
-  position: fixed;
-  /*border-left: 7px solid $secondaryColor;*/
-  height: 100vh;
-  left: 75px;
-  z-index: 1; }
-
-#eventsContainer {
-  margin-top: 30px;
-  scroll-behavior: smooth;
-  overflow-y: scroll;
-  overflow-x: initial;
-  height: 100vh;
-  width: 100%; }
-
-/*.vl::before {
-    content:"";
-    top:0;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background-color: $secondaryColor;
+  animation: slideInFromLeft 1s;
+  transition: background-color 250ms ease;
+  color: #364954;
+  border: 2px solid transparent;
+  border-top: none; }
+  .timeline .event-date {
+    color: #99AEBB; }
+  .timeline h1, .timeline h3 {
+    color: #15AFE1; }
+  .timeline p {
+    vertical-align: top; }
+  .timeline .milestone {
+    margin-top: 20px; }
+  .timeline h3 {
+    margin-top: 20px; }
+  .timeline__nav {
+    opacity: 0;
     position: fixed;
-    left: 70px;
-    z-index:1;
-}
-*/
+    z-index: 99;
+    top: 0;
+    transition: top .3s ease-out, opacity .3s linear; }
+    .timeline__nav ul {
+      list-style: none;
+      list-style-position: inside;
+      margin: 15px 0; }
+      .timeline__nav ul li {
+        margin: 15px 0;
+        padding-left: 0;
+        list-style-type: none;
+        color: #99AEBB;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all .3s ease-out, font-weight 0s ease;
+        text-align: center; }
+        .timeline__nav ul li.active {
+          font-weight: bold;
+          color: #15AFE1;
+          border-bottom: 1px solid #15AFE1;
+          transform: scale(1.2); }
+        .timeline__nav ul li.active:hover {
+          border-bottom: 1px solid #364954; }
+        .timeline__nav ul li:hover {
+          color: #364954;
+          border-bottom: 1px dotted #364954; }
+  .timeline .history-introduction {
+    font-size: initial; }
+
+.breadcrumb {
+  margin-bottom: 0px; }
+
+.half {
+  display: inline-block;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  font-size: large;
+  height: 100%;
+  color: #364954; }
+  .half img {
+    max-width: 100%;
+    max-height: 40vw; }
+
+.full {
+  display: block;
+  font-size: large;
+  margin: 0;
+  padding: 0;
+  color: #364954;
+  overflow-wrap: break-word; }
+
+@media only screen and (max-width: 991px) {
+  .timeline__nav {
+    display: none; } }
+
+.milestone {
+  margin-top: 35px; }
+
+h3 {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.darkTheme .timeline {
+  background-color: #364954;
+  border: 2px solid #15AFE1;
+  border-top: none; }
+  .darkTheme .timeline .event-date {
+    color: #99AEBB; }
+  .darkTheme .timeline p {
+    color: #E6F4F1; }
+  .darkTheme .timeline .milestone {
+    color: #E6F4F1; }
+  .darkTheme .timeline__nav {
+    opacity: 0;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    transition: top .3s ease-out, opacity .3s linear; }
+    .darkTheme .timeline__nav ul {
+      list-style: none;
+      list-style-position: inside;
+      margin: 15px 0; }
+      .darkTheme .timeline__nav ul li {
+        margin: 15px 0;
+        padding-left: 0;
+        list-style-type: none;
+        color: #99AEBB;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all .3s ease-out, font-weight 0s ease;
+        text-align: center; }
+        .darkTheme .timeline__nav ul li.active {
+          font-weight: bold;
+          color: #15AFE1;
+          border-bottom: 1px solid #15AFE1;
+          transform: scale(1.2); }
+        .darkTheme .timeline__nav ul li.active:hover {
+          border-bottom: 1px solid #E6F4F1; }
+        .darkTheme .timeline__nav ul li:hover {
+          color: #E6F4F1;
+          border-bottom: 1px dotted #E6F4F1; }
+
+/* typical phone screen resolution */
+@media only screen and (max-width: 991px) {
+  header.history-header {
+    background: url("https://miro.medium.com/max/768/1*Lzjk71qN2KKvoGajU1tkiQ.jpeg");
+    background-size: cover;
+    height: fit-content; } }

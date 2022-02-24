@@ -59,6 +59,12 @@ $textColor: #FCFAEE;*/
   100% {
     transform: scale(1.2); } }
 
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
 #topNav {
   background-color: transparent;
   backdrop-filter: blur(4px);
@@ -193,3 +199,6 @@ html, body {
 .darkTheme .seeAllLink:hover {
   text-decoration: none;
   color: #15AFE1; }
+
+.showcase {
+  margin-bottom: 30px; }

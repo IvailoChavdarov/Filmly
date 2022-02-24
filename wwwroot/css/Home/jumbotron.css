@@ -58,6 +58,12 @@ $textColor: #FCFAEE;*/
   100% {
     transform: scale(1.2); } }
 
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
 .jumbotron-fluid {
   margin: 0;
   padding: 0;

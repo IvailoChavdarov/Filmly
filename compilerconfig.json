@@ -78,5 +78,9 @@
   {
     "outputFile": "wwwroot/css/Home/news.css",
     "inputFile": "wwwroot/css/Home/news.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/interestingFacts.css",
+    "inputFile": "wwwroot/css/Home/interestingFacts.scss"
   }
 ]

@@ -58,11 +58,17 @@ $textColor: #FCFAEE;*/
   100% {
     transform: scale(1.2); } }
 
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
 #topNav {
   background-color: #364954;
   padding-bottom: 5px;
   padding-top: 5px;
-  z-index: 1;
+  z-index: 5;
   /*    #themeIdenticator:hover {
         color: $mainColor;
     }*/ }
@@ -258,7 +264,8 @@ $textColor: #FCFAEE;*/
   background-color: #364954;
   text-wrap: normal;
   overflow: hidden;
-  color: #E6F4F1; }
+  color: #E6F4F1;
+  z-index: 1; }
   #topNavDropdown i.fas {
     margin-right: 3px; }
     #topNavDropdown i.fas span {

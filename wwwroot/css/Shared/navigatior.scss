@@ -1,8 +1,6 @@
 ﻿@import '../Utility/_colors.scss';
 @import '../Utility/_timings.scss';
 @import '../Shared/animations.scss';
-$dropdownNavOpeningDuration:0.5s;
-$dropdownNavClosingDuration: 0.3s;
 $searchBarRounding:3px;
 $searchBarHeight:35px;
 
@@ -10,7 +8,7 @@ $searchBarHeight:35px;
     background-color: $secondaryColor-dark;
     padding-bottom: 5px;
     padding-top: 5px;
-    z-index: 1;
+    z-index: 5;
 
     i.fas {
         margin-right: 3px;
@@ -146,6 +144,7 @@ $searchBarHeight:35px;
             color: $secondaryColor-dark;
             display: block;
             padding-left: 0;
+
         }
 
         a.nav-link:hover, button:hover {
@@ -298,7 +297,7 @@ $searchBarHeight:35px;
     text-wrap: normal;
     overflow: hidden;
     color: $textColor;
-
+    z-index:1;
     i.fas {
         margin-right: 3px;
 

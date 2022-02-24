@@ -58,8 +58,14 @@ $textColor: #FCFAEE;*/
   100% {
     transform: scale(1.2); } }
 
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
 .breadcrumb {
-  background-color: #C8F8FF;
+  background-color: #BBD0DE;
   margin-bottom: 0px;
   border-radius: 0;
   margin-bottom: 70px; }
