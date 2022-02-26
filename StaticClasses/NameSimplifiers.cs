@@ -41,7 +41,7 @@ namespace Filmly.StaticClasses
 
         };
         public static Dictionary<string, string> TypeNames { get; private set; } = new Dictionary<string, string>() {
-            {"all", "SearchTitle" },
+            {"all", "Search" },
             {"movies", "SearchMovie" },
             {"series", "SearchSeries" },
             {"keywords", "SearchKeyword" },

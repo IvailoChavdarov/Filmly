@@ -82,5 +82,13 @@
   {
     "outputFile": "wwwroot/css/Home/interestingFacts.css",
     "inputFile": "wwwroot/css/Home/interestingFacts.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Titles/search.css",
+    "inputFile": "wwwroot/css/Titles/search.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Shared/customSelect.css",
+    "inputFile": "wwwroot/css/Shared/customSelect.scss"
   }
 ]

@@ -403,6 +403,10 @@ $searchBarHeight:35px;
                 color: $textColor;
             }
 
+            a.nav-link:hover, button:hover {
+                color: $mainColor;
+            }
+
             .fa-sign-out-alt {
                 color: $secondaryColor-light;
             }

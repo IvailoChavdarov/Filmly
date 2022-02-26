@@ -26,13 +26,36 @@ namespace Filmly.Controllers
         }
         public IActionResult Index(string search, string type)
         {
-            if (string.IsNullOrEmpty(search))
-            {
+            //if (string.IsNullOrEmpty(search))
+            //{
                 return RedirectToAction("Ranking", new { id = "top-250-movies" });
-            } else
+            //} else
+            //{
+            //    return View("SearchTitle", APIHelper.Search(search, type));
+            //}
+        }
+        public IActionResult Search(string search, string type)
+        {
+            SearchResultVM data = new SearchResultVM();
+            if (!string.IsNullOrEmpty(search))
             {
-                return View("SearchTitle", APIHelper.Search(search, type));
+                data= APIHelper.Search(search, type);
             }
+            else
+            {
+                data.Expression = null;
+            }
+            data.BreadcrumbData = new BreadcrumbData()
+            {
+                ControllerName = "titles",
+                ControllerPublicName = "Titles",
+                HiddenController = true,
+                ActionName = "search",
+                ActionPublicName ="Search",
+                IdName = null,
+                IdPublicName = search
+            };
+            return View(data);
         }
         [HttpGet]
         public IActionResult Cast(string id)
@@ -69,7 +92,7 @@ namespace Filmly.Controllers
             return View(data);
         }
         [HttpGet]
-        public IActionResult Details(string id, bool? success, string target, string change)
+        public IActionResult Details(string id)
         {
             if (id.StartsWith('n'))
             {
@@ -82,7 +105,7 @@ namespace Filmly.Controllers
                 TitleToRender.IMDbRating = "10";
             }
             //var MovieInDb = _db.Titles.Where(x => x.IdInApi == id);
-            TitleDetailsVM Response = new TitleDetailsVM() { TitleFullData = TitleToRender, Success = success, Target = target, Change = change};
+            TitleDetailsVM Response = new TitleDetailsVM() { TitleFullData = TitleToRender};
             if (User.Identity.IsAuthenticated)
             {
                 var AppUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
@@ -153,22 +176,17 @@ namespace Filmly.Controllers
         }
 
         [Authorize]
-        //[HttpPost]
-        public IActionResult AddTo(string collection, string movieid, string title, string image)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddTo(string collection, string id, string title)
         {
             var AppUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
-            Titles movieToAdd = new Titles()
-            {
-                IdInApi = movieid,
-                TitleName = title,
-                Image = image
-            };
-            int InDatabaseId = TitleInDatabaseId(movieToAdd.IdInApi);
+            int InDatabaseId = TitleInDatabaseId(id);
             if (InDatabaseId == -1)
             {
                 //_db.MoviesSimplified.Add(movieToAdd);
                 _db.SaveChanges();
-                InDatabaseId = TitleInDatabaseId(movieToAdd.IdInApi);
+                InDatabaseId = TitleInDatabaseId(id);
             }
             if (collection=="favourites")
             {
@@ -185,48 +203,100 @@ namespace Filmly.Controllers
                     ApplicationUser = AppUser,
                     TitleId = InDatabaseId
                 });
-            }
-            
+            }            
             _db.SaveChanges();
-            TempData["notice"] = "Successfully registered";
+            
             if (collection == "favourites")
             {
-                return RedirectToAction("Details", new { id = movieToAdd.IdInApi, success = TitleInDatabaseId(movieid) >= 0&& _db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(movieid)).ToArray().Length != 0, target = collection, change = "added to" });
+                if (TitleInDatabaseId(id) >= 0 && _db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(id)).ToArray().Length != 0)
+                {
+                    TempData["notice"] = $"Successfully added {title} to your favourites!";
+                    TempData["noticeBackground"] = "bg-success";
+                }
+                else
+                {
+                    TempData["notice"] = $"{title} was not successfully added to your favourites!";
+                    TempData["noticeBackground"] = "bg-danger";
+                }
+                return RedirectToAction("Details", new { id = id });
             }
-            else
+            else if (collection == "watchlist")
             {
-                return RedirectToAction("Details", new { id = movieToAdd.IdInApi, success = TitleInDatabaseId(movieid) >= 0 && _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(movieid)).ToArray().Length != 0, target = collection, change = "added to" });
+                if (TitleInDatabaseId(id) >= 0 && _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(id)).ToArray().Length != 0)
+                {
+                    TempData["notice"] = $"Successfully added {title} to your watchlist!";
+                    TempData["noticeBackground"] = "bg-success";
+                }
+                else
+                {
+                    TempData["notice"] = $"{title} was not successfully added to your watchlist!";
+                    TempData["noticeBackground"] = "bg-danger";
+                }
+                return RedirectToAction("Details", new { id = id });
             }
+            throw new Exception();
             //Response.InUserFavourites = _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.MovieId == TitleInDatabaseId(id)).ToArray().Length != 0;
         }
+
         [Authorize]
-        //[HttpDelete]
-        public IActionResult RemoveFrom(string collection, string titleid)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RemoveFrom(string collection, string id, string title)
         {
             var AppUser = _userManager.FindByNameAsync(User.Identity.Name).Result;
-            int InDatabaseId = TitleInDatabaseId(titleid);
+            int InDatabaseId = TitleInDatabaseId(id);
+            if (InDatabaseId == -1)
+            {
+                //_db.MoviesSimplified.Add(movieToAdd);
+                
+                InDatabaseId = TitleInDatabaseId(id);
+                _db.SaveChanges();
+            }
             if (collection == "favourites")
             {
                 AppUser.ApplicationUser_Favourites.Remove(_db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id && x.TitleId == InDatabaseId).First());
             }
             else if (collection == "watchlist")
             {
-                AppUser.ApplicationUser_WatchList.Remove(_db.User_WatchList.Where(x=> x.ApplicationUserID==AppUser.Id&&x.TitleId==InDatabaseId).First());
+                AppUser.ApplicationUser_WatchList.Remove(_db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id && x.TitleId == InDatabaseId).First());
             }
-
             _db.SaveChanges();
+
             if (collection == "favourites")
             {
-                return RedirectToAction("Details", new { id = titleid, success = _db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id && x.TitleId == TitleInDatabaseId(titleid)).ToArray().Length == 0, target = collection, change = "removed from" });
+                if (TitleInDatabaseId(id) >= 0 && _db.User_Favourites.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(id)).ToArray().Length == 0)
+                {
+                    TempData["notice"] = $"Successfully removed {title} from your favourites!";
+                    TempData["noticeBackground"] = "bg-success";
+                }
+                else
+                {
+                    TempData["notice"] = $"{title} was not successfully removed from your favourites!";
+                    TempData["noticeBackground"] = "bg-danger";
+                }
+                return RedirectToAction("details", new { id = id });
             }
-            else
+            else if (collection == "watchlist")
             {
-                return RedirectToAction("Details", new { id = titleid, success = _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id && x.TitleId == TitleInDatabaseId(titleid)).ToArray().Length == 0, target = collection, change = "removed from" });
+                if (TitleInDatabaseId(id) >= 0 && _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleInDatabaseId(id)).ToArray().Length == 0)
+                {
+                    TempData["notice"] = $"Successfully removed {title} from your watchlist!";
+                    TempData["noticeBackground"] = "bg-success";
+                }
+                else
+                {
+                    TempData["notice"] = $"{title} was not successfully removed from your watchlist!";
+                    TempData["noticeBackground"] = "bg-danger";
+                }
+                return RedirectToAction("details", new { id = id });
             }
+            throw new Exception();
             
         }
+
+        //Helper methods
         [HttpPost]
-        public int AddTitleFromAPIToDB(string idInApi)
+        private int AddTitleFromAPIToDB(string idInApi)
         {
             if (TitleInDatabaseId(idInApi)==-1)
             {
@@ -420,22 +490,22 @@ namespace Filmly.Controllers
             }
             return ActorInDatabaseId(idInApi);
         }
-        [HttpPost]
-        private int AddSimplifiedTitleToDB(string id, string title, string imgURL, string rating)
-        {
-            if (SimplifiedTitleInDbId(id)==-1)
-            {
-                _db.TitlesSimplified.Add(new TitleSimplified()
-                {
-                    IdInApi=id,
-                    Title=title,
-                    ImgURL=imgURL,
-                    IMDbRating=rating
-                });
-                _db.SaveChanges();
-            }
-            return SimplifiedTitleInDbId(id);
-        }
+        //[HttpPost]
+        //private int AddSimplifiedTitleToDB(string id, string title, string imgURL, string rating)
+        //{
+        //    if (SimplifiedTitleInDbId(id)==-1)
+        //    {
+        //        _db.TitlesSimplified.Add(new TitleSimplified()
+        //        {
+        //            IdInApi=id,
+        //            Title=title,
+        //            ImgURL=imgURL,
+        //            IMDbRating=rating
+        //        });
+        //        _db.SaveChanges();
+        //    }
+        //    return SimplifiedTitleInDbId(id);
+        //}
         [HttpGet]
         private int SimplifiedTitleInDbId(string idInApi)
         {

@@ -15,6 +15,13 @@ namespace Filmly.ViewModels
         public Result[] Results { get; set; }
         public string ErrorMessage { get; set; }
         public BreadcrumbData BreadcrumbData { get; set; }
+        public Result[] ResultsWithImage {
+            get { return this.Results.Where(x => x.Image != "https://imdb-api.com/images/original/nopicture.jpg"&& x.Image!= "https://imdb-api.com/Images/80x110/nopicture.jpg" && !string.IsNullOrEmpty(x.Image)).ToArray();}
+        }
+        public Result[] ResultsWithoutImage
+        {
+            get { return this.Results.Where(x => x.Image == "https://imdb-api.com/images/original/nopicture.jpg" || x.Image == "https://imdb-api.com/Images/80x110/nopicture.jpg" || string.IsNullOrEmpty(x.Image)).ToArray(); }
+        }
     }
 
     public class Result

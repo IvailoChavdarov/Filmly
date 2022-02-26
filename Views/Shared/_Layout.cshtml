@@ -26,10 +26,27 @@
     <i class="fas fa-lg text-mainColor fa-chevron-up" id="scrollArrow"></i>
     <partial name="_LoaderPartial" />
     <partial name="_Footer" />
-
+    @if (!string.IsNullOrEmpty((string)TempData["notice"]))
+    {
+        <span class="notice @TempData["noticeBackground"]" id="noticeBox"><span>@TempData["notice"]</span></span>
+    }
+@*<span class="notice bg-success"><span>Attack on titan (2013) was not successfully removed from your watchlist!</span></span>*@
     @*<script>
             window.onunload = function () { };
         </script>*@
+    <script>
+        var noticeBox = document.getElementById("noticeBox")
+        if (noticeBox) {
+            noticeBox.addEventListener('click', () => {
+                noticeBox.classList.add("closed")
+            })
+            setTimeout(() => {
+                noticeBox.classList.add("closed")
+            }, 4800);
+            noticeBox.classList.add("activated")
+        }
+       
+    </script>
     <script src="~/js/Themes.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>

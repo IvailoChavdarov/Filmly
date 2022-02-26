@@ -11,42 +11,52 @@
 </table>
 @if (!Model.InUserFavourites)
 {
-    <a asp-action="AddTo" asp-route-collection="favourites" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO FAVOURITES</a>
+<form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites">
+    <input type="submit" value="ADD TO FAVOURITES" />
+</form>
 }
 else
 {
-    <a asp-action="RemoveFrom" asp-route-collection="favourites" asp-route-titleid="@Model.TitleFullData.IdInApi">REMOVE FROM FAVOURITES</a>
+<form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites">
+    <input type="submit" value="REMOVE FROM FAVOURITES" />
+</form>
 }
 @if (!Model.InUserWatchList)
 {
-    <a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>
+    @*<a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>*@
+    <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist">
+        <input type="submit" value="ADD TO WATCHLIST" />
+    </form>
+
 }
 else
 {
-    <a asp-action="RemoveFrom" asp-route-collection="watchlist" asp-route-titleid="@Model.TitleFullData.IdInApi">REMOVE FROM WATCHLIST</a>
+    <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist">
+        <input type="submit" value="REMOVE FROM WATCHLIST" />
+    </form>
 }
 
-@if (Model.Success.HasValue)
-{
-    @if (Model.Success.Value)
+@*@if (Model.Success.HasValue)
     {
-        //PARTIAL VIEW WITH THE MESSAGE
-        <p class="text-success" id="AlertMessage">@Model.TitleFullData.FullTitle was successfully @Model.Change your @Model.Target!</p>
-    }
-    else
-    {
-        <p class="text-danger" id="AlertMessage">@Model.TitleFullData.FullTitle was not successfully @Model.Change your @Model.Target!</p>
-    }
-    <script>
-        setTimeout(() => {
-            if (document.getElementById("AlertMessage")) {
-                document.getElementById("AlertMessage").style.display = "none"
-            }
-        }, 5000);
+        @if (Model.Success.Value)
+        {
+            //PARTIAL VIEW WITH THE MESSAGE
+            <p class="text-success" id="AlertMessage">@Model.TitleFullData.FullTitle was successfully @Model.Change your @Model.Target!</p>
+        }
+        else
+        {
+            <p class="text-danger" id="AlertMessage">@Model.TitleFullData.FullTitle was not successfully @Model.Change your @Model.Target!</p>
+        }
+        <script>
+            setTimeout(() => {
+                if (document.getElementById("AlertMessage")) {
+                    document.getElementById("AlertMessage").style.display = "none"
+                }
+            }, 5000);
 
-    </script>
-}
-@if (TempData["notice"] != null)
+        </script>
+    }*@
+@*@if (TempData["notice"] != null)
 {
     <p style="background-color:red;">@TempData["notice"]</p>
-}
+}*@

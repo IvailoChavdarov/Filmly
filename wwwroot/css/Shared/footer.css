@@ -1,9 +1,7 @@
 ﻿/*$secondaryColor-light: #DAF3FF;
 $secondaryColor-dark: #607999;
 $mainColor: #ff4400;
-$textColor: #FFF6F1;
-
-*/
+$textColor: #FFF6F1;*/
 /*$secondaryColor-light: #A4AE9E;
 $secondaryColor-dark: #40493B;
 $mainColor: #4DFF00;
@@ -28,6 +26,10 @@ $textColor: #FCFAEE;*/
 $secondaryColor-dark: #3B4A3F;
 $mainColor: #03FC90;
 $textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
 @import url(genresShowcase.css);
 footer {
   background-color: #364954;
@@ -93,7 +95,8 @@ footer {
     border-radius: 50%;
     font-size: 24px;
     color: #99AEBB;
-    transition: .5s; }
+    transition: .5s;
+    cursor: pointer; }
   footer #socialMedias li a::before, footer #socialMedias li button::before {
     content: '';
     position: absolute;
@@ -119,7 +122,7 @@ footer {
     color: #22BB33;
     box-shadow: 0 0 5px #22BB33;
     text-shadow: 0 0 5px #22BB33;
-    cursor: default;
+    cursor: default !important;
     pointer-events: none; }
   footer #socialMedias li button.used:hover {
     color: #22BB33;

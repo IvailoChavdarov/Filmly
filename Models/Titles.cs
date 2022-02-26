@@ -27,27 +27,27 @@ namespace Filmly.Models
         //Id of the movie in IMDb-API
         [Required]
         public string IdInApi { get; set; }
-            public string OriginalTitle { get; set; }
-            public string FullTitle { get; set; }
-            public string Type { get; set; }
-            public string Year { get; set; }
-            public string ReleaseDate { get; set; }
-            public string RuntimeStr { get; set; }
-            public string Plot { get; set; }
-            public string Awards { get; set; }
-            public string Directors { get; set; }
-            public string Writers { get; set; }
-            public string Stars { get; set; }
-            public string Genres { get; set; }
-            public string Companies { get; set; }
-            public string Countries { get; set; }
-            public string Languages { get; set; }
-            public string ContentRating { get; set; }
-            public string IMDbRating { get; set; }
-            public string IMDbRatingVotes { get; set; }
-            public string TrailerLinkEmbed { get; set; }
-            public string Tagline { get; set; }
-            public string Keywords { get; set; }
+        public string OriginalTitle { get; set; }
+        public string FullTitle { get; set; }
+        public string Type { get; set; }
+        public string Year { get; set; }
+        public string ReleaseDate { get; set; }
+        public string RuntimeStr { get; set; }
+        public string Plot { get; set; }
+        public string Awards { get; set; }
+        public string Directors { get; set; }
+        public string Writers { get; set; }
+        public string Stars { get; set; }
+        public string Genres { get; set; }
+        public string Companies { get; set; }
+        public string Countries { get; set; }
+        public string Languages { get; set; }
+        public string ContentRating { get; set; }
+        public string IMDbRating { get; set; }
+        public string IMDbRatingVotes { get; set; }
+        public string TrailerLinkEmbed { get; set; }
+        public string Tagline { get; set; }
+        public string Keywords { get; set; }
         public HashSet<ApplicationUser_Favourites> ApplicationUser_Favourites { get; set; }
         public HashSet<ApplicationUser_ToWatch> ApplicationUser_WatchList { get; set; }
         public HashSet<Titles_Actors> Cast { get; set; }

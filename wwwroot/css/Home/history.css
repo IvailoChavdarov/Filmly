@@ -1,9 +1,7 @@
 ﻿/*$secondaryColor-light: #DAF3FF;
 $secondaryColor-dark: #607999;
 $mainColor: #ff4400;
-$textColor: #FFF6F1;
-
-*/
+$textColor: #FFF6F1;*/
 /*$secondaryColor-light: #A4AE9E;
 $secondaryColor-dark: #40493B;
 $mainColor: #4DFF00;
@@ -28,6 +26,10 @@ $textColor: #FCFAEE;*/
 $secondaryColor-dark: #3B4A3F;
 $mainColor: #03FC90;
 $textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
 @keyframes fadeIn {
   0% {
     opacity: 0; }
@@ -43,6 +45,12 @@ $textColor: #FCFAEE;*/
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); }
   to {
     transform: translateX(0); } }
 
@@ -63,6 +71,12 @@ $textColor: #FCFAEE;*/
     transform: translateX(0); }
   to {
     transform: translateX(-120%); } }
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(120%); } }
 
 header.history-header {
   background: url(../../img/backgrounds/cinema-history.png);
@@ -142,7 +156,7 @@ article {
         padding-left: 0;
         list-style-type: none;
         color: #99AEBB;
-        border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+        border-bottom: 1px dotted #99AEBB;
         cursor: pointer;
         transition: all .3s ease-out, font-weight 0s ease;
         text-align: center; }
@@ -218,7 +232,6 @@ h3 {
         padding-left: 0;
         list-style-type: none;
         color: #99AEBB;
-        border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
         cursor: pointer;
         transition: all .3s ease-out, font-weight 0s ease;
         text-align: center; }

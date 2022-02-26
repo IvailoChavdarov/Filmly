@@ -86,6 +86,7 @@ footer {
         font-size: 24px;
         color: $secondaryColor-light;
         transition: .5s;
+        cursor:pointer;
     }
 
     #socialMedias li a::before, #socialMedias li button::before {
@@ -121,7 +122,7 @@ footer {
         color: $successColor;
         box-shadow: 0 0 5px $successColor;
         text-shadow: 0 0 5px $successColor;
-        cursor: default;
+        cursor: default!important;
         pointer-events: none;
     }
 

@@ -1,0 +1,243 @@
+﻿/*$secondaryColor-light: #DAF3FF;
+$secondaryColor-dark: #607999;
+$mainColor: #ff4400;
+$textColor: #FFF6F1;*/
+/*$secondaryColor-light: #A4AE9E;
+$secondaryColor-dark: #40493B;
+$mainColor: #4DFF00;
+$textColor: #F2FCEC;*/
+/*$secondaryColor-light: #d2c4ae;
+$secondaryColor-dark: #403535;
+$mainColor: #294023;
+$textColor: #ffeccf;*/
+/*$secondaryColor-light: #006E61;
+$secondaryColor-dark: #522700;
+$mainColor: #FCBA03;
+$textColor: #DFE0DF;*/
+/*$secondaryColor-light: #AEAC99;
+$secondaryColor-dark: #494738;
+$mainColor: #FFFF33;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #DFE0DF;
+$secondaryColor-dark: #693B22;
+$mainColor: #FF6700;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #9DB0A2;
+$secondaryColor-dark: #3B4A3F;
+$mainColor: #03FC90;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(120%); } }
+
+.container.search-container {
+  background-color: #364954;
+  border: 2px solid #15AFE1;
+  border-top: none;
+  padding: 0px;
+  animation: slideInFromLeft 1s; }
+  .container.search-container p {
+    /*background-color:$secondaryColor-dark;*/
+    color: #364954;
+    padding: 25px;
+    font-size: large;
+    transition: #15AFE1 250ms; }
+  .container.search-container h1 {
+    color: #99AEBB;
+    margin-bottom: 25px; }
+
+.search-form {
+  display: block;
+  vertical-align: top;
+  font-size: 0px;
+  padding-top: 50px; }
+  .search-form * {
+    border: none;
+    margin: 0px;
+    padding: 0px; }
+  .search-form .search-button {
+    width: 15%;
+    font-size: large;
+    pointer-events: initial;
+    height: 47px;
+    background-color: transparent;
+    color: #15AFE1;
+    box-shadow: 0 2px 0 0 #15AFE1;
+    vertical-align: top;
+    outline: none; }
+    .search-form .search-button i {
+      padding-bottom: 30px; }
+  .search-form .select-selected {
+    padding-bottom: 10px; }
+  .search-form .search-button:active {
+    outline: none; }
+
+.form-group {
+  position: relative; }
+  .form-group + .form-group {
+    margin-top: 30px; }
+
+.form-label {
+  position: absolute;
+  /*left: 0;*/
+  top: 0px;
+  background-color: transparent;
+  color: rgba(153, 174, 187, 0.5);
+  z-index: 0;
+  transition: transform 250ms ease-out, font-size 250ms ease-out, transform 250ms ease, color 250ms ease;
+  font-size: x-large;
+  padding-left: 20px;
+  /*line-height:47px;*/ }
+
+.focused .form-label {
+  transform: translateY(-125%) scale(1.1);
+  font-size: x-large;
+  color: #15AFE1; }
+
+.form-input {
+  position: relative;
+  width: 70%;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 2px 0 0 #15AFE1;
+  transition: box-shadow 150ms ease-out;
+  height: 47px;
+  font-size: large;
+  background-color: transparent;
+  color: #E6F4F1;
+  padding-left: 20px;
+  vertical-align: top;
+  padding-bottom: 12px; }
+
+.form-group {
+  pointer-events: none; }
+
+.form-group > .form-input {
+  pointer-events: auto; }
+
+.form-group:focus-within > *:not(label, i) {
+  transition: box-shadow .3s ease;
+  box-shadow: 0 2px 0 0 #22BB33; }
+
+.search-form .filled *:not(label, i) {
+  transition: box-shadow .3s ease;
+  box-shadow: 0 2px 0 0 #dc3545; }
+
+.search-form input:-webkit-autofill,
+.search-form input:-webkit-autofill:hover,
+.search-form input:-webkit-autofill:focus,
+.search-form input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease, box-shadow .3s ease; }
+
+.breadcrumb {
+  margin-bottom: 0px; }
+
+.search-results {
+  background-color: #E6F4F1;
+  margin-top: 2px;
+  padding: 30px;
+  transition: background-color 250ms ease, color 250ms ease;
+  color: #364954;
+  padding-bottom: 15px; }
+  .search-results ul {
+    list-style: none;
+    padding-left: 0px;
+    margin-bottom: 0; }
+    .search-results ul li {
+      padding: 0px;
+      border-bottom: 1px solid rgba(153, 174, 187, 0.5);
+      transition: all .3s ease; }
+    .search-results ul li:last-of-type {
+      border-bottom: 1px solid transparent; }
+    .search-results ul li:hover {
+      background-color: rgba(153, 174, 187, 0.5);
+      border-bottom: 1px solid #15AFE1; }
+      .search-results ul li:hover a {
+        text-decoration: none; }
+        .search-results ul li:hover a h3 {
+          color: #15AFE1; }
+  .search-results #noImageResultsToggler {
+    color: #364954;
+    cursor: pointer; }
+  .search-results h3 {
+    display: inline-block;
+    color: #364954;
+    margin-left: 20px;
+    transition: all .3s ease;
+    width: 85%; }
+  .search-results a {
+    display: block;
+    transition: all .3s ease;
+    padding: 15px; }
+
+#results-noImage {
+  display: none; }
+
+#results-noImage.shown {
+  display: block; }
+
+.darkTheme .container p {
+  color: #E6F4F1; }
+
+.darkTheme .search-results {
+  background-color: #364954;
+  color: #E6F4F1; }
+  .darkTheme .search-results ul li {
+    border-bottom: 1px solid #99AEBB; }
+  .darkTheme .search-results ul li:hover {
+    background-color: rgba(153, 174, 187, 0.5);
+    border-bottom: 1px solid #15AFE1; }
+    .darkTheme .search-results ul li:hover a {
+      text-decoration: none; }
+      .darkTheme .search-results ul li:hover a h3 {
+        color: #15AFE1; }
+  .darkTheme .search-results h3 {
+    color: #E6F4F1; }

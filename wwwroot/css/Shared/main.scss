@@ -180,3 +180,67 @@ body {
     animation: slideOutToLeft $renderAnimationTime;
     transform:translateX(-120%)
 }
+.notice {
+    display: inline-block;
+    position: fixed;
+    right: 0px;
+    bottom: 10vh;
+    animation: slideInFromRight $noticeAnimationTiming;
+    height: fit-content;
+    width: 400px;
+    color: $textColor;
+    padding: 25px;
+    padding-right:20px;
+    font-size: large;
+    cursor:pointer;
+    span {
+        display: inline-block;
+        width: 300px;
+        margin-left:70px;
+    }
+}
+.notice::before {
+    position: absolute;
+    left:12px;
+    font-family: "Font Awesome 5 Free";
+    content: "\f058";
+    color: white;
+    font-weight: 900;
+    font-size:60px;
+    top: 5px;
+    bottom:0;
+    width:100px;
+}
+.notice.bg-danger::before {
+    content: "\f057"
+}
+.notice.closed {
+    transition: transform $noticeAnimationTiming;
+    transform: translateX(100%);
+}
+.notice::after {
+    content: '';
+    height: 7px;
+    background-color: lime;
+    width: 400px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    /*transform:wid*/
+}
+.notice.bg-danger::after {
+    background-color: orangered;
+}
+.notice.activated::after {
+    animation: slideOutToRightNotice 5s;
+}
+@keyframes slideOutToRightNotice {
+    0% {
+        transform:translateX(0)
+    }
+
+    100% {
+        transform: translateX(100%)
+    }
+}

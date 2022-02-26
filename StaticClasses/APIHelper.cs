@@ -100,7 +100,20 @@ namespace Filmly.StaticClasses
                 }
                 string URL = $"https://imdb-api.com/en/API/{NameSimplifiers.TypeNames[type]}/{ConstantValues.APIKey}/{expression}";
                 string JSONResponse = GetResponseContent(URL);
+                //string JSONResponse = @"{""searchType"":""Title"",""expression"":""attack on titan"",""results"":[{""id"":""tt2560140"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BNzc5MTczNDQtNDFjNi00ZDU5LWFkNzItOTE1NzQzMzdhNzMxXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan"",""description"":""(2013) (TV Series)""},{""id"":""tt2072230"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BZDk5MTcxZmItYWM2Ny00NjIwLWE2YWQtYjczMWFiZThjN2JkXkEyXkFqcGdeQXVyNDQyNzIwNDQ@._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan Part 1"",""description"":""(2015)""},{""id"":""tt6450560"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BNDYyNTAyYjEtNmY1Yy00Y2U5LTg1OTktYjU0ZjBjODA3MDcyXkEyXkFqcGdeQXVyNTM3MDMyMDQ@._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan"",""description"":""""},{""id"":""tt12415546"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BMzQwZjZkMTktYzNkNC00ZWFlLWE4NGEtMjA3YTA4OTEyZWVkXkEyXkFqcGdeQXVyMTA5MTI0Mzc1._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan: Chronicle"",""description"":""(2020)""},{""id"":""tt4294052"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BYjU5ZThjMjgtOGExNi00ZmUzLWFiN2QtNTQ3YmYwN2ExNjU1XkEyXkFqcGdeQXVyNDQyNzIwNDQ@._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan Part 2"",""description"":""(2015)""},{""id"":""tt7941892"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BZjNjYTlmYWYtMGY3Zi00NzhkLTliZDQtYTNhNTZjNzViNzYyXkEyXkFqcGdeQXVyNjMxNzQ2NTQ@._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan: The Roar of Awakening"",""description"":""(2018)""},{""id"":""tt4906830"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BYzlmNjlmYTktNWI3Ni00ZmI3LTljODMtMThiMjcwYzc5MzUyXkEyXkFqcGdeQXVyMTA5NzUzODM4._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan: Junior High"",""description"":""(2015) (TV Series)""},{""id"":""tt3646944"",""resultType"":""Title"",""image"":""https://imdb-api.com/images/original/MV5BYWE5MDY5NzQtNDE2Ny00ZmVjLWE3ZDktYWNjZTgxZjI0MWRlXkEyXkFqcGdeQXVyNTczMTU0MTQ@._V1_Ratio0.7273_AL_.jpg"",""title"":""Attack on Titan: Crimson Bow and Arrow"",""description"":""(2014)""}],""errorMessage"":""""}";
                 var returnObj = DeserializeStringTo<SearchResultVM>(JSONResponse);
+                for (int i = 0; i < returnObj.Results.Length; i++)
+                {
+                    string imageId = returnObj.Results[i].Image.Split('/').Last();
+                    returnObj.Results[i].Image = $"https://imdb-api.com/Images/80x110/{imageId}";
+                }
+                if (type=="all")
+                {
+                    //again calls API so results can be for both titles and actors/crew
+                    string actorsJSONResponse = GetResponseContent($"https://imdb-api.com/en/API/SearchName/{ConstantValues.APIKey}/{expression}");
+                    Result[] results = DeserializeStringTo<SearchResultVM>(actorsJSONResponse).Results;
+                    returnObj.Results = ConcatArrays(results, returnObj.Results);
+                }
                 return returnObj;
             }
         }
@@ -268,6 +281,23 @@ namespace Filmly.StaticClasses
         private static T DeserializeStringTo<T>(string jsonString)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonString);
+        }
+        private static T[] ConcatArrays<T>(this T[] first, params T[] second)
+        {
+            if (first == null)
+            {
+                return second;
+            }
+            if (second == null)
+            {
+                return first;
+            }
+
+            T[] result = new T[first.Length + second.Length];
+            first.CopyTo(result, 0);
+            second.CopyTo(result, first.Length);
+
+            return result;
         }
     }
 }
