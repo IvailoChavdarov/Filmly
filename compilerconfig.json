@@ -90,5 +90,9 @@
   {
     "outputFile": "wwwroot/css/Shared/customSelect.css",
     "inputFile": "wwwroot/css/Shared/customSelect.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Titles/details.css",
+    "inputFile": "wwwroot/css/Titles/details.scss"
   }
 ]

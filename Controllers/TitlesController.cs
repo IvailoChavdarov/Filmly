@@ -114,6 +114,7 @@ namespace Filmly.Controllers
                     Response.InUserWatchList = _db.User_WatchList.Where(x => x.ApplicationUserID == AppUser.Id).Where(x => x.TitleId == TitleToRender.Id).ToArray().Length != 0;
                 
             }
+            Response.Images = _db.Images.Where(x => x.TitleId == TitleToRender.Id).ToList();
             Response.BreadcrumbData = new BreadcrumbData()
             {
                 ControllerName = "titles",

@@ -1,62 +1,224 @@
 ﻿@model TitleDetailsVM
-<partial name="_BreadcrumbPartial" />
-<table>
-    <tr>
-        <td>@Model.TitleFullData.FullTitle</td>
-        <td><img src="@Model.TitleFullData.Image" alt="Alternate Text" /></td>
-    </tr>
-    <tr>
-        <td>@Model.TitleFullData.Plot</td>
-    </tr>
-</table>
-@if (!Model.InUserFavourites)
-{
-<form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites">
-    <input type="submit" value="ADD TO FAVOURITES" />
-</form>
+@{
+    ViewData["Title"] = $"{Model.TitleFullData.TitleName}";
 }
-else
-{
-<form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites">
-    <input type="submit" value="REMOVE FROM FAVOURITES" />
-</form>
-}
-@if (!Model.InUserWatchList)
-{
-    @*<a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>*@
-    <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist">
-        <input type="submit" value="ADD TO WATCHLIST" />
-    </form>
-
-}
-else
-{
-    <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist">
-        <input type="submit" value="REMOVE FROM WATCHLIST" />
-    </form>
+@section heads{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Titles/details.css")" rel="stylesheet" type="text/css" />
 }
 
-@*@if (Model.Success.HasValue)
-    {
-        @if (Model.Success.Value)
+<partial name="_breadcrumbPartial" />
+<div class="title-details-container">
+    <section class="title-header">
+        <img src="@Model.TitleFullData.Image" alt="@Model.TitleFullData.OriginalTitle" width="178" height="267" id="titleImage" />
+        <div class="title-mainData">
+            <h1>
+                <span class="rating-wrap"><i class="fas fa-star title-rating-icon"></i><span class="title-rating">@($"{decimal.Parse(Model.TitleFullData.IMDbRating)}")</span></span>@Model.TitleFullData.FullTitle
+                @if (Model.TitleFullData.OriginalTitle != Model.TitleFullData.TitleName && Model.TitleFullData.OriginalTitle != Model.TitleFullData.FullTitle && !string.IsNullOrEmpty(Model.TitleFullData.OriginalTitle))
+                {
+                    <span class="other-title">Also known as @Model.TitleFullData.OriginalTitle</span>
+                }
+            </h1>
+
+            <h2>
+                <i class="fas fa-info-circle fa-lg"></i>@Model.TitleFullData.ContentRating <span class="title-info-separator">|</span> @Model.TitleFullData.Year <span class="title-info-separator">|</span> @Model.TitleFullData.Genres
+                @if (!string.IsNullOrEmpty(Model.TitleFullData.RuntimeStr))
+                {
+                    <span><span class="title-info-separator">|</span>@Model.TitleFullData.RuntimeStr</span>
+                }
+            </h2>
+            <h2>
+                @if (string.IsNullOrEmpty(Model.TitleFullData.Awards))
+                {
+                    <span>No awards yet :(</span>
+                }
+                else
+                {
+                    <span>
+                        <i class="fas fa-award fa-lg"></i>
+                        @for (int i = 0; i < Model.Awards.Length; i++)
+                        {
+                            <span>@Model.Awards[i]</span>
+                            if (i != Model.Awards.Length - 1)
+                            {
+                                <span class="title-info-separator">|</span>
+                            }
+                        }
+                    </span>
+                }
+            </h2>
+            <h2>
+                @if (!string.IsNullOrEmpty(Model.TitleFullData.Stars))
+                {
+                    <span class="title-stars">
+                        <i class="fas fa-user-tie fa-lg"></i>
+                        @for (int i = 0; i < Model.Stars.Length; i++)
+                        {
+                            <span>@Model.Stars[i]</span>
+                            if (i != Model.Stars.Length - 1)
+                            {<span class="title-info-separator">|</span>
+                            }
+                        }
+                    </span>
+                    <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="title-seeCastButton">See the whole cast and crew</a>
+                }
+            </h2>
+            <p>@Model.TitleFullData.Plot</p>
+        </div>
+    </section>
+    <section class="title-details-mainContent">
+        <div class="slider-wrap">
+            <div class="slider" asp-controller="titles" asp-action="images" asp-route-id="@Model.TitleFullData.IdInApi">
+                <div class="slide-track">
+                    @foreach (var image in Model.Images.Take(20))
+                    {
+                        <div class="slide">
+                            <img src="@image.ImgURL" alt="@image.ImgTitle" />
+                        </div>
+                    }
+                    @foreach (var image in Model.Images.Take(20))
+                    {
+                        <div class="slide">
+                            <img src="@image.ImgURL" alt="@image.ImgTitle" />
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
+    <div class="userCollections-buttons">
+        @if (!Model.InUserFavourites)
         {
-            //PARTIAL VIEW WITH THE MESSAGE
-            <p class="text-success" id="AlertMessage">@Model.TitleFullData.FullTitle was successfully @Model.Change your @Model.Target!</p>
+            <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites" class="bg-favourites">
+                <button type="submit"><i class="far fa-heart"></i>Add to your favorites</button>
+            </form>
         }
         else
         {
-            <p class="text-danger" id="AlertMessage">@Model.TitleFullData.FullTitle was not successfully @Model.Change your @Model.Target!</p>
+            <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites" class="bg-favourites">
+                <button type="submit"><i class="fas fa-heart"></i>Remove from your favorites</button>
+            </form>
         }
-        <script>
-            setTimeout(() => {
-                if (document.getElementById("AlertMessage")) {
-                    document.getElementById("AlertMessage").style.display = "none"
-                }
-            }, 5000);
+        @if (!Model.InUserWatchList)
+        {
+            @*<a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>*@
+            <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist" class="bg-watchlist">
+                <button type="submit"><i class="far fa-bookmark"></i>Add to your watchlist</button>
+            </form>
 
-        </script>
-    }*@
-@*@if (TempData["notice"] != null)
-{
-    <p style="background-color:red;">@TempData["notice"]</p>
-}*@
+        }
+        else
+        {
+            <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist" class="bg-watchlist">
+                <button type="submit"><i class="fas fa-bookmark"></i>Remove from your watchlist</button>
+            </form>
+        }
+        <button type="button" class="NoLoader bg-share" data-toggle="modal" data-target="#shareModal">
+            <i class="fas fa-share-alt"></i>Share
+        </button>
+        @if (!string.IsNullOrEmpty(Model.TitleFullData.TrailerLinkEmbed))
+        {
+            <button type="button" class="NoLoader bg-trailer" data-toggle="modal" data-target="#trailerModal">
+                <i class="fas fa-play-circle"></i>Trailer
+            </button>
+        }
+
+        <a href="@Model.IMDbURL" target="_blank" class="NoLoader bg-imdb"><i class="fab fa-imdb"></i>Check on IMDb</a>
+
+    </div>
+    @*share modal*@
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareTitleModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    share
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*trailer modal*@
+    @if (!string.IsNullOrEmpty(Model.TitleFullData.TrailerLinkEmbed))
+    {
+        <div class="modal fade" id="trailerModal" tabindex="-1" role="dialog" aria-labelledby="titleTrailerModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Trailer
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+@section scripts{
+    @*<script>
+            function getAverageColor(imageElement, ratio) {
+                const canvas = document.createElement("canvas");
+                let height = (canvas.height = imageElement.naturalHeight);
+                let width = (canvas.width = imageElement.naturalWidth);
+                const context = canvas.getContext("2d");
+                context.drawImage(imageElement, 0, 0);
+                let data, length;
+                let i = -4,
+                    count = 0;
+
+                try {
+                    data = context.getImageData(0, 0, width, height);
+                    length = data.data.length;
+                } catch (err) {
+                    console.error(err);
+                    return {
+                        R: 0,
+                        B: 0,
+                        G: 0
+                    };
+                }
+                let R, G, B;
+                R = G = B = 0;
+                while ((i += ratio * 4) < length) {
+                    ++count;
+                    R += data.data[i];
+                    G += data.data[i + 1];
+                    B += data.data[i + 2];
+                }
+                R = ~~(R / count);
+                G = ~~(G / count);
+                B = ~~(B / count);
+                return {
+                    R,
+                    G,
+                    B
+                };
+            }
+            const image = document.querySelector("#titleImage");
+            image.crossOrigin = "Anonymous";
+            image.onload = () => {
+                const { R, G, B } = getAverageColor(image, 4);
+                document.body.style.background = `rgb(${R}, ${G}, ${B}, 0.8)`;
+            };
+        </script>*@
+}
+

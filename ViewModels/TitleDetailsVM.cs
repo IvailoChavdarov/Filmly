@@ -10,12 +10,22 @@ namespace Filmly.ViewModels
     {
         public int IdInDb { get; set; }
         public string IdInApi { get; set; }
-        public bool? Success { get; set; }
         public Titles TitleFullData { get; set; }
         public bool InUserFavourites { get; set; }
         public bool InUserWatchList { get; set; }
-        public string Change { get; set; }
-        public string Target { get; set; }
         public BreadcrumbData BreadcrumbData { get; set; }
+        public List<Images> Images { get; set; }
+        public string IMDbURL
+        {
+            get { return $"https://www.imdb.com/title/{this.TitleFullData.IdInApi}"; }
+        }
+        public string[] Awards
+        {
+            get { return this.TitleFullData.Awards.Split('|').ToArray(); }
+        }
+        public string[] Stars
+        {
+            get { return this.TitleFullData.Stars.Split(',').ToArray(); }
+        }
     }
 }

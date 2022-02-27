@@ -29,7 +29,6 @@ namespace Filmly.Controllers
             var userWatchList = _db.User_WatchList.Where(user_watchlist => user_watchlist.ApplicationUserID == _userManager.FindByNameAsync(User.Identity.Name).Result.Id).Select(pair => pair.Title).ToArray();
             return View(userWatchList);
         }
-
         // Render user's favourites list
         public IActionResult Favourites()
         {
