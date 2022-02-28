@@ -115,6 +115,7 @@ namespace Filmly.Controllers
                 
             }
             Response.Images = _db.Images.Where(x => x.TitleId == TitleToRender.Id).ToList();
+            Response.Stars = _db.Titles_Actors.Where(user_favourite => user_favourite.TitleId == TitleToRender.Id).Select(pair => pair.Actor).ToList();
             Response.BreadcrumbData = new BreadcrumbData()
             {
                 ControllerName = "titles",

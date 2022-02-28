@@ -47,15 +47,21 @@
                     </span>
                 }
             </h2>
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.Tagline))
+            {
+                <h2>
+                    <i class="fas fa-tag"></i>@Model.TitleFullData.Tagline
+                </h2>
+            }
             <h2>
                 @if (!string.IsNullOrEmpty(Model.TitleFullData.Stars))
                 {
                     <span class="title-stars">
                         <i class="fas fa-user-tie fa-lg"></i>
-                        @for (int i = 0; i < Model.Stars.Length; i++)
+                        @for (int i = 0; i < Model.StarsNames.Length; i++)
                         {
-                            <span>@Model.Stars[i]</span>
-                            if (i != Model.Stars.Length - 1)
+                            <span>@Model.StarsNames[i]</span>
+                            if (i != Model.StarsNames.Length - 1)
                             {<span class="title-info-separator">|</span>
                             }
                         }
@@ -63,31 +69,11 @@
                     <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="title-seeCastButton">See the whole cast and crew</a>
                 }
             </h2>
+
             <p>@Model.TitleFullData.Plot</p>
         </div>
     </section>
-    <section class="title-details-mainContent">
-        <div class="slider-wrap">
-            <div class="slider" asp-controller="titles" asp-action="images" asp-route-id="@Model.TitleFullData.IdInApi">
-                <div class="slide-track">
-                    @foreach (var image in Model.Images.Take(20))
-                    {
-                        <div class="slide">
-                            <img src="@image.ImgURL" alt="@image.ImgTitle" />
-                        </div>
-                    }
-                    @foreach (var image in Model.Images.Take(20))
-                    {
-                        <div class="slide">
-                            <img src="@image.ImgURL" alt="@image.ImgTitle" />
-                        </div>
-                    }
-                </div>
-            </div>
 
-        </div>
-        
-    </section>
     <div class="userCollections-buttons">
         @if (!Model.InUserFavourites)
         {
@@ -170,10 +156,63 @@
             </div>
         </div>
     }
-
+<div class="title-details-mainContent">
+    @*<a asp-controller="titles" asp-action="titleimages" asp-route-id="@Model.TitleFullData.IdInApi" class="slider">
+            <div class="slide-track" id="images-slider">
+                @foreach (var image in Model.Images)
+                {
+                    <div class="slide">
+                        <img src="@image.ImgURL" alt="@image.Title" />
+                    </div>
+                }
+                @foreach (var image in Model.Images)
+                {
+                    <div class="slide">
+                        <img src="@image.ImgURL" alt="@image.Title" />
+                    </div>
+                }
+            </div>
+        </a>*@
+    
+    <div class="stars-data">
+        <h1><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="topic-separator">Top cast</a></h1>
+        @*<div class="card-deck">
+            @foreach (var actor in Model.Stars)
+            {
+                <a asp-controller="titles" asp-action="details" asp-route-id="@actor.IdInAPI" class="actor-data-card card">
+                    <img class="card-img-top" src="@actor.Image" alt="@actor.Awards">
+                    <div class="card-body">
+                        <h5 class="card-title">@actor.Name</h5>
+                        <p class="card-text">@actor.Summary</p>
+                    </div>
+                </a>
+            }
+        </div>*@
+        @foreach (var actor in Model.Stars)
+        {
+            <div class="flex-col">
+                <a asp-controller="titles" asp-action="details" asp-route-id="@actor.IdInAPI" class="actor-data-card">
+                    <div class="card">
+                        <div class="img-name">
+                            <img src="@actor.Image" alt="profilna">
+                            <h2>@actor.Name</h2>
+                        </div>
+                        <p>@actor.Summary</p>
+                    </div>
+                </a>
+            </div>  
+        }
+        <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="redirect-button-bottom-right">See all</a>
+    </div>
+</div>
 </div>
 
 @section scripts{
+    <script>
+        document.documentElement.style.setProperty('--slidesCount', document.getElementById("images-slider").children.length);
+        setTimeout(() => {
+            document.getElementById("images-slider").style.animationPlayState = "running";}, 1100)
+    </script>
     @*<script>
             function getAverageColor(imageElement, ratio) {
                 const canvas = document.createElement("canvas");

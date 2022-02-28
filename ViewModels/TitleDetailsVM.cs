@@ -23,9 +23,10 @@ namespace Filmly.ViewModels
         {
             get { return this.TitleFullData.Awards.Split('|').ToArray(); }
         }
-        public string[] Stars
+        public string[] StarsNames
         {
             get { return this.TitleFullData.Stars.Split(',').ToArray(); }
         }
+        public List<Actors> Stars { get; set; }
     }
 }

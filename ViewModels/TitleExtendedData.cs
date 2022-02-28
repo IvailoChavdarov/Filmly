@@ -28,7 +28,7 @@ namespace Filmly.ViewModels
             public object[] WriterList { get; set; }
             public string Stars { get; set; }
             public Star[] StarList { get; set; }
-            public Actor[] ActorList { get; set; }
+            public CastActor[] ActorList { get; set; }
             public object FullCast { get; set; }
             public string Genres { get; set; }
             public Genre[] GenreList { get; set; }
@@ -77,7 +77,7 @@ namespace Filmly.ViewModels
         public string Id { get; set; }
         public string Name { get; set; }
     }
-    public class Actor
+    public class CastActor
     {
         public string Id { get; set; }
         public string Image { get; set; }

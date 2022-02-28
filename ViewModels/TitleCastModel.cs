@@ -14,7 +14,7 @@ namespace Filmly.ViewModels
             public string Year { get; set; }
             public Directors Directors { get; set; }
             public Writers Writers { get; set; }
-            public Actor[] Actors { get; set; }
+            public CastActor[] Actors { get; set; }
             public Others[] Others { get; set; }
             public string ErrorMessage { get; set; }
         }

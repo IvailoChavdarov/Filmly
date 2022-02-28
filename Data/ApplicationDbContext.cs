@@ -29,8 +29,8 @@ namespace Filmly.Data
 
 
             modelBuilder.Entity<Titles_Actors>().HasKey(gm => new { gm.TitleId, gm.ActorId });
-            modelBuilder.Entity<Titles_Actors>().HasOne(user => user.Title).WithMany(userFavourite => userFavourite.Cast).HasForeignKey(userId => userId.ActorId);
-            modelBuilder.Entity<Titles_Actors>().HasOne(user => user.Actor).WithMany(userFavourite => userFavourite.CastMovies).HasForeignKey(userId => userId.TitleId);
+            modelBuilder.Entity<Titles_Actors>().HasOne(user => user.Title).WithMany(userFavourite => userFavourite.Cast).HasForeignKey(userId => userId.TitleId);
+            modelBuilder.Entity<Titles_Actors>().HasOne(user => user.Actor).WithMany(userFavourite => userFavourite.CastMovies).HasForeignKey(userId => userId.ActorId);
 
             modelBuilder.Entity<Discussion>().HasMany(c => c.Comments).WithOne(e => e.Discussion);
 
