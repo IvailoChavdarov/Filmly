@@ -162,6 +162,7 @@ body {
         width: 22vw;
         border-radius: 10px;
         overflow: hidden;
+        animation:fadeIn $renderAnimationTime;
     }
 
     .userCollections-buttons {
@@ -349,9 +350,9 @@ body {
             margin-left: auto;
             margin-right: auto;
             background-color: $secondaryColor-light-semiTransparent;
-            border: 3px solid $textColor;
+            border: 5px solid $textColor;
             color: $secondaryColor-dark;
-            transition: border-color .3s ease;
+            transition: border-color .5s ease, transform .5s ease;
         }
 
         .img-name {
@@ -381,20 +382,21 @@ body {
 
         img {
             object-fit: cover;
-            max-width: 15vw;
         }
 
         p {
             width: 350px;
             padding: 15px;
             color: $secondaryColor-dark;
-            font-size: medium;
+            font-size: large;
             overflow: hidden;
+            margin-top: 5px;
         }
 
         .actor-data-card:hover {
             .card {
                 border-color: $mainColor;
+                transform: scale(1.05)
             }
         }
 
@@ -404,19 +406,51 @@ body {
             right: 0;
             background-color: $secondaryColor-dark;
             clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
-            padding:10px;
-            padding-left:35px;
-            font-size:larger;
-            color:$mainColor;
+            padding: 10px;
+            padding-left: 35px;
+            font-size: larger;
+            color: $mainColor;
+            font-weight: 700
         }
 
-        padding-bottom: 100px;
+        .crew-names {
+            margin-top: 70px;
+        }
+
+        .crew-info {
+            width: 100vw;
+            display: block;
+            margin: 0;
+            color: $secondaryColor-dark;
+            font-size: 25px;
+            padding: 10px;
+            padding-left: 35px;
+            line-height: 45px;
+
+            .fas {
+                margin-right: 10px;
+            }
+
+            .fa-pen {
+                color: #1f75ff
+            }
+
+            .fa-video {
+                color: #87ff3d;
+            }
+
+            .fa-user-tie {
+                color: #ff4400;
+            }
+        }
+
+        padding-bottom: 125px;
     }
 
     .topic-separator {
         display: inline-block;
         width: 400px;
-        height: fit-content;
+        height: 68px;
         text-align: center;
         clip-path: polygon(30% 100%, 70% 100%, 100% 0, 0 0);
         background-color: $secondaryColor-dark;
@@ -433,7 +467,7 @@ body {
         text-decoration: none;
     }
 
-    .topic-separator:hover:before {
+    a.topic-separator:hover:before {
         position: absolute;
         top: 10px;
         left: 24%;
@@ -446,24 +480,89 @@ body {
         font-size: 27px;
         animation: .3s fadeIn;
     }
-}
-.darkTheme {
-    .title-details-mainContent {
-        background-color: $secondaryColor-light-semiTransparent;
 
-        .stars-data {
-            background-color: $secondaryColor-light;
+    .rating-data {
+        display: flex;
+        padding-top: 150px;
+        padding-bottom: 100px;
+        background-color: $mainColor;
+        position: relative;
+        font-family: sans-serif;
 
-            .card {
-                background-color: #667A86;
-                border-color: #667A86;
-                h2{
-                    color:$textColor;
-                }
-                p {
-                    color: $textColor;
-                }
-            }
+        .topic-separator {
+            background-color: $textColor;
+        }
+
+        .row {
+            text-align: center;
+            width: 100vw;
+        }
+
+        .fas {
+            color: $starColor;
+        }
+
+        .stars {
+            position: relative;
+            font-size: 0;
+            display: inline-block;
+            overflow: hidden;
+            --rating: 0%;
+        }
+
+        .fa-star {
+            color: $starColor;
+            font-size: x-large;
+        }
+
+        .stars:after {
+            content: '';
+            color: white;
+            height: 100%;
+            width: 100%;
+            left: var(--rating);
+            position: absolute;
+            background-color: $mainColor;
+        }
+
+        h2 {
+            font-size: 75px;
+            font-weight: 800;
+            color: $textColor;
+            margin-bottom: 30px;
+        }
+
+        .comment {
+            color: $textColor;
+            width: 100%;
+            opacity: 0.8;
+            font-size: x-large;
+        }
+
+        .rating-separator {
+            padding-top: 80px;
+            font-size: xx-large;
+            color: $textColor;
+            opacity: 0.8;
+            font-weight: 800
+        }
+
+        .votes-count {
+            font-size: 75px;
+            font-weight: 800;
+            color: #E3F2FF;
+            margin-bottom: 30px;
+        }
+
+        .votes-count-container {
+            font-size: 50px;
+            font-weight: 700;
+            color: #E3F2FF;
         }
     }
+}
+.darkTheme {
+/*    .title-details-mainContent {
+        background-color: $secondaryColor-light-semiTransparent;
+    }*/
 }

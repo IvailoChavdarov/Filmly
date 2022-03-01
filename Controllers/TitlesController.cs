@@ -176,7 +176,6 @@ namespace Filmly.Controllers
             }
             return View("Ranking", RankingData);
         }
-
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

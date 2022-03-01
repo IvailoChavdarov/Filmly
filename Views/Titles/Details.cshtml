@@ -50,7 +50,7 @@
             @if (!string.IsNullOrEmpty(Model.TitleFullData.Tagline))
             {
                 <h2>
-                    <i class="fas fa-tag"></i>@Model.TitleFullData.Tagline
+                    <i class="fas fa-tag"></i><b>Tagline:</b> "@Model.TitleFullData.Tagline"
                 </h2>
             }
             <h2>
@@ -173,21 +173,10 @@
                 }
             </div>
         </a>*@
-    
+
     <div class="stars-data">
-        <h1><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="topic-separator">Top cast</a></h1>
-        @*<div class="card-deck">
-            @foreach (var actor in Model.Stars)
-            {
-                <a asp-controller="titles" asp-action="details" asp-route-id="@actor.IdInAPI" class="actor-data-card card">
-                    <img class="card-img-top" src="@actor.Image" alt="@actor.Awards">
-                    <div class="card-body">
-                        <h5 class="card-title">@actor.Name</h5>
-                        <p class="card-text">@actor.Summary</p>
-                    </div>
-                </a>
-            }
-        </div>*@
+        <h1><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="topic-separator">Top crew</a></h1>
+        <p class="crew-info"><i class="fas fa-user-tie"></i><b>Stars:</b></p>
         @foreach (var actor in Model.Stars)
         {
             <div class="flex-col">
@@ -200,18 +189,51 @@
                         <p>@actor.Summary</p>
                     </div>
                 </a>
-            </div>  
+            </div>
         }
+        @if (!string.IsNullOrEmpty(Model.TitleFullData.Writers) || !string.IsNullOrEmpty(Model.TitleFullData.Directors))
+        {
+            <div class="crew-names">
+                @if (!string.IsNullOrEmpty(Model.TitleFullData.Writers))
+                {
+                    <p class="crew-info"><i class="fas fa-pen"></i><b>Writers:</b> @Model.TitleFullData.Writers</p>
+                }
+                @if (!string.IsNullOrEmpty(Model.TitleFullData.Directors))
+                {
+                    <p class="crew-info"><i class="fas fa-video"></i><b>Directors:</b> @Model.TitleFullData.Directors</p>
+                }
+            </div>
+        }
+
         <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="redirect-button-bottom-right">See all</a>
+    </div>
+    <div class="rating-data">
+        <h1 class="topic-separator">Rating</h1>
+        <div class="row">
+            <div class="col-lg-4">
+                @**@
+
+                <h2>- @Model.TitleFullData.IMDbRating -</h2>
+                <div class="stars" style="--rating:@($"{double.Parse(Model.TitleFullData.IMDbRating)*10}%")">
+                        @for (int i = 0; i <= 9; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                </div>
+                <p class="comment">ON IMDB</p>
+            </div>
+            <div class="col-lg-4 rating-separator">out of</div>
+            <div class="col-lg-4 votes-count-container"><span class="votes-count">@Model.TitleFullData.IMDbRatingVotes</span> VOTES</div>
+        </div>
     </div>
 </div>
 </div>
 
 @section scripts{
     <script>
-        document.documentElement.style.setProperty('--slidesCount', document.getElementById("images-slider").children.length);
-        setTimeout(() => {
-            document.getElementById("images-slider").style.animationPlayState = "running";}, 1100)
+        //document.documentElement.style.setProperty('--slidesCount', document.getElementById("images-slider").children.length);
+        //setTimeout(() => {
+        //    document.getElementById("images-slider").style.animationPlayState = "running";}, 1100)
     </script>
     @*<script>
             function getAverageColor(imageElement, ratio) {
