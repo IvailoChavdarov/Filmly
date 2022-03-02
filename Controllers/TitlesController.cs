@@ -116,6 +116,7 @@ namespace Filmly.Controllers
             }
             Response.Images = _db.Images.Where(x => x.TitleId == TitleToRender.Id).ToList();
             Response.Stars = _db.Titles_Actors.Where(user_favourite => user_favourite.TitleId == TitleToRender.Id).Select(pair => pair.Actor).ToList();
+            Response.Similars = _db.Similars.Where(similars => similars.TitleId == TitleToRender.Id).Select(pair => pair.Similar).ToList();
             Response.BreadcrumbData = new BreadcrumbData()
             {
                 ControllerName = "titles",
@@ -126,6 +127,7 @@ namespace Filmly.Controllers
                 IdName = id,
                 IdPublicName = Response.TitleFullData.FullTitle
             };
+
             return View(Response);
         }
         [HttpGet]

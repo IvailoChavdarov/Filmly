@@ -9,8 +9,50 @@
 
 <partial name="_breadcrumbPartial" />
 <div class="title-details-container">
+    <div class="userCollections-buttons">
+        @if (!Model.InUserFavourites)
+        {
+            <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites" class="bg-favourites">
+                <button type="submit" aria-label="Add to favourites"><i class="far fa-heart"></i><span class="userCollections-button-text">Add to your favorites</span></button>
+            </form>
+        }
+        else
+        {
+            <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites" class="bg-favourites">
+                <button type="submit" aria-label="Remove from favourites"><i class="fas fa-heart"></i><span class="userCollections-button-text">Remove from your favorites</span></button>
+            </form>
+        }
+        @if (!Model.InUserWatchList)
+        {
+            @*<a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>*@
+            <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist" class="bg-watchlist">
+                <button type="submit" aria-label="Add to watchList"><i class="far fa-bookmark"></i><span class="userCollections-button-text">Add to your watchlist</span></button>
+            </form>
+
+        }
+        else
+        {
+            <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist" class="bg-watchlist">
+                <button type="submit" aria-label="Remove from watchlist"><i class="fas fa-bookmark"></i><span class="userCollections-button-text">Remove from your watchlist</span></button>
+            </form>
+        }
+        <button type="button" class="NoLoader bg-share" data-toggle="modal" aria-label="Share title" data-target="#shareModal">
+            <i class="fas fa-share-alt"></i><span class="userCollections-button-text">Share</span>
+        </button>
+        @if (!string.IsNullOrEmpty(Model.TitleFullData.TrailerLinkEmbed))
+        {
+            <button type="button" class="NoLoader bg-trailer" data-toggle="modal" aria-label="Title trailer" data-target="#trailerModal">
+                <i class="fas fa-play-circle"></i><span class="userCollections-button-text">Trailer</span>
+            </button>
+        }
+
+        <a href="@Model.IMDbURL" target="_blank" class="NoLoader bg-imdb" aria-label="Title in IMDb"><i class="fab fa-imdb"></i><span class="userCollections-button-text">Check on IMDb</span></a>
+
+    </div>
     <section class="title-header">
+
         <img src="@Model.TitleFullData.Image" alt="@Model.TitleFullData.OriginalTitle" width="178" height="267" id="titleImage" />
+
         <div class="title-mainData">
             <h1>
                 <span class="rating-wrap"><i class="fas fa-star title-rating-icon"></i><span class="title-rating">@($"{decimal.Parse(Model.TitleFullData.IMDbRating)}")</span></span>@Model.TitleFullData.FullTitle
@@ -66,54 +108,22 @@
                             }
                         }
                     </span>
-                    <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="title-seeCastButton">See the whole cast and crew</a>
+                    <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" aria-label="See full crew" class="title-seeCastButton hiddenOnMobile">See the whole cast and crew</a><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" aria-label="See full crew" class="title-seeCastButton mobile-view"><i class="fas fa-angle-right"></i></a>
                 }
             </h2>
-
             <p>@Model.TitleFullData.Plot</p>
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.ReleaseDate))
+            {
+                <p class="title-releaseDate"><i class="fas fa-calendar-alt"></i> Released: @Model.TitleFullData.ReleaseDate</p>
+            }
+            else if (!string.IsNullOrEmpty(Model.TitleFullData.Year))
+            {
+                <p class="title-releaseDate"><i class="fas fa-calendar-alt"></i>Year released: @Model.TitleFullData.Year</p>
+            }
         </div>
     </section>
 
-    <div class="userCollections-buttons">
-        @if (!Model.InUserFavourites)
-        {
-            <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites" class="bg-favourites">
-                <button type="submit"><i class="far fa-heart"></i>Add to your favorites</button>
-            </form>
-        }
-        else
-        {
-            <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="favourites" class="bg-favourites">
-                <button type="submit"><i class="fas fa-heart"></i>Remove from your favorites</button>
-            </form>
-        }
-        @if (!Model.InUserWatchList)
-        {
-            @*<a asp-action="AddTo" asp-route-collection="watchlist" asp-route-Movieid="@Model.TitleFullData.IdInApi" asp-route-Title="@Model.TitleFullData.FullTitle" asp-route-Image="@Model.TitleFullData.Image">ADD TO WATCHLIST</a>*@
-            <form asp-controller="Titles" asp-action="AddTo" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist" class="bg-watchlist">
-                <button type="submit"><i class="far fa-bookmark"></i>Add to your watchlist</button>
-            </form>
 
-        }
-        else
-        {
-            <form asp-controller="Titles" asp-action="RemoveFrom" asp-route-id="@Model.TitleFullData.IdInApi" asp-route-title="@Model.TitleFullData.TitleName" asp-route-collection="watchlist" class="bg-watchlist">
-                <button type="submit"><i class="fas fa-bookmark"></i>Remove from your watchlist</button>
-            </form>
-        }
-        <button type="button" class="NoLoader bg-share" data-toggle="modal" data-target="#shareModal">
-            <i class="fas fa-share-alt"></i>Share
-        </button>
-        @if (!string.IsNullOrEmpty(Model.TitleFullData.TrailerLinkEmbed))
-        {
-            <button type="button" class="NoLoader bg-trailer" data-toggle="modal" data-target="#trailerModal">
-                <i class="fas fa-play-circle"></i>Trailer
-            </button>
-        }
-
-        <a href="@Model.IMDbURL" target="_blank" class="NoLoader bg-imdb"><i class="fab fa-imdb"></i>Check on IMDb</a>
-
-    </div>
     @*share modal*@
     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareTitleModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -156,77 +166,117 @@
             </div>
         </div>
     }
-<div class="title-details-mainContent">
-    @*<a asp-controller="titles" asp-action="titleimages" asp-route-id="@Model.TitleFullData.IdInApi" class="slider">
-            <div class="slide-track" id="images-slider">
-                @foreach (var image in Model.Images)
-                {
-                    <div class="slide">
-                        <img src="@image.ImgURL" alt="@image.Title" />
-                    </div>
-                }
-                @foreach (var image in Model.Images)
-                {
-                    <div class="slide">
-                        <img src="@image.ImgURL" alt="@image.Title" />
-                    </div>
-                }
-            </div>
-        </a>*@
-
-    <div class="stars-data">
-        <h1><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="topic-separator">Top crew</a></h1>
-        <p class="crew-info"><i class="fas fa-user-tie"></i><b>Stars:</b></p>
-        @foreach (var actor in Model.Stars)
-        {
-            <div class="flex-col">
-                <a asp-controller="titles" asp-action="details" asp-route-id="@actor.IdInAPI" class="actor-data-card">
-                    <div class="card">
-                        <div class="img-name">
-                            <img src="@actor.Image" alt="profilna">
-                            <h2>@actor.Name</h2>
+    <div class="title-details-mainContent">
+        @*<a asp-controller="titles" asp-action="titleimages" asp-route-id="@Model.TitleFullData.IdInApi" class="slider">
+                <div class="slide-track" id="images-slider">
+                    @foreach (var image in Model.Images)
+                    {
+                        <div class="slide">
+                            <img src="@image.ImgURL" alt="@image.Title" />
                         </div>
-                        <p>@actor.Summary</p>
-                    </div>
-                </a>
-            </div>
-        }
-        @if (!string.IsNullOrEmpty(Model.TitleFullData.Writers) || !string.IsNullOrEmpty(Model.TitleFullData.Directors))
-        {
-            <div class="crew-names">
-                @if (!string.IsNullOrEmpty(Model.TitleFullData.Writers))
-                {
-                    <p class="crew-info"><i class="fas fa-pen"></i><b>Writers:</b> @Model.TitleFullData.Writers</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.TitleFullData.Directors))
-                {
-                    <p class="crew-info"><i class="fas fa-video"></i><b>Directors:</b> @Model.TitleFullData.Directors</p>
-                }
-            </div>
-        }
+                    }
+                    @foreach (var image in Model.Images)
+                    {
+                        <div class="slide">
+                            <img src="@image.ImgURL" alt="@image.Title" />
+                        </div>
+                    }
+                </div>
+            </a>*@
 
-        <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="redirect-button-bottom-right">See all</a>
-    </div>
-    <div class="rating-data">
-        <h1 class="topic-separator">Rating</h1>
-        <div class="row">
-            <div class="col-lg-4">
-                @**@
+        <div class="stars-data">
+            <h1><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="topic-separator">Top crew</a></h1>
+            <p class="crew-info"><i class="fas fa-user-tie"></i><b>Stars:</b></p>
+            @foreach (var actor in Model.Stars)
+            {
+                <div class="flex-col">
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@actor.IdInAPI" class="actor-data-card">
+                        <div class="card">
+                            <div class="img-name">
+                                <img src="@actor.Image" alt="@actor.Height">
+                                <h2>@actor.Name</h2>
+                            </div>
+                            <p>@actor.Summary</p>
+                        </div>
+                    </a>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.Writers) || !string.IsNullOrEmpty(Model.TitleFullData.Directors))
+            {
+                <div class="crew-names">
+                    @if (!string.IsNullOrEmpty(Model.TitleFullData.Writers))
+                    {
+                        <p class="crew-info"><i class="fas fa-pen"></i><b>Writers:</b> @Model.TitleFullData.Writers</p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.TitleFullData.Directors))
+                    {
+                        <p class="crew-info"><i class="fas fa-video"></i><b>Directors:</b> @Model.TitleFullData.Directors</p>
+                    }
+                </div>
+            }
 
-                <h2>- @Model.TitleFullData.IMDbRating -</h2>
-                <div class="stars" style="--rating:@($"{double.Parse(Model.TitleFullData.IMDbRating)*10}%")">
+            <a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="redirect-button-bottom-right">See all</a>
+        </div>
+        <div class="rating-data">
+            <h1 class="topic-separator">Rating</h1>
+            <div class="row">
+                <div class="col-lg-4 my-auto">
+                    @**@
+
+                    <h2>- @Model.TitleFullData.IMDbRating -</h2>
+                    <div class="stars" style="--rating:@($"{double.Parse(Model.TitleFullData.IMDbRating)*10}%")">
                         @for (int i = 0; i <= 9; i++)
                         {
                             <i class="fas fa-star"></i>
                         }
+                    </div>
+                    <p class="comment">ON IMDB</p>
                 </div>
-                <p class="comment">ON IMDB</p>
+                <div class="col-lg-4 rating-separator my-auto">out of</div>
+                <div class="col-lg-4 my-auto votes-count-container"><span class="votes-count">@Model.TitleFullData.IMDbRatingVotes</span> VOTES</div>
             </div>
-            <div class="col-lg-4 rating-separator">out of</div>
-            <div class="col-lg-4 votes-count-container"><span class="votes-count">@Model.TitleFullData.IMDbRatingVotes</span> VOTES</div>
+        </div>
+        <div class="similarTitles">
+            <h1 class="topic-separator">Similar</h1>
+            <div id="similars-slider-scrollLeftButton" onclick="similarsSlideLeft()"><i class="fas fa-angle-left"></i></div>
+            <div id="similars-slider-scrollRightButton" onclick="similarsSlideRight()"><i class="fas fa-angle-right"></i></div>
+            <ul class="similars-slider">
+                @foreach (var similar in Model.Similars)
+                {
+                    <li class="similar-card-container">
+                        <div class="similar-card">
+                            <img src="@similar.ImgURL" alt="@similar.IdInApi" />
+                            <a asp-controller="titles" asp-action="details" asp-route-id="@similar.IdInApi" class="similar-card-content">
+                                <h3>@similar.Title</h3>
+                                <div class="similar-card-rating">
+                                    <i class="fas fa-star"></i>@similar.IMDbRating
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="additional-info">
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.Countries))
+            {
+                <p><i class="fas fa-globe"></i>Countries: @Model.TitleFullData.Countries</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.Languages))
+            {
+                <p><i class="fas fa-language"></i>Languages: @Model.TitleFullData.Languages</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.Companies))
+            {
+                <p><i class="fas fa-building"></i>Companies: @Model.TitleFullData.Companies</p>
+            }
+            @if (!string.IsNullOrEmpty(Model.TitleFullData.Keywords))
+            {
+                <p><i class="fas fa-key"></i>Keywords: @Model.TitleFullData.Keywords</p>
+            }
+
         </div>
     </div>
-</div>
 </div>
 
 @section scripts{
@@ -234,6 +284,67 @@
         //document.documentElement.style.setProperty('--slidesCount', document.getElementById("images-slider").children.length);
         //setTimeout(() => {
         //    document.getElementById("images-slider").style.animationPlayState = "running";}, 1100)
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        const similarsSlider = document.querySelector('.similars-slider');
+
+        const end = () => {
+            isDown = false;
+            similarsSlider.classList.remove('active');
+        }
+
+        const start = (e) => {
+            isDown = true;
+            similarsSlider.classList.add('active');
+            startX = e.pageX || e.touches[0].pageX - similarsSlider.offsetLeft;
+            scrollLeft = similarsSlider.scrollLeft;
+        }
+
+        const move = (e) => {
+            if (!isDown) return;
+
+            e.preventDefault();
+            const x = e.pageX || e.touches[0].pageX - similarsSlider.offsetLeft;
+            const dist = (x - startX);
+            similarsSlider.scrollLeft = scrollLeft - dist;
+            manageSliderButtonVisibility()
+        }
+
+        (() => {
+            similarsSlider.addEventListener('mousedown', start);
+            similarsSlider.addEventListener('touchstart', start);
+
+            similarsSlider.addEventListener('mousemove', move);
+            similarsSlider.addEventListener('touchmove', move);
+
+            similarsSlider.addEventListener('mouseleave', end);
+            similarsSlider.addEventListener('mouseup', end);
+            similarsSlider.addEventListener('touchend', end);
+            manageSliderButtonVisibility()
+        })();
+        function similarsSlideRight() {
+            similarsSlider.scrollLeft += 650;
+            manageSliderButtonVisibility()
+        }
+        function similarsSlideLeft() {
+            similarsSlider.scrollLeft -= 600;
+            manageSliderButtonVisibility()
+        }
+        function manageSliderButtonVisibility() {
+            if (similarsSlider.scrollLeft > 600) {
+                document.getElementById('similars-slider-scrollLeftButton').style.display = "inline-block"
+            }
+            else {
+                document.getElementById('similars-slider-scrollLeftButton').style.display = "none"
+            }
+            if (similarsSlider.scrollLeft < similarsSlider.scrollWidth - screen.width - 200) {
+                document.getElementById('similars-slider-scrollRightButton').style.display = "inline-block"
+            }
+            else {
+                document.getElementById('similars-slider-scrollRightButton').style.display = "none"
+            }
+        }
     </script>
     @*<script>
             function getAverageColor(imageElement, ratio) {

@@ -140,8 +140,9 @@ footer {
     margin-bottom: 100px; }
 
 @media only screen and (max-width: 991px) {
-  footer #socialMedias li a {
-    color: #15AFE1; }
+  footer #socialMedias li a, footer #socialMedias li button {
+    color: #15AFE1;
+    margin-bottom: 5px; }
   footer .socialMediaTitle {
     margin-bottom: 25px; } }
 

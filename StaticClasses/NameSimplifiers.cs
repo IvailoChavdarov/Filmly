@@ -44,7 +44,6 @@ namespace Filmly.StaticClasses
             {"all", "Search" },
             {"movies", "SearchMovie" },
             {"series", "SearchSeries" },
-            {"keywords", "SearchKeyword" },
             {"actors", "SearchName"}
         };
         public static Dictionary<string, string> BonusRankingSimplifiedName = new Dictionary<string, string>() {
