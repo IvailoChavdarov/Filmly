@@ -71,5 +71,39 @@ namespace Filmly.StaticClasses
             {11, "November" },
             {12, "December" }
         };
+        public static string ReadDate(string date)
+        {
+            string[] dateValues = date.Split('-').ToArray();
+            string dateReadable = dateValues[0];
+            if (!string.IsNullOrEmpty(dateValues[1]))
+            {
+                dateReadable = dateReadable + " " + NameSimplifiers.Months[int.Parse(dateValues[1])];
+                if (!string.IsNullOrEmpty(dateValues[2]))
+                {
+                    int EventDayAsInt = int.Parse(dateValues[2]);
+                    if (EventDayAsInt > 0 && EventDayAsInt <= 31)
+                    {
+                        dateReadable = dateReadable + " " + EventDayAsInt;
+                        if (EventDayAsInt%10 == 1)
+                        {
+                            dateReadable = dateReadable + "st";
+                        }
+                        else if (EventDayAsInt%10 == 2)
+                        {
+                            dateReadable = dateReadable + "nd";
+                        }
+                        else if (EventDayAsInt%10 == 3)
+                        {
+                            dateReadable = dateReadable + "rd";
+                        }
+                        else
+                        {
+                            dateReadable = dateReadable + "th";
+                        }
+                    }
+                }
+            }
+            return dateReadable;
+        }
     }
 }

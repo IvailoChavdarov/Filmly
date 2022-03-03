@@ -5,7 +5,7 @@
 <div class="showcase">
     <h2>Movies coming soon</h2>
     <div class="container card-deck align-content-center">
-        @foreach (var title in Model.ComingSoon.Items)
+        @foreach (var title in Model.ComingSoon.Items.Take(10))
         {
             <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
                 <div class="card">
@@ -42,7 +42,7 @@
 <div class="showcase">
     <h2>Movies playing in theaters now</h2>
     <div class="container card-deck align-content-center" id="card-deck-2">
-        @foreach (var title in Model.InTheaters.Items)
+        @foreach (var title in Model.InTheaters.Items.Take(10))
             {
                 <a asp-controller="titles" asp-action="details" asp-route-id="@title.Id">
                     <div class="card">

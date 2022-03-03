@@ -1,11 +1,161 @@
 ﻿@model ActorDetailsVM
-<partial name="_BreadcrumbPartial" />
-<table>
-    <tr>
-        <td>@Model.Data.Name</td>
-        <td><img src="@Model.Data.Image" alt="Alternate Text" /></td>
-    </tr>
-    <tr>
-        <td>@Model.Data.Summary</td>
-    </tr>
-</table>
+@{
+    ViewData["Title"] = $"{Model.Data.Name} details";
+}
+@section heads{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Titles/details.css")" rel="stylesheet" type="text/css" />
+}
+<div class="title-details-container">
+    <section class="title-header">
+
+        <img src="@Model.Data.Image" alt="@Model.Data.Name" width="178" height="267" id="titleImage" />
+        <div class="title-mainData">
+            <h1>
+                @Model.Data.Name
+                @if (!string.IsNullOrEmpty(Model.Data.DeathDate))
+                {
+                    <span class="other-title" style="padding-left:3px">Passed away: @NameSimplifiers.ReadDate(Model.Data.DeathDate)</span>
+                }
+            </h1>
+            @if (!string.IsNullOrEmpty(Model.Data.BirthDate))
+            {
+                <h2>
+                    <i class="fas fa-birthday-cake fa-lg"></i>
+                    <span>@NameSimplifiers.ReadDate(Model.Data.BirthDate)</span>
+                </h2>
+            }
+            @if (!string.IsNullOrEmpty(Model.Data.Height) || !string.IsNullOrEmpty(Model.Data.Role))
+            {
+                <h2>
+                    <i class="fas fa-info-circle fa-lg"></i>
+                    @if (!string.IsNullOrEmpty(Model.Data.Height))
+                    {
+                        <span>@Model.Data.Height</span>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Data.Role))
+                    {
+                        <span class="title-info-separator">|</span> @Model.Data.Role
+                    }
+                </h2>
+            }
+
+            <h2>
+                @if (string.IsNullOrEmpty(Model.Data.Awards))
+                {
+                    <span>No awards yet :(</span>
+                }
+                else
+                {
+                    <span>
+                        <i class="fas fa-award fa-lg"></i>
+                        @Model.Data.Awards
+                    </span>
+                }
+            </h2>
+        </div>
+        <p>@Model.Data.Summary <a href="@($"https://www.imdb.com/name/{Model.Data.IdInAPI}/bio?ref_=nm_ov_bio_sm")" target="_blank" class="NoLoader">see full data</a></p>
+        @if (Model.StarredIn.Count == 0)
+        {
+            <p style="padding-bottom:15px;"><span>No titles the actor starred in loaded </span><a asp-controller="titles" asp-action="castin" asp-route-id="@Model.Data.IdInAPI">click here to see them</a>.</p>
+        }
+    </section>
+
+
+    @if (Model.StarredIn.Count != 0)
+    {
+
+<div class="actor-titles" style="padding-top:50px;">
+    <h1><a asp-controller="titles" asp-action="castin" asp-route-id="@Model.Data.IdInAPI" class="topic-separator">Roles</a></h1>
+    <div id="similars-slider-scrollLeftButton" onclick="similarsSlideLeft()"><i class="fas fa-angle-left"></i></div>
+    <div id="similars-slider-scrollRightButton" onclick="similarsSlideRight()"><i class="fas fa-angle-right"></i></div>
+    <ul class="similars-slider">
+        @foreach (var title in Model.StarredIn)
+        {
+            <li class="similar-card-container">
+                <div class="similar-card">
+                    <img src="@title.Image" alt="@title.OriginalTitle" />
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi" class="similar-card-content">
+                        <h3>@title.TitleName</h3>
+                        <div class="similar-card-rating">
+                            <i class="fas fa-star"></i>@title.IMDbRating
+                        </div>
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+    <a asp-controller="titles" asp-action="castin" asp-route-id="@Model.Data.IdInAPI" class="redirect-button-bottom-right">See all</a>
+</div>
+     }
+
+        
+    </div>
+@section scripts{
+    <script>
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        const similarsSlider = document.querySelector('.similars-slider');
+
+        const end = () => {
+            isDown = false;
+            similarsSlider.classList.remove('active');
+        }
+
+        const start = (e) => {
+            isDown = true;
+            similarsSlider.classList.add('active');
+            startX = e.pageX || e.touches[0].pageX - similarsSlider.offsetLeft;
+            scrollLeft = similarsSlider.scrollLeft;
+        }
+
+        const move = (e) => {
+            if (!isDown) return;
+
+            e.preventDefault();
+            const x = e.pageX || e.touches[0].pageX - similarsSlider.offsetLeft;
+            const dist = (x - startX);
+            similarsSlider.scrollLeft = scrollLeft - dist;
+            manageSliderButtonVisibility()
+        }
+
+        (() => {
+            if (similarsSlider) {
+                similarsSlider.addEventListener('mousedown', start);
+                similarsSlider.addEventListener('touchstart', start);
+
+                similarsSlider.addEventListener('mousemove', move);
+                similarsSlider.addEventListener('touchmove', move);
+
+                similarsSlider.addEventListener('mouseleave', end);
+                similarsSlider.addEventListener('mouseup', end);
+                similarsSlider.addEventListener('touchend', end);
+                manageSliderButtonVisibility()
+            }
+            
+        })();
+        function similarsSlideRight() {
+            similarsSlider.scrollLeft += 650;
+            manageSliderButtonVisibility()
+        }
+        function similarsSlideLeft() {
+            similarsSlider.scrollLeft -= 600;
+            manageSliderButtonVisibility()
+        }
+        function manageSliderButtonVisibility() {
+            if (similarsSlider.scrollLeft > 600) {
+                document.getElementById('similars-slider-scrollLeftButton').style.display = "inline-block"
+            }
+            else {
+                document.getElementById('similars-slider-scrollLeftButton').style.display = "none"
+            }
+            if (similarsSlider.scrollLeft < similarsSlider.scrollWidth - screen.width - 200) {
+                document.getElementById('similars-slider-scrollRightButton').style.display = "inline-block"
+            }
+            else {
+                document.getElementById('similars-slider-scrollRightButton').style.display = "none"
+            }
+        }
+    </script>
+            }

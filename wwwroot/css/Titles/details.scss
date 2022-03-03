@@ -3,6 +3,7 @@
 @import "../Shared/animations.scss";
 :root {
     --slidesCount: 0;
+    --trailerScale:1;
 }
 body:not(.darkTheme) {
     /*background:none;*/
@@ -87,6 +88,10 @@ body {
 
             .fa-tag {
                 color: #03fc17;
+            }
+
+            .fa-birthday-cake {
+                color: #03fcdf
             }
 
             .title-info-separator {
@@ -253,26 +258,21 @@ body {
         width: 70vw;
         font-size: larger;
         line-height: 37px;
+        a{
+            color:$mainColor;
+        }
     }
 
-    .title-releaseDate{
-        text-align:right;
-        i{
-            color:$mainColor;
+    .title-releaseDate {
+        text-align: right;
+
+        i {
+            color: $mainColor;
         }
     }
 }
 .breadcrumb{
     margin-bottom:0px;
-}
-
-@keyframes sliderScroll {
-    0%{
-        transform:translateX(0)
-    }
-    100% {
-        transform: translateX(calc(-250px * calc(var(--slidesCount)/2)))
-    }
 }
 .title-details-mainContent {
     background-color: $textColor;
@@ -280,56 +280,7 @@ body {
     transition: background-color $changeThemeAnimationTime ease;
     animation: slideInFromRight $renderAnimationTime;
 
-    .slider {
-        height: 250px;
-        margin: auto;
-        /*        margin-top: 75px;*/
-        width: 110vw;
-        margin-left: -10vw;
-        display: grid;
-        place-items: left;
-    }
 
-    .slider:before {
-        content: '';
-        width: 15vw;
-        position: absolute;
-        left: -15vw;
-        background-color: $secondaryColor-dark;
-        height: 100%;
-        z-index: 3;
-    }
-
-    .slide-track {
-        display: flex;
-        width: calc(250px*calc(var(--slidesCount)));
-        animation: sliderScroll 60s linear infinite;
-    }
-
-    .slide {
-        height: 200px;
-        width: 250px;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        /*        perspective: 100px;*/
-        text-align: center;
-        align-content: center;
-        display: inline-flex;
-        vertical-align: central;
-        justify-content: center;
-
-        img {
-            max-width: 230px;
-            max-height: 180px;
-            transition: transform 1s;
-            align-self: center;
-            vertical-align: central;
-        }
-        /*        img:hover {
-            transform: translateZ(15px)
-        }*/
-    }
 
     .stars-data {
         display: flex;
@@ -338,7 +289,8 @@ body {
         background-color: $textColor;
         justify-content: space-around;
         flex-wrap: wrap;
-        transition:background-color $changeThemeAnimationTime ease;
+        transition: background-color $changeThemeAnimationTime ease;
+
         .flex-col {
             flex-grow: 1;
             text-align: center;
@@ -410,18 +362,7 @@ body {
             }
         }
 
-        .redirect-button-bottom-right {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: $secondaryColor-dark;
-            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
-            padding: 10px;
-            padding-left: 35px;
-            font-size: larger;
-            color: $mainColor;
-            font-weight: 700
-        }
+
 
         .crew-names {
             margin-top: 70px;
@@ -457,39 +398,7 @@ body {
         padding-bottom: 125px;
     }
 
-    .topic-separator {
-        display: inline-block;
-        width: 400px;
-        height: 68px;
-        text-align: center;
-        clip-path: polygon(30% 100%, 70% 100%, 100% 0, 0 0);
-        background-color: $secondaryColor-dark;
-        position: absolute;
-        padding: 20px;
-        padding-top: 0px;
-        top: -3px;
-        left: 50%;
-        margin-left: -200px;
-        color: $mainColor;
-    }
 
-    .topic-separator:hover {
-        text-decoration: none;
-    }
-
-    a.topic-separator:hover:before {
-        position: absolute;
-        top: 10px;
-        left: 24%;
-        font-family: "Font Awesome 5 Free";
-        content: "\f101";
-        width: 10px;
-        height: 100%;
-        color: $mainColor;
-        font-weight: 600;
-        font-size: 27px;
-        animation: .3s fadeIn;
-    }
 
     .rating-data {
         display: flex;
@@ -580,142 +489,353 @@ body {
             background-color: $mainColor;
             color: $textColor;
         }
+    }
 
-        .similars-slider {
-            height: 450px;
-            width: 100vw;
-            white-space: nowrap;
-            position: relative;
-            padding: 50px;
-            padding-left:30px;
-            padding-right:30px;
-            cursor: grab;
-            overflow: hidden;
-            scroll-behavior: smooth;
-            margin-bottom:0;
-            &.active {
-                cursor: grabbing;
-                scroll-behavior: initial;
-            }
+    .additional-info {
+        background-color: $secondaryColor-dark;
+        padding: 25px;
+        padding-left: 0px;
+        padding-bottom: 0px;
 
-            .similar-card-container {
-                list-style: none;
-                display: inline-block;
-                margin-left: 10px;
-            }
+        p {
+            margin: 0;
+            margin-left: 25px;
+            font-size: x-large;
+            padding: 15px;
+            padding-left: 50px;
         }
 
-        #similars-slider-scrollRightButton, #similars-slider-scrollLeftButton {
+        i {
+            color: $mainColor;
+            margin-right: 15px;
             position: absolute;
-            display: inline-block;
-            line-height: 300px;
-            width: 50px;
-            background-color: $secondaryColor-dark-semiTransparent;
-            cursor: pointer;
-            z-index: 5;
-            text-align: center;
-            color: $textColor;
+            left: 25px;
             font-size: xx-large;
-            transition: background-color .3s ease;
-            top: 145px;
         }
 
-        #similars-slider-scrollRightButton:hover, #similars-slider-scrollLeftButton:hover {
-            background-color: $mainColor;
-        }
+        .image-slider-container {
+            display: grid;
+            place-items: center;
+            width: 100vw;
 
-        #similars-slider-scrollLeftButton {
-            display: none;
-        }
+            .slider {
+                height: 250px;
+                margin: auto;
+                position: relative;
+                width: 100%;
+                display: grid;
+                place-items: center;
+                overflow: hidden;
+            }
 
-        #similars-slider-scrollRightButton {
-            right: 0;
-        }
+            .slide-track {
+                display: flex;
+                width: calc(250px*var(--slidesCount));
+                animation: sliderScroll 60s linear infinite;
+            }
 
-        .similar-card {
-            display: inline-block;
-            width: 225.4px;
-            height: 299.25px;
-            margin: 20px;
-            border-radius: 20px;
-            transition: transform .3s ease;
+            .slide {
+                height: 200px;
+                width: 250px;
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                perspective: 100px;
+                justify-content: center;
+            }
+
             img {
-                width: 225.4px;
-                height: 299.25px;
-                position: absolute;
-                z-index: 0;
-                border-radius: 20px;
+                max-width: 220px;
+                max-height: 200px;
+                transition: transform 1s;
             }
 
-            .similar-card-content {
-                background: rgb(0,0,0);
-                background: linear-gradient(0deg, $secondaryColor-dark 0%, $secondaryColor-dark 20%,$secondaryColor-dark-semiTransparent 50%, rgba(0,0,0,0) 100%);
-                width: 225.4px;
-                height: 299.25px;
-                z-index: 1;
-                position: absolute;
-                line-height: 249.25px;
-                padding: 10px;
-                border-radius: 20px;
-
-                h3 {
-                    display: inline-block;
-                    vertical-align: bottom;
-                    line-height: normal;
-                    color: $textColor;
-                    white-space: pre-wrap;
-                }
+            img:hover {
+                transform: translateZ(21px)
             }
-
-            .similar-card-rating {
-                height: 50px;
-                line-height: normal;
-                font-size: large;
-                color: $starColor;
-
-                i {
-                    margin-right: 10px;
-                }
-            }
-        }
-        .similar-card:hover{
-            transform:scale(1.1)
         }
     }
-    .additional-info{
-        background-color:$secondaryColor-dark;
-        padding:25px;
-        p{
-            margin:0;
-            font-size:x-large;
-            padding:15px;
-            padding-left:50px;
-        }
-        i{
-            color:$mainColor;
-            margin-right:15px;
-            position:absolute;
-            left:25px;
-            font-size:xx-large;
-        }
-    }
+}
+.topic-separator {
+    display: inline-block;
+    width: 400px;
+    height: 68px;
+    text-align: center;
+    clip-path: polygon(30% 100%, 70% 100%, 100% 0, 0 0);
+    background-color: $secondaryColor-dark;
+    position: absolute;
+    padding: 20px;
+    padding-top: 0px;
+    top: -3px;
+    left: 50%;
+    margin-left: -200px;
+    color: $mainColor;
+}
+
+a.topic-separator:hover {
+    text-decoration: none;
+    color: $mainColor;
+}
+
+a.topic-separator:hover:before {
+    position: absolute;
+    top: 10px;
+    left: 24%;
+    font-family: "Font Awesome 5 Free";
+    content: "\f101";
+    width: 10px;
+    height: 100%;
+    color: $mainColor;
+    font-weight: 600;
+    font-size: 27px;
+    animation: .3s fadeIn;
 }
 .mobile-view {
     display: none;
 }
+.trailerContainer {
+    position: relative;
+    border: none;
+
+    .trailerEmbed {
+        position: absolute;
+        top: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        border: none;
+        z-index: 3;
+    }
+}
+#shareModal{
+    .modal-dialog{
+        max-width:90vw;
+    }
+}
+.shareContainer {
+    border: none;
+    background: $secondaryColor-dark;
+    border-radius: 0px;
+    width: 1000px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 150px;
+    font-size: 0px;
+    color: $textColor;
+    display: block;
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .qr-code-container {
+        display: inline-block;
+        width: 300px;
+    }
+
+    img {
+        display: inline-block;
+        width: 300px;
+        height: 300px;
+    }
+
+    p {
+        display: inline-block;
+        font-size: large;
+        margin: 0;
+        width: 700px;
+        padding: 15px;
+    }
+
+    #QR-download-button {
+        display: block;
+        color: $textColor;
+        padding: 15px;
+        padding-left: 0px;
+        font-weight:700
+    }
+    .h3{
+        display:block;
+        border-bottom:1px solid $secondaryColor-light-semiTransparent;
+        margin-bottom:10px;
+        padding-bottom:10px;
+        font-size:x-large
+    }
+    button {
+        display: inline-block;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 3px solid $mainColor;
+        background-color: $secondaryColor-light-semiTransparent;
+        color: $textColor;
+        border-radius: 10px;
+        transition: all .5s;
+        width: 500px;
+        position: relative;
+        text-align: left;
+    }
+
+    button:active, button:focus {
+        outline: none;
+        box-shadow: none;
+        border: 3px solid $successColor;
+    }
+
+    button:focus:before {
+        content: 'Copied!';
+        background-color: $successColor;
+        color: $textColor;
+        border-radius: 10px;
+        position: absolute;
+        width: 500px;
+        left: -3px;
+        animation: fadeIn .5s;
+        text-align: center;
+        font-weight: 700;
+    }
+}
+.similar-card:hover {
+    transform: scale(1.1)
+}
+
+.actor-titles {
+    background-color: $secondaryColor-light;
+    position: relative;
+}
+
+.redirect-button-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $secondaryColor-dark;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    padding: 10px;
+    padding-left: 35px;
+    font-size: larger;
+    color: $mainColor;
+    font-weight: 700
+}
+.redirect-button-bottom-right:hover {
+color:$textColor;
+}
+.similars-slider {
+    height: 450px;
+    width: 100vw;
+    white-space: nowrap;
+    position: relative;
+    padding: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    cursor: grab;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    margin-bottom: 0;
+
+    &.active {
+        cursor: grabbing;
+        scroll-behavior: initial;
+    }
+
+    .similar-card-container {
+        list-style: none;
+        display: inline-block;
+        margin-left: 10px;
+    }
+}
+
+#similars-slider-scrollRightButton, #similars-slider-scrollLeftButton {
+    position: absolute;
+    display: inline-block;
+    line-height: 300px;
+    width: 50px;
+    background-color: $secondaryColor-dark-semiTransparent;
+    cursor: pointer;
+    z-index: 5;
+    text-align: center;
+    color: $textColor;
+    font-size: xx-large;
+    transition: background-color .3s ease;
+    top: 145px;
+}
+
+#similars-slider-scrollRightButton:hover, #similars-slider-scrollLeftButton:hover {
+    background-color: $mainColor;
+}
+
+#similars-slider-scrollLeftButton {
+    display: none;
+}
+
+#similars-slider-scrollRightButton {
+    right: 0;
+}
+.similar-card {
+    display: inline-block;
+    width: 225.4px;
+    height: 299.25px;
+    margin: 20px;
+    border-radius: 20px;
+    transition: transform .3s ease;
+
+    img {
+        width: 225.4px;
+        height: 299.25px;
+        position: absolute;
+        z-index: 0;
+        border-radius: 20px;
+    }
+
+    .similar-card-content {
+        background: rgb(0,0,0);
+        background: linear-gradient(0deg, $secondaryColor-dark 0%, $secondaryColor-dark 20%,$secondaryColor-dark-semiTransparent 50%, rgba(0,0,0,0) 100%);
+        width: 225.4px;
+        height: 299.25px;
+        z-index: 1;
+        position: absolute;
+        line-height: 249.25px;
+        padding: 10px;
+        border-radius: 20px;
+
+        h3 {
+            display: inline-block;
+            vertical-align: bottom;
+            line-height: normal;
+            color: $textColor;
+            white-space: pre-wrap;
+        }
+    }
+
+    .similar-card-rating {
+        height: 50px;
+        line-height: normal;
+        font-size: large;
+        color: $starColor;
+
+        i {
+            margin-right: 10px;
+        }
+    }
+}
+
+
 @media only screen and (max-width : 1409px) {
     .title-details-container {
+
         .userCollections-buttons {
             left: 10px;
             top: 400px;
             /*transform: scale(.9)*/
             .userCollections-button-text {
-                font-size:medium
+                font-size: medium
             }
-            animation:none;
+
+            animation: none;
         }
 
         .title-header {
+            min-height: 600px;
+
             h2, h1 {
                 width: 70vw;
             }
@@ -838,6 +958,9 @@ body {
     .mobile-view {
         display: inline-block;
     }
+    .trailerContainer {
+        transform:scale(var(--trailerScale))
+    }
 }
 .darkTheme {
     .additional-info {
@@ -852,5 +975,15 @@ body {
         .topic-separator {
         background-color: darken($textColor, 3)
         }
+    }
+}
+
+@keyframes sliderScroll {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(calc(-250px * calc(0.5*var(--slidesCount))))
     }
 }

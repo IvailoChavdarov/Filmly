@@ -10,5 +10,6 @@ namespace Filmly.ViewModels
     {
         public Actors Data { get; set; }
         public BreadcrumbData BreadcrumbData { get; set; }
+        public List<Titles> StarredIn { get; set; }
     }
 }

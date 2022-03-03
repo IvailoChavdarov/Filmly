@@ -136,14 +136,14 @@ namespace Filmly.Controllers
             ActorDetailsVM actorDetails = new ActorDetailsVM() {
                 Data = GetActor(id)
             };
+            actorDetails.StarredIn = _db.Titles_Actors.Where(user_favourite => user_favourite.ActorId == actorDetails.Data.Id).Select(pair => pair.Title).ToList();
             actorDetails.BreadcrumbData = new BreadcrumbData()
             {
                 ControllerName = "titles",
                 ControllerPublicName = "Titles",
                 ActionName = "details",
-                ActionPublicName = "Cinema's history",
+                ActionPublicName = "Details",
                 HiddenAction = true,
-                HiddenController = true,
                 IdName = id,
                 IdPublicName = actorDetails.Data.Name
             };

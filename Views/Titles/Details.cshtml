@@ -114,7 +114,7 @@
             <p>@Model.TitleFullData.Plot</p>
             @if (!string.IsNullOrEmpty(Model.TitleFullData.ReleaseDate))
             {
-                <p class="title-releaseDate"><i class="fas fa-calendar-alt"></i> Released: @Model.TitleFullData.ReleaseDate</p>
+                <p class="title-releaseDate"><i class="fas fa-calendar-alt"></i> Released: @NameSimplifiers.ReadDate(Model.TitleFullData.ReleaseDate)</p>
             }
             else if (!string.IsNullOrEmpty(Model.TitleFullData.Year))
             {
@@ -124,65 +124,36 @@
     </section>
 
 
-    @*share modal*@
-    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareTitleModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    share
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     @*trailer modal*@
     @if (!string.IsNullOrEmpty(Model.TitleFullData.TrailerLinkEmbed))
     {
         <div class="modal fade" id="trailerModal" tabindex="-1" role="dialog" aria-labelledby="titleTrailerModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Trailer
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+                <div class="modal-content trailerContainer">
+                    <iframe class="trailerEmbed" name="trailerIframe" width="854" height="937" src="@Model.TitleFullData.TrailerLinkEmbed" allowfullscreen="true"  mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                 </div>
             </div>
         </div>
     }
+    @*share modal*@
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareTitleModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content shareContainer">
+                <img src="" height="300" width="300" alt="QRCODE" id="title-qr-code" title="Scan to get" />
+                <p>
+                    <span class="h3">@Model.TitleFullData.TitleName - Filmly</span>
+                    URL: <button class="NoLoader" name="copyTitleURL" id="copyTitleURLButton" aria-label="copy url" title="Copy" onclick="copyToClipboard(window.location.href)"></button>
+                    <a href="" id="QR-download-button" class="NoLoader" download="download">Download QR code</a>
+                </p>
+
+
+            </div>
+            
+        </div>
+    </div>
+
+
     <div class="title-details-mainContent">
-        @*<a asp-controller="titles" asp-action="titleimages" asp-route-id="@Model.TitleFullData.IdInApi" class="slider">
-                <div class="slide-track" id="images-slider">
-                    @foreach (var image in Model.Images)
-                    {
-                        <div class="slide">
-                            <img src="@image.ImgURL" alt="@image.Title" />
-                        </div>
-                    }
-                    @foreach (var image in Model.Images)
-                    {
-                        <div class="slide">
-                            <img src="@image.ImgURL" alt="@image.Title" />
-                        </div>
-                    }
-                </div>
-            </a>*@
 
         <div class="stars-data">
             <h1><a asp-controller="titles" asp-action="cast" asp-route-id="@Model.TitleFullData.IdInApi" class="topic-separator">Top crew</a></h1>
@@ -249,7 +220,7 @@
                             <a asp-controller="titles" asp-action="details" asp-route-id="@similar.IdInApi" class="similar-card-content">
                                 <h3>@similar.Title</h3>
                                 <div class="similar-card-rating">
-                                    <i class="fas fa-star"></i>@similar.IMDbRating
+                                    <i class="fas fa-star"></i> @similar.IMDbRating
                                 </div>
                             </a>
                         </div>
@@ -274,16 +245,44 @@
             {
                 <p><i class="fas fa-key"></i>Keywords: @Model.TitleFullData.Keywords</p>
             }
-
+            <div class="image-slider-container">
+                <a asp-controller="titles" asp-action="titleimages" asp-route-id="@Model.TitleFullData.IdInApi" class="slider">
+                    <div class="slide-track" id="images-slider">
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="slide">
+                                <img src="@image.ImgURL" alt="@image.Title" />
+                            </div>
+                        }
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="slide">
+                                <img src="@image.ImgURL" alt="@image.Title" />
+                            </div>
+                        }
+                    </div>
+                </a>
+            </div>
         </div>
+
     </div>
 </div>
 
 @section scripts{
     <script>
-        //document.documentElement.style.setProperty('--slidesCount', document.getElementById("images-slider").children.length);
+        document.documentElement.style.setProperty('--slidesCount', document.getElementById("images-slider").children.length);
+        document.documentElement.style.setProperty('--trailerScale', document.documentElement.clientWidth / 950);
+        document.getElementById("title-qr-code").src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + window.location.href;
+        document.getElementById("copyTitleURLButton").innerHTML = window.location.href;
+        document.getElementById("QR-download-button").href = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + window.location.href;
         //setTimeout(() => {
-        //    document.getElementById("images-slider").style.animationPlayState = "running";}, 1100)
+        //    //var cssLink = document.createElement("link");
+        //    //cssLink.href = "~/css/Titles/trailer.css";
+        //    //cssLink.rel = "stylesheet";
+        //    //cssLink.type = "text/css";
+        //    //frames['trailerIframe'].document.head.appendChild(cssLink);
+        //    console.log(document.getElementById("trailerIframe").contentWindow.document);
+        //})
         let isDown = false;
         let startX;
         let scrollLeft;
