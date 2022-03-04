@@ -1,0 +1,157 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Shared/animations.scss";
+@import "../Utility/_timings.scss";
+.container {
+    margin-top: 50px;
+    background-color: $secondaryColor-dark;
+    animation: slideInFromLeft $renderAnimationTime;
+    padding: 75px;
+    padding-bottom: 25px;
+    color: $textColor;
+    transition: all $changeThemeAnimationTime ease;
+    border: 5px solid transparent;
+    padding-top: 35px;
+
+    label, span {
+        font-size: x-large;
+    }
+
+    hr {
+        border-color: $secondaryColor-light-semiTransparent
+    }
+
+    .text-danger {
+        span {
+            font-size: large;
+        }
+    }
+
+    input {
+        background-color: transparent;
+        border: none;
+        transition: all .3s ease;
+        border-bottom: 3px solid $mainColor;
+        border-radius: 0px;
+        color: $textColor;
+        margin-bottom: 15px;
+        padding-left: 5px;
+    }
+
+    input:active, input:focus {
+        background-color: $secondaryColor-light-semiTransparent;
+        border-color: $successColor;
+        color: $textColor;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        border: 3px solid $mainColor;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+
+        .fas {
+            color: $mainColor;
+        }
+    }
+
+    p {
+        color: $textColor-semiTransparent;
+        font-size: large;
+
+        a {
+            color: $mainColor;
+        }
+    }
+
+    .checkbox-container {
+        input {
+            all: unset;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            vertical-align: middle;
+            background-color: $textColor;
+            position: relative;
+        }
+
+        input:checked {
+            background-color: $mainColor;
+        }
+
+        input:checked::before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f00c";
+            color: $textColor;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 900;
+            font-size: x-large;
+        }
+    }
+
+    .checkbox-container-sm {
+        input {
+            width: 25px;
+            height: 25px;
+            margin: 0;
+        }
+
+        input:checked::before {
+            font-size: large;
+        }
+    }
+
+    #registerButton {
+        background-color: $mainColor;
+        border: none;
+        color: $textColor;
+        width: 70%;
+        line-height: 35px;
+        font-size: x-large;
+        font-weight: 600;
+        padding: 10px;
+    }
+
+    #resetFormButton {
+        width: 25%;
+        border: 1px solid #dc3545;
+        color: #dc3545;
+        line-height: 35px;
+        font-size: x-large;
+        font-weight: 600;
+        padding: 10px;
+        background-color: transparent;
+        transition: all .2s ease;
+    }
+
+    #resetFormButton:hover {
+        background-color: #dc3545;
+        color: $textColor;
+    }
+
+    #loginButton {
+        background-color: $mainColor;
+        border: none;
+        color: $textColor;
+        width: 100%;
+        line-height: 35px;
+        font-size: x-large;
+        font-weight: 600;
+        padding: 10px;
+    }
+}
+.darkTheme {
+    .container {
+        background-color: $secondaryColor-dark;
+        border-color: $mainColor;
+        color: $textColor;
+    }
+}

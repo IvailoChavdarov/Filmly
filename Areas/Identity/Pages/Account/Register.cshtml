@@ -3,108 +3,90 @@
 @{
     ViewData["Title"] = "Register";
 }
+@section heads{
+    <link href="@Url.Content("~/css/Identity/register.css")" rel="stylesheet" type="text/css" />
+}
 
-<h1>@ViewData["Title"]</h1>
+<div class="container">
+    <h1>Register</h1>
+    <div class="row" id="formRow">
+        <div class="col-12 col-sm-12 col-lg-6 col-xl-6 col-xs-12">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.FirstName"></label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.SecondName"></label>
+                    <input asp-for="Input.SecondName" class="form-control" />
+                    <span asp-validation-for="Input.SecondName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.FirstName"></label>
-                <input asp-for="Input.FirstName" class="form-control" />
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.SecondName"></label>
-                <input asp-for="Input.SecondName" class="form-control" />
-                <span asp-validation-for="Input.SecondName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Input.ProfileImage"></label>
-                <input asp-for="Input.ProfileImage" class="form-control" id="profileImageInputHidden" />
-                <span asp-validation-for="Input.ProfileImage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span> or </span>
-                <label for="fileupload" class="custom-file-upload">
-                    <i class="fa fa-cloud-upload"></i> upload image
-                </label>
-                <input class="form-control" type="file" id="fileupload" />
-                <span id="imageValidationText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.IsPublic"></label>
-                <input asp-for="Input.IsPublic" class="form-control" checked/>
-                <span asp-validation-for="Input.IsPublic" class="text-danger"></span>
-            </div>
-            <button class="btn btn-primary" id="registerButton">Register</button>
-            <button type="submit" id="submitButtonHidden" style="visibility:hidden">Register hidden</button>
-        </form>
+                <div class="form-group">
+                    <label asp-for="Input.ProfileImage"></label>
+                    <input asp-for="Input.ProfileImage" class="form-control" id="profileImageInputHidden" placeholder="Image URL" />
+                    <span asp-validation-for="Input.ProfileImage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <span> or </span>
+                    <label for="fileupload" class="custom-file-upload">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload image
+                    </label>
+                    <input class="form-control" type="file" id="fileupload" />
+                    <span id="imageValidationText" class="text-danger"></span>
+                </div>
+                <div class="form-group checkbox-container">
+                    <label asp-for="Input.IsPublic"></label>
+                    <input asp-for="Input.IsPublic" checked />
+                    <span asp-validation-for="Input.IsPublic" class="text-danger"></span>
+                </div>
+                <button id="registerButton">Register</button>
+                <button id="resetFormButton" class="NoLoader" onclick="clearInputs()" type="button">Reset</button>
+                <button type="submit" id="submitButtonHidden" style="visibility:hidden">Register hidden</button>
+            </form>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6 col-xl-6 col-xs-12">
+            <p>
+                Already have an acount? Click <a asp-area="identity" asp-page="/account/login" title="sign in">here</a> to sign in.
+            </p>
+            <p class="privacy-text">
+                By registering you agree to give us the permision to store the data you enter in the website in our database.
+            </p>
+            <p>
+                We reserve the right to terminate your account at any point
+            </p>
+            <p>
+                Filmly does not support "Forgot password" functionality yet, so don't forget your password!
+            </p>
+            <p>
+                Click <a asp-area="" asp-controller="home" asp-action="privacy">here</a> to learn more
+            </p>
+            <p>
+                <a asp-controller="home" asp-action="index">Back to home page</a>
+            </p>
+        </div>
     </div>
-    <p>Your accound start as public.</p>
-    <p>Already have an account?-------------------</p>
-    @*<div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>*@
-</div>
-<style>
-    input[type="file"] {
-        display: none;
-    }
 
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-    }
-</style>
+</div>
 @section Scripts {
     <script>
         const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ddo3vrwcb/image/upload';
@@ -113,7 +95,8 @@
         document.getElementById('registerButton').addEventListener('click', (e) => {
             e.preventDefault();
             if (image.files.length > 0) {
-                const file = image.files[image.files.length-1];
+                console.log("here");
+                const file = image.files[image.files.length - 1];
                 console.log(file);
                 const formData = new FormData();
                 formData.append('file', file);
@@ -132,13 +115,15 @@
                         }
                     }).then(() => {
                         document.getElementById('submitButtonHidden').click()
+                        console.log("started registe3r");
                     })
                 /*                    .catch(err => console.error(err));*/
             }
             else {
+                console.log("not there");
                 document.getElementById('submitButtonHidden').click()
             }
-            
+
         })
         image.addEventListener('change', (e) => {
             if (e.target.files[image.files.length - 1].name.endsWith(".png") || e.target.files[image.files.length - 1].name.endsWith(".jpg") || e.target.files[image.files.length - 1].name.endsWith(".jpeg") | e.target.files[image.files.length - 1].name.endsWith(".gif")) {
@@ -158,10 +143,25 @@
                 document.getElementById('profileImageInputHidden').value = ""
             }
         })
-        //String.prototype.endsWith = function (pattern) {
-        //    var d = this.length - pattern.length;
-        //    return d >= 0 && this.lastIndexOf(pattern) === d;
-        //};
+            //String.prototype.endsWith = function (pattern) {
+            //    var d = this.length - pattern.length;
+            //    return d >= 0 && this.lastIndexOf(pattern) === d;
+            //};
+    </script>
+    <script>
+        function clearInputs() {
+            document.querySelectorAll('#formRow input').forEach((e) => {
+                if (e.type == "password" || e.type == "text" || e.type=="email") {
+                    e.value = "";
+                }
+                else if (e.type=="checkbox") {
+                    e.checked = true
+                }
+                else if (e.type == "file") {
+                    e.value = null;
+                }
+            })
+        }
     </script>
     <partial name="_ValidationScriptsPartial" />
 }

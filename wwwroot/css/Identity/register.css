@@ -1,0 +1,187 @@
+﻿/*$secondaryColor-light: #DAF3FF;
+$secondaryColor-dark: #607999;
+$mainColor: #ff4400;
+$textColor: #FFF6F1;*/
+/*$secondaryColor-light: #A4AE9E;
+$secondaryColor-dark: #40493B;
+$mainColor: #4DFF00;
+$textColor: #F2FCEC;*/
+/*$secondaryColor-light: #d2c4ae;
+$secondaryColor-dark: #403535;
+$mainColor: #294023;
+$textColor: #ffeccf;*/
+/*$secondaryColor-light: #006E61;
+$secondaryColor-dark: #522700;
+$mainColor: #FCBA03;
+$textColor: #DFE0DF;*/
+/*$secondaryColor-light: #AEAC99;
+$secondaryColor-dark: #494738;
+$mainColor: #FFFF33;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #DFE0DF;
+$secondaryColor-dark: #693B22;
+$mainColor: #FF6700;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #9DB0A2;
+$secondaryColor-dark: #3B4A3F;
+$mainColor: #03FC90;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(120%); } }
+
+.container {
+  margin-top: 50px;
+  background-color: #364954;
+  animation: slideInFromLeft 1s;
+  padding: 75px;
+  padding-bottom: 25px;
+  color: #E6F4F1;
+  transition: all 250ms ease;
+  border: 5px solid transparent;
+  padding-top: 35px; }
+  .container label, .container span {
+    font-size: x-large; }
+  .container hr {
+    border-color: rgba(153, 174, 187, 0.5); }
+  .container .text-danger span {
+    font-size: large; }
+  .container input {
+    background-color: transparent;
+    border: none;
+    transition: all .3s ease;
+    border-bottom: 3px solid #15AFE1;
+    border-radius: 0px;
+    color: #E6F4F1;
+    margin-bottom: 15px;
+    padding-left: 5px; }
+  .container input:active, .container input:focus {
+    background-color: rgba(153, 174, 187, 0.5);
+    border-color: #22BB33;
+    color: #E6F4F1; }
+  .container input[type="file"] {
+    display: none; }
+  .container .custom-file-upload {
+    border: 3px solid #15AFE1;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer; }
+    .container .custom-file-upload .fas {
+      color: #15AFE1; }
+  .container p {
+    color: rgba(230, 244, 241, 0.5);
+    font-size: large; }
+    .container p a {
+      color: #15AFE1; }
+  .container .checkbox-container input {
+    all: unset;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    vertical-align: middle;
+    background-color: #E6F4F1;
+    position: relative; }
+  .container .checkbox-container input:checked {
+    background-color: #15AFE1; }
+  .container .checkbox-container input:checked::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    color: #E6F4F1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900;
+    font-size: x-large; }
+  .container .checkbox-container-sm input {
+    width: 25px;
+    height: 25px;
+    margin: 0; }
+  .container .checkbox-container-sm input:checked::before {
+    font-size: large; }
+  .container #registerButton {
+    background-color: #15AFE1;
+    border: none;
+    color: #E6F4F1;
+    width: 70%;
+    line-height: 35px;
+    font-size: x-large;
+    font-weight: 600;
+    padding: 10px; }
+  .container #resetFormButton {
+    width: 25%;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    line-height: 35px;
+    font-size: x-large;
+    font-weight: 600;
+    padding: 10px;
+    background-color: transparent;
+    transition: all .2s ease; }
+  .container #resetFormButton:hover {
+    background-color: #dc3545;
+    color: #E6F4F1; }
+  .container #loginButton {
+    background-color: #15AFE1;
+    border: none;
+    color: #E6F4F1;
+    width: 100%;
+    line-height: 35px;
+    font-size: x-large;
+    font-weight: 600;
+    padding: 10px; }
+
+.darkTheme .container {
+  background-color: #364954;
+  border-color: #15AFE1;
+  color: #E6F4F1; }

@@ -94,5 +94,9 @@
   {
     "outputFile": "wwwroot/css/Titles/details.css",
     "inputFile": "wwwroot/css/Titles/details.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Identity/register.css",
+    "inputFile": "wwwroot/css/Identity/register.scss"
   }
 ]
