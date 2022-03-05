@@ -1,4 +1,9 @@
-﻿@{
+﻿@section heads {
+    <link href="@Url.Content("~/css/Identity/accountNavigation.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("heads", required: false)
+}
+
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
@@ -11,10 +16,10 @@
 
 <div>
     <div class="row">
-        @*<div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>*@
-        <div class="col-md-12">
+        <div class="col-md-3 account-nav-container">
+                <partial name="_AccountNavigation" />
+            </div>
+        <div class="col-md-9 account-page-content">
             @RenderBody()
         </div>
     </div>
@@ -22,4 +27,39 @@
 
 @section Scripts {
     @RenderSection("Scripts", required: false)
+    <script>
+        
+        window.onscroll = function () { manageAccountNavigation() };
+        var navigation = document.getElementById("account-nav");
+        
+        // Get the offset position of the navbar
+        var sticky = 75;
+        console.log(sticky);
+        
+        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function manageAccountNavigation() {
+
+            if (window.pageYOffset >= sticky) {
+                navigation.classList.add("stick-top")
+            } else {
+                navigation.classList.remove("stick-top");
+            }
+        }
+        if (sessionStorage.getItem("AccountNavOpened")=="false") {
+            document.querySelector('#account-nav').classList.add("closed")
+        }
+        console.log(sessionStorage.getItem("AccountNavOpened"));
+        function closeAccountNav() {
+            if (document.querySelector('#account-nav').classList.contains("closed")) {
+                document.querySelector('#account-nav').classList.remove("closed")
+                console.log("added");
+                sessionStorage.setItem("AccountNavOpened", true);
+            }
+            else {
+                document.querySelector('#account-nav').classList.add("closed")
+                console.log("removed");
+                sessionStorage.setItem("AccountNavOpened", false);
+            }
+        }
+    </script>
 }

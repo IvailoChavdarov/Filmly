@@ -1,0 +1,29 @@
+﻿@model IUserPageModel
+<nav id="account-nav" class="no-stick">
+    @if (!string.IsNullOrEmpty(Model.UserData.ProfileImage))
+    {
+        <div class="profile-image-container NoLoader">
+            <p class="name-container">@Model.UserData.FirstName @Model.UserData.LastName</p>
+            <img src="@Model.UserData.ProfileImage" alt="Manage" />
+        </div>
+    }
+    <a asp-controller="home" asp-action="index" aria-label="Go to home page"><i class="fas fa-home"></i> Home page</a>
+    <button onclick="closeAccountNav()" class="NoLoader" aria-label="Close account navigation"><i class="fas fa-bars"></i> Close</button>
+    <a asp-area="identity" asp-page="/account/manage/index" aria-label="Go to account"><i class="fas fa-user-cog"></i> Manage</a>
+    <a asp-area="identity" asp-page="/account/manage/changepassword" aria-label="Change account password"><i class="fas fa-unlock-alt"></i> Change password</a>
+    <a asp-controller="collection" asp-action="favourites" aria-label="Go to favourites"><i class="far fa-heart"></i> Favourites</a>
+    <a asp-controller="collection" asp-action="index" aria-label="Go to watchlist"><i class="far fa-bookmark"></i> Watchlist</a>
+    @if (Model.UserData.IsPublic)
+    {
+        <a asp-controller="collection" asp-action="favouritesof" aria-label="Go to favourites list"><i class="fas fa-share"></i> Share favourites</a>
+    }
+    else
+    {
+        <a class="disabled"><i class="fas fa-user-times"></i> Make your account public to share your favourites</a>
+    }
+
+    <form class="form-inline" asp-area="Identity" asp-page="/account/logout" asp-route-returnUrl="@Url.Action("index", "home", new { area = "" })">
+        <button type="submit" class="nav-item" id="signOutButton-mobile"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+    </form>
+
+</nav>

@@ -4,7 +4,7 @@
     overflow-x: auto;
     white-space: nowrap;
     overflow-y: hidden;
-    margin-top: 30px;
+    padding-top: 30px;
 
     .genreCard {
         display: inline-block;
@@ -150,7 +150,7 @@
         text-decoration: none;
     }
 
-    margin-bottom: 30px;
+    padding-bottom: 30px;
 }
 .genreSlider::-webkit-scrollbar {
     width: 5px;

@@ -1,0 +1,154 @@
+﻿/*$secondaryColor-light: #DAF3FF;
+$secondaryColor-dark: #607999;
+$mainColor: #ff4400;
+$textColor: #FFF6F1;*/
+/*$secondaryColor-light: #A4AE9E;
+$secondaryColor-dark: #40493B;
+$mainColor: #4DFF00;
+$textColor: #F2FCEC;*/
+/*$secondaryColor-light: #d2c4ae;
+$secondaryColor-dark: #403535;
+$mainColor: #294023;
+$textColor: #ffeccf;*/
+/*$secondaryColor-light: #006E61;
+$secondaryColor-dark: #522700;
+$mainColor: #FCBA03;
+$textColor: #DFE0DF;*/
+/*$secondaryColor-light: #AEAC99;
+$secondaryColor-dark: #494738;
+$mainColor: #FFFF33;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #DFE0DF;
+$secondaryColor-dark: #693B22;
+$mainColor: #FF6700;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #9DB0A2;
+$secondaryColor-dark: #3B4A3F;
+$mainColor: #03FC90;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(120%); } }
+
+.manage-account-form-container {
+  display: inline-block;
+  width: 85%;
+  padding: 70px;
+  border: 5px solid #15AFE1;
+  background-color: #E6F4F1;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  color: #364954;
+  transition: all 250ms; }
+  .manage-account-form-container h4 {
+    font-size: xx-large; }
+  .manage-account-form-container label {
+    font-size: larger; }
+  .manage-account-form-container input {
+    border: none;
+    border-bottom: 3px solid #15AFE1;
+    background-color: transparent;
+    font-size: large;
+    border-radius: 0; }
+  .manage-account-form-container input:focus {
+    background-color: white;
+    border-bottom: 3px solid #15AFE1;
+    box-shadow: 0 1px 1px #15AFE1 inset, 0 0 8px #15AFE1;
+    outline: 0 none; }
+  .manage-account-form-container #update-profile-button {
+    margin-top: 15px;
+    background-color: transparent;
+    border: 3px solid #15AFE1;
+    color: #15AFE1;
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: x-large;
+    float: right;
+    width: 100%;
+    transition: all .2s ease;
+    font-weight: 600;
+    transition: all 250ms; }
+  .manage-account-form-container #update-profile-button:hover {
+    background-color: #15AFE1;
+    color: #E6F4F1; }
+
+.stick-top {
+  position: static;
+  top: 0; }
+
+#account-nav {
+  height: 100%; }
+
+.account-nav-container {
+  height: 95vh;
+  min-height: 800px; }
+
+.pb-3 {
+  padding-bottom: 0px !important; }
+
+.account-page-content {
+  padding: 50px; }
+
+.darkTheme .manage-account-form-container {
+  color: #E6F4F1;
+  background-color: #364954; }
+  .darkTheme .manage-account-form-container input {
+    color: #E6F4F1; }
+  .darkTheme .manage-account-form-container input:focus {
+    color: #99AEBB;
+    background-color: transparent; }
+  .darkTheme .manage-account-form-container #update-profile-button {
+    background-color: #15AFE1;
+    color: #E6F4F1; }
+  .darkTheme .manage-account-form-container #update-profile-button:hover {
+    background-color: transparent;
+    color: #15AFE1; }

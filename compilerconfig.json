@@ -98,5 +98,13 @@
   {
     "outputFile": "wwwroot/css/Identity/register.css",
     "inputFile": "wwwroot/css/Identity/register.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Identity/manage.css",
+    "inputFile": "wwwroot/css/Identity/manage.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Identity/accountNavigation.css",
+    "inputFile": "wwwroot/css/Identity/accountNavigation.scss"
   }
 ]

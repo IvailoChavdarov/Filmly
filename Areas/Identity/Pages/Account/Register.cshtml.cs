@@ -65,8 +65,8 @@ namespace Filmly.Areas.Identity.Pages.Account
             [Display(Name = "First name")]
             public string FirstName { get; set; }
 
-            [Display(Name = "Second name")]
-            public string SecondName { get; set; }
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
 
             [Display(Name = "Profile image")]
             public string ProfileImage { get; set; }
@@ -87,7 +87,7 @@ namespace Filmly.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.SecondName, IsPublic = Input.IsPublic, ProfileImage=Input.ProfileImage };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, IsPublic = Input.IsPublic, ProfileImage=Input.ProfileImage };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

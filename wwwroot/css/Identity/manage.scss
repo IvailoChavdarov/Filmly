@@ -1,0 +1,101 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Utility/_timings.scss";
+@import "../Shared/animations.scss";
+.manage-account-form-container {
+    display: inline-block;
+    width: 85%;
+    padding: 70px;
+    border: 5px solid $mainColor;
+    background-color: $textColor;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    color: $secondaryColor-dark;
+    transition: all $changeThemeAnimationTime;
+
+    h4 {
+        font-size: xx-large;
+    }
+
+    label {
+        font-size: larger;
+    }
+
+    input {
+        border: none;
+        border-bottom: 3px solid $mainColor;
+        background-color: transparent;
+        font-size: large;
+        border-radius: 0;
+    }
+
+    input:focus {
+        background-color: lighten($textColor, 10);
+        border-bottom: 3px solid $mainColor;
+        box-shadow: 0 1px 1px $mainColor inset, 0 0 8px $mainColor;
+        outline: 0 none;
+    }
+
+    #update-profile-button {
+        margin-top: 15px;
+        background-color: transparent;
+        border: 3px solid $mainColor;
+        color: $mainColor;
+        padding: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: x-large;
+        float: right;
+        width: 100%;
+        transition: all .2s ease;
+        font-weight: 600;
+        transition: all $changeThemeAnimationTime;
+    }
+
+    #update-profile-button:hover {
+        background-color: $mainColor;
+        color: $textColor;
+    }
+}
+.stick-top {
+    position: static;
+    top: 0;
+}
+#account-nav {
+    height:100%;
+}
+.account-nav-container{
+    height:95vh;
+    min-height:800px
+   
+}
+.pb-3{
+    padding-bottom:0px!important;
+}
+.account-page-content{
+    padding:50px;
+}
+.darkTheme {
+    .manage-account-form-container {
+        color: $textColor;
+        background-color: $secondaryColor-dark;
+
+        input {
+            color: $textColor
+        }
+
+        input:focus {
+            color: $secondaryColor-light;
+            background-color: transparent;
+        }
+
+        #update-profile-button {
+            background-color: $mainColor;
+            color: $textColor;
+        }
+
+        #update-profile-button:hover {
+            background-color: transparent;
+            color: $mainColor;
+        }
+    }
+}

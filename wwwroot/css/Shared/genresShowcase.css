@@ -34,8 +34,8 @@ $textColor: #fcf7f7;*/
   overflow-x: auto;
   white-space: nowrap;
   overflow-y: hidden;
-  margin-top: 30px;
-  margin-bottom: 30px; }
+  padding-top: 30px;
+  padding-bottom: 30px; }
   .genreSlider .genreCard {
     display: inline-block;
     border: 2px solid transparent;
