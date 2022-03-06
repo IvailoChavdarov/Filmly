@@ -1,0 +1,130 @@
+﻿/*$secondaryColor-light: #DAF3FF;
+$secondaryColor-dark: #607999;
+$mainColor: #ff4400;
+$textColor: #FFF6F1;*/
+/*$secondaryColor-light: #A4AE9E;
+$secondaryColor-dark: #40493B;
+$mainColor: #4DFF00;
+$textColor: #F2FCEC;*/
+/*$secondaryColor-light: #d2c4ae;
+$secondaryColor-dark: #403535;
+$mainColor: #294023;
+$textColor: #ffeccf;*/
+/*$secondaryColor-light: #006E61;
+$secondaryColor-dark: #522700;
+$mainColor: #FCBA03;
+$textColor: #DFE0DF;*/
+/*$secondaryColor-light: #AEAC99;
+$secondaryColor-dark: #494738;
+$mainColor: #FFFF33;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #DFE0DF;
+$secondaryColor-dark: #693B22;
+$mainColor: #FF6700;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #9DB0A2;
+$secondaryColor-dark: #3B4A3F;
+$mainColor: #03FC90;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(120%); } }
+
+.account-page-content {
+  padding-top: 70px; }
+  .account-page-content .user-collection-list {
+    border: 5px solid #15AFE1;
+    border-top: 0px; }
+  .account-page-content .foreign-user-header {
+    background-color: #364954;
+    width: 70vw;
+    max-width: 100%;
+    position: relative;
+    height: 107px;
+    border: 5px solid #15AFE1;
+    border-bottom: 0px; }
+    .account-page-content .foreign-user-header img {
+      max-width: 220px;
+      max-height: 220px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(-40%, -40%);
+      border: 5px solid #15AFE1; }
+    .account-page-content .foreign-user-header h3 {
+      display: inline-block;
+      width: 100%;
+      font-size: 40px;
+      font-weight: 600;
+      color: #E6F4F1;
+      padding-left: 12%;
+      border-bottom: 5px solid #15AFE1;
+      margin-bottom: 0px;
+      padding-bottom: 28px; }
+      .account-page-content .foreign-user-header h3 button {
+        all: unset;
+        float: right;
+        cursor: pointer;
+        font-size: x-large;
+        color: #15AFE1;
+        font-weight: 700;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 25px; }
+
+.not-logged-user ul {
+  width: 100vw; }
+
+.not-logged-user .foreign-user-header {
+  width: 100vw; }
+  .not-logged-user .foreign-user-header h3 {
+    padding-left: 15%; }

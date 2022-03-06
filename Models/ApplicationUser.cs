@@ -26,7 +26,7 @@ namespace Filmly.Models
         public string ProfileImage { get; set; }
         public HashSet<ApplicationUser_Favourites> ApplicationUser_Favourites { get; set; }
         public HashSet<ApplicationUser_ToWatch> ApplicationUser_WatchList { get; set; }
-        public HashSet<DiscussionComment> UserComments { get; set; }
-        public HashSet<Article> ArticlesWritten { get; set; }
+        //public HashSet<DiscussionComment> UserComments { get; set; }
+        //public HashSet<Article> ArticlesWritten { get; set; }
     }
 }

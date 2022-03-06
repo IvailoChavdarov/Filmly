@@ -168,3 +168,7 @@ $navOpeningClosingAnimationTime:.5s;
         background-color: $secondaryColor-dark;
     }
 }
+.account-nav-container{
+    width:fit-content;
+    min-width:70px;
+}

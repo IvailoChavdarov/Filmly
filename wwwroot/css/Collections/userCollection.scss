@@ -1,0 +1,74 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Shared/animations.scss";
+@import "../Utility/_timings.scss";
+.account-page-content {
+    margin-left: 0px;
+    margin-top: 30px;
+    color: $textColor;
+
+    h3 {
+        padding: 20px;
+        color: $secondaryColor-dark
+    }
+}
+.user-collection-list {
+    width: 70vw;
+    padding-left: 0px;
+    background-color: $secondaryColor-dark;
+    max-width:100%;
+    border:3px solid $secondaryColor-dark;
+    img {
+        height: 150px;
+        width: 100px;
+    }
+
+    * {
+        display: inline-block
+    }
+
+    li {
+        display: block;
+        list-style: none;
+        padding-left: 0;
+        border-bottom:1px solid $secondaryColor-light-semiTransparent
+    }
+
+    a {
+        color: $mainColor;
+        font-size: larger;
+        font-weight:700
+    }
+    h5{
+        margin-right:7px;
+    }
+
+    .list-image-container {
+        position: relative;
+        margin-right: 20px;
+
+        a {
+            position: absolute;
+            width: 100%;
+            background-color: $secondaryColor-light-semiTransparent;
+            left: 0px;
+            cursor: pointer;
+            font-size: 50px;
+            text-align: center;
+            line-height: 150px;
+            opacity: 0;
+            transition: all .3s ease
+        }
+    }
+
+    .list-image-container:hover {
+        a {
+            opacity: 1
+        }
+    }
+}
+.pb-3 {
+    padding-bottom: 0px!important;
+}
+.account-nav-container{
+    min-height:780px;
+}

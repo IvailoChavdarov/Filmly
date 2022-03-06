@@ -50,6 +50,10 @@ namespace Filmly.Areas.Identity.Pages.Account.Manage
             public string LastName { get; set; }
             [Display(Name = "Username")]
             public string Username { get; set; }
+            [Display(Name = "Public account")]
+            public bool IsPublic { get; set; }
+            [Display(Name = "Profile image")]
+            public string Image { get; set; }
         }
 
 
@@ -61,13 +65,16 @@ namespace Filmly.Areas.Identity.Pages.Account.Manage
             this.Username = userName;
             var email = user.Email;
             var lastName = user.LastName;
+            var isPublic = user.IsPublic;
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
                 FirstName = firstName,
                 Email = email,
                 LastName = lastName,
-                Username = this.Username
+                Username = this.Username,
+                IsPublic = isPublic,
+                Image = user.ProfileImage
             };
         }
 

@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\Community\" />
-    <Folder Include="wwwroot\css\Collections\" />
   </ItemGroup>
 
 </Project>

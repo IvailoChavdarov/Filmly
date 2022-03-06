@@ -199,3 +199,7 @@ $textColor: #fcf7f7;*/
 
 .darkTheme .showcaseSectionTitle, .darkTheme .genreSlider {
   background-color: #364954; }
+
+.account-nav-container {
+  width: fit-content;
+  min-width: 70px; }

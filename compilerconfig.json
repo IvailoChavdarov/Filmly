@@ -106,5 +106,13 @@
   {
     "outputFile": "wwwroot/css/Identity/accountNavigation.css",
     "inputFile": "wwwroot/css/Identity/accountNavigation.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Collections/userCollection.css",
+    "inputFile": "wwwroot/css/Collections/userCollection.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Collections/foreignUserFavourites.css",
+    "inputFile": "wwwroot/css/Collections/foreignUserFavourites.scss"
   }
 ]

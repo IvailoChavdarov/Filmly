@@ -32,12 +32,12 @@ namespace Filmly.Data
             modelBuilder.Entity<Titles_Actors>().HasOne(user => user.Title).WithMany(userFavourite => userFavourite.Cast).HasForeignKey(userId => userId.TitleId);
             modelBuilder.Entity<Titles_Actors>().HasOne(user => user.Actor).WithMany(userFavourite => userFavourite.CastMovies).HasForeignKey(userId => userId.ActorId);
 
-            modelBuilder.Entity<Discussion>().HasMany(c => c.Comments).WithOne(e => e.Discussion);
+            //modelBuilder.Entity<Discussion>().HasMany(c => c.Comments).WithOne(e => e.Discussion);
 
-            modelBuilder.Entity<DiscussionComment>().HasMany(c => c.ChildrenComents).WithOne(e => e.ParentComment).OnDelete(DeleteBehavior.NoAction);
+            //modelBuilder.Entity<DiscussionComment>().HasMany(c => c.ChildrenComents).WithOne(e => e.ParentComment).OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<ApplicationUser>().HasMany(c => c.UserComments).WithOne(e => e.Creator).OnDelete(DeleteBehavior.SetNull);
-            modelBuilder.Entity<ApplicationUser>().HasMany(c => c.ArticlesWritten).WithOne(e => e.Writer).OnDelete(DeleteBehavior.SetNull);
+            //modelBuilder.Entity<ApplicationUser>().HasMany(c => c.UserComments).WithOne(e => e.Creator).OnDelete(DeleteBehavior.SetNull);
+            //modelBuilder.Entity<ApplicationUser>().HasMany(c => c.ArticlesWritten).WithOne(e => e.Writer).OnDelete(DeleteBehavior.SetNull);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -49,9 +49,9 @@ namespace Filmly.Data
         public DbSet<Titles_Actors> Titles_Actors { get; set; }
         public DbSet<Similars> Similars { get; set; }
         public DbSet<Images> Images { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Discussion> Discussions { get; set; }
-        public DbSet<DiscussionComment> DiscussionComments { get; set; }
-        public DbSet<Article> Articles { get; set; }
+        //public DbSet<Feedback> Feedbacks { get; set; }
+        //public DbSet<Discussion> Discussions { get; set; }
+        //public DbSet<DiscussionComment> DiscussionComments { get; set; }
+        //public DbSet<Article> Articles { get; set; }
     }
 }

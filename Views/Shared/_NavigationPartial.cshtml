@@ -30,35 +30,26 @@
 <nav id="topNavDropdown">
     <hr class="hiddenOnMobile" />
     <content class="container row mx-auto hiddenOnMobile">
-        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;">
+        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 25%; flex: 0 0 25%; max-width: 25%; ">
             <a asp-controller="home" asp-action="index"><h4><i class="fas fa-sm fa-home text-mainColor"></i><span>Home</span></h4></a>
             <a asp-controller="home" asp-action="history" class="dropdownNav-link">History</a>
             <a asp-controller="home" asp-action="interestingfacts" class="dropdownNav-link">Interesting facts</a>
             <a asp-controller="home" asp-action="news" class="dropdownNav-link">News</a>
         </div>
-        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;">
+        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 25%; flex: 0 0 25%; max-width: 25%; ">
             <a asp-controller="titles" asp-action="index"><h4><i class="fas fa-sm fa-film text-mainColor"></i><span>Movies</span></h4></a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-movies" class="dropdownNav-link">Top 250 movies</a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-movies" class="dropdownNav-link">Most popular movies</a>
-            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended movies <i class="fas fa-spinner"></i></a>
         </div>
-        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;">
+        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 25%; flex: 0 0 25%; max-width: 25%; ">
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series"><h4><i class="fas fa-sm fa-tv text-mainColor"></i><span>TV series</span></h4></a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-tv-series" class="dropdownNav-link">Top 250 TV series</a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-tv-series" class="dropdownNav-link">Most popular TV series</a>
-            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended TV series <i class="fas fa-spinner"></i></a>
         </div>
-        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;z-index:100;position:relative">
+        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 25%; flex: 0 0 25%; max-width: 20%; z-index: 100; position: relative">
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-anime"><h4><i class="fas text-mainColor"><span>A</span></i><span>Anime</span></h4></a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-250-anime" class="dropdownNav-link">Top 250 anime</a>
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-anime" class="dropdownNav-link">Most popular anime</a>
-            <a asp-controller="home" asp-action="inprogress" asp-route-id="Recommended movies" title="Work is in progress" class="dropdownNav-link">Recommended animes <i class="fas fa-spinner"></i></a>
-        </div>
-        <div class="col-lg-3 col-sm-6 justify-content-center" style="width: 20%;flex: 0 0 20%;max-width: 20%;">
-            <a asp-controller="social" asp-action="index"><h4><i class="fas fa-sm fa-users text-mainColor"></i><span>Social</span></h4></a>
-            <a asp-controller="social" asp-action="forum" class="dropdownNav-link">Forum</a>
-            <a asp-controller="social" asp-action="articles" class="dropdownNav-link">Articles</a>
-            <a asp-controller="social" asp-action="feedback" class="dropdownNav-link">Leave feedback</a>
         </div>
     </content>
 </nav>
@@ -134,19 +125,6 @@
         </li>
         <li class="nav-item hiddenOnBigScreen">
             <a asp-controller="titles" asp-action="ranking" asp-route-id="top-100-most-popular-anime" class="dropdownNav-link">Most popular anime</a>
-        </li>
-        <hr />
-        <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="social" asp-action="index"><h5><i class="fas fa-sm fa-users text-mainColor"></i><span>Social</span></h5></a>
-        </li>
-        <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="social" asp-action="forum" class="dropdownNav-link">Forum</a>
-        </li>
-        <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="social" asp-action="articles" class="dropdownNav-link">Articles</a>
-        </li>
-        <li class="nav-item hiddenOnBigScreen">
-            <a asp-controller="social" asp-action="feedback" class="dropdownNav-link">Leave feedback</a>
         </li>
     </ul>
 </menu>

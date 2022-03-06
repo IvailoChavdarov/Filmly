@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Filmly.ViewModels
 {
-    public class AppUser_FavouritePairVM:IViewModelWithBreadcrumb
+    public class FavouritesOfVM:IUserPageModel
     {
         public string Name { get; set; }
         public string Image { get; set; }
         public Titles[] Favourites { get; set; }
+        public ApplicationUser UserData { get; set; }
+        public bool SameUser { get; set; } = false;
         public string ErrorMessage { get; set; } = string.Empty;
-        public BreadcrumbData BreadcrumbData { get; set; }
     }
 }

@@ -1,11 +1,79 @@
-﻿@model AppUser_FavouritePairVM
+﻿@model FavouritesOfVM
+@section heads{
+    <link href="@Url.Content("~/css/Identity/accountNavigation.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Collections/userCollection.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Collections/foreignUserFavourites.css")" rel="stylesheet" type="text/css" />
+}
 @if (string.IsNullOrEmpty(Model.ErrorMessage))
-    foreach (var item in Model.Favourites)
+{
+    ViewData["Title"] = Model.Name+"'s favourites";
+    if (Model.UserData != null)
     {
-		<h1>@item.FullTitle <img src="@item.Image" alt="Alternate Text" /></h1>
+        <div class="row">
+            <div class="col-md-3 account-nav-container">
+                <partial name="_AccountNavigation" />
+            </div>
+            <div class="col-md-9">
+                <div class="account-page-content">
+                    <div class="foreign-user-header">
+                        <img src="@Model.Image" alt="Alternate Text" />
+                        <h3>
+                            @Model.Name's favourites
+                            @if (Model.SameUser)
+                            {
+                                <button>Share</button>
+                            }
+                        </h3>
+                    </div>
+                    <ul class="user-collection-list">
+                        @foreach (var title in Model.Favourites)
+                        {
+                            <li>
+                                <div class="list-image-container">
+                                    <img src="@title.Image" alt="Alternate Text" />
+                                </div>
+                                <div class="list-text">
+                                    <h5>
+                                        @title.FullTitle
+                                    </h5>
+                                    <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 pb-5">
+                    <div class="account-page-content not-logged-user">
+                        <div class="foreign-user-header"><img src="@Model.Image" alt="Alternate Text" /><h3>@Model.Name's favourites</h3></div>
+                        <ul class="user-collection-list">
+                            @foreach (var title in Model.Favourites)
+                            {
+                                <li>
+                                    <div class="list-image-container">
+                                        <img src="@title.Image" alt="Alternate Text" />
+                                    </div>
+                                    <div class="list-text">
+                                        <h5>@title.FullTitle</h5>
+                                        <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 }
-@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+else
 {
-    <h1>@Model.ErrorMessage</h1>
+    ViewData["Title"] = Model.ErrorMessage;
+    <h2 class="btn-danger">@Model.ErrorMessage</h2>
 }
