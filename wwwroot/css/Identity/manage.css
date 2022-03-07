@@ -78,16 +78,23 @@ $textColor: #fcf7f7;*/
   to {
     transform: translateX(120%); } }
 
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
 .manage-account-form-container {
   display: inline-block;
-  width: 85%;
+  width: 100%;
   padding: 70px;
-  border: 5px solid #15AFE1;
-  background-color: #E6F4F1;
+  background-color: #364954;
   padding-top: 50px;
   padding-bottom: 40px;
-  color: #364954;
-  transition: all 250ms; }
+  color: #E6F4F1;
+  transition: all 250ms;
+  border: 5px solid transparent;
+  padding-bottom: 20px; }
   .manage-account-form-container h4 {
     font-size: xx-large; }
   .manage-account-form-container label {
@@ -120,6 +127,28 @@ $textColor: #fcf7f7;*/
   .manage-account-form-container #update-profile-button:hover {
     background-color: #15AFE1;
     color: #E6F4F1; }
+  .manage-account-form-container input {
+    background-color: transparent;
+    border: none;
+    transition: all .3s ease;
+    border-bottom: 3px solid #15AFE1;
+    border-radius: 0px;
+    color: #E6F4F1;
+    margin-bottom: 15px;
+    padding-left: 5px; }
+  .manage-account-form-container input:active, .manage-account-form-container input:focus {
+    background-color: rgba(153, 174, 187, 0.5);
+    border-color: #22BB33;
+    color: #E6F4F1; }
+  .manage-account-form-container input[type="file"] {
+    display: none; }
+  .manage-account-form-container .custom-file-upload {
+    border: 3px solid #15AFE1;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer; }
+    .manage-account-form-container .custom-file-upload .fas {
+      color: #15AFE1; }
 
 .stick-top {
   position: static;
@@ -130,17 +159,16 @@ $textColor: #fcf7f7;*/
 
 .account-nav-container {
   height: 95vh;
-  min-height: 800px; }
+  min-height: 870px; }
 
 .pb-3 {
   padding-bottom: 0px !important; }
 
 .account-page-content {
-  padding: 50px; }
+  padding: 30px; }
 
 .darkTheme .manage-account-form-container {
-  color: #E6F4F1;
-  background-color: #364954; }
+  border: 5px solid #15AFE1; }
   .darkTheme .manage-account-form-container input {
     color: #E6F4F1; }
   .darkTheme .manage-account-form-container input:focus {

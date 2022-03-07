@@ -78,6 +78,12 @@ $textColor: #fcf7f7;*/
   to {
     transform: translateX(120%); } }
 
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
 header.history-header {
   background: url(../../img/backgrounds/cinema-history.png);
   background-size: 100vw;
@@ -90,14 +96,19 @@ header.history-header {
     animation: fadeIn 1s;
     padding-top: 120px; }
   header.history-header h1 {
-    color: #E6F4F1; }
+    color: #E6F4F1;
+    font-weight: 700; }
   header.history-header h2 {
+    padding: 15px;
     padding-top: 25px;
-    color: #BBD0DE; }
+    color: #BBD0DE;
+    font-weight: 600; }
   header.history-header h3 {
     color: #15AFE1;
-    margin-bottom: 0;
-    margin-top: 35px; }
+    margin-bottom: 0px;
+    margin-top: 35px;
+    padding-bottom: 15px;
+    font-weight: 700; }
 
 html {
   box-sizing: border-box; }
@@ -188,6 +199,9 @@ article {
     max-width: 100%;
     max-height: 40vw; }
 
+p.half {
+  padding-right: 10px; }
+
 .full {
   display: block;
   font-size: large;
@@ -195,10 +209,6 @@ article {
   padding: 0;
   color: #364954;
   overflow-wrap: break-word; }
-
-@media only screen and (max-width: 991px) {
-  .timeline__nav {
-    display: none; } }
 
 .milestone {
   margin-top: 35px; }
@@ -209,46 +219,56 @@ h3 {
 
 .darkTheme .timeline {
   background-color: #364954;
-  border: 2px solid #15AFE1;
-  border-top: none; }
+  border: 2px solid #15AFE1; }
   .darkTheme .timeline .event-date {
     color: #99AEBB; }
   .darkTheme .timeline p {
     color: #E6F4F1; }
   .darkTheme .timeline .milestone {
     color: #E6F4F1; }
-  .darkTheme .timeline__nav {
-    opacity: 0;
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    transition: top .3s ease-out, opacity .3s linear; }
-    .darkTheme .timeline__nav ul {
-      list-style: none;
-      list-style-position: inside;
-      margin: 15px 0; }
-      .darkTheme .timeline__nav ul li {
-        margin: 15px 0;
-        padding-left: 0;
-        list-style-type: none;
-        color: #99AEBB;
-        cursor: pointer;
-        transition: all .3s ease-out, font-weight 0s ease;
-        text-align: center; }
-        .darkTheme .timeline__nav ul li.active {
-          font-weight: bold;
-          color: #15AFE1;
-          border-bottom: 1px solid #15AFE1;
-          transform: scale(1.2); }
-        .darkTheme .timeline__nav ul li.active:hover {
-          border-bottom: 1px solid #E6F4F1; }
-        .darkTheme .timeline__nav ul li:hover {
-          color: #E6F4F1;
-          border-bottom: 1px dotted #E6F4F1; }
+  .darkTheme .timeline__nav ul li {
+    color: #99AEBB; }
+    .darkTheme .timeline__nav ul li.active {
+      color: #15AFE1;
+      border-bottom: 1px solid #15AFE1; }
+    .darkTheme .timeline__nav ul li.active:hover {
+      border-bottom: 1px solid #E6F4F1; }
+    .darkTheme .timeline__nav ul li:hover {
+      color: #E6F4F1;
+      border-bottom: 1px dotted #E6F4F1; }
 
-/* typical phone screen resolution */
+@media only screen and (max-width: 1280px) {
+  header.history-header h3 {
+    display: none; }
+  .darkTheme .timeline {
+    border: none; }
+  .timeline {
+    margin: 0;
+    max-width: 100vw;
+    border: none;
+    border-bottom: 5px solid #15AFE1; }
+    .timeline__nav {
+      display: none; }
+  .wrapper {
+    padding: 30px; } }
+
 @media only screen and (max-width: 991px) {
+  .wrapper {
+    padding: 30px; }
   header.history-header {
     background: url("https://miro.medium.com/max/768/1*Lzjk71qN2KKvoGajU1tkiQ.jpeg");
     background-size: cover;
-    height: fit-content; } }
+    height: fit-content; }
+    header.history-header .dark-filter-wrap {
+      padding-bottom: 25px;
+      padding-top: 25px; }
+    header.history-header h3 {
+      display: initial; }
+  .half {
+    width: 100%; }
+  .half:not(p) {
+    text-align: center; }
+  .darkTheme .timeline {
+    border: none; }
+  .timeline__nav {
+    display: none; } }

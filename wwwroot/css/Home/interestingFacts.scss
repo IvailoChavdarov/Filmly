@@ -37,7 +37,7 @@
         display: inline-block;
         width: 70%;
         margin-bottom: 30px;
-        font-size: 35px;
+        font-size: 25px;
     }
 
     font-size: 0px;
@@ -167,7 +167,9 @@ nav.interestingFacts-scrollNav.open {
         max-height:40vw;
     }
 }
-
+p.half{
+    padding-right:10px;
+}
 .full {
     display: block;
     font-size: large;
@@ -186,50 +188,6 @@ nav.interestingFacts-scrollNav.open {
     animation:slideInFromLeft $renderAnimationTime;
     h2 {
         color: $secondaryColor-dark;
-    }
-}
-@media (min-width: 1500px) {
-    .container {
-        max-width: 1400px;
-    }
-}
-
-@media (max-width: 991px) {
-    .interestingFacts-list li::before {
-        font-size: 20px;
-        width: 10vw;
-        height:10vw;
-        line-height: 10vw;
-        display: inline-block;
-        margin-right: 10px;
-        position: absolute;
-
-    }
-    .interestingFacts-list {
-        padding-left:5px;
-        li {
-            position:relative;
-            h2 {
-                width: 90vw;
-                padding-left:13vw;
-            }
-            p{
-                padding-left:0px;
-            }
-        }
-    }
-    #sidenav-toggler-facts{
-        display:none;
-    }
-    nav.interestingFacts-scrollNav {
-        border-right:none;
-    }
-    .interestingFacts-header {
-        h1 {
-            font-size:2rem;
-            width:100vw;
-            border:none;
-        }
     }
 }
 .darkTheme {
@@ -259,11 +217,85 @@ nav.interestingFacts-scrollNav.open {
 
     .interestingFacts-header {
         background-color: $secondaryColor-dark;
+
         h1 {
             background-color: $secondaryColor-dark;
             border-left: 15px solid $textColor;
             border-right: 15px solid $textColor;
             color: $textColor;
+        }
+    }
+}
+@media (min-width: 1500px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+@media (max-width: 991px) {
+    .facts-content{
+        border-left:0px;
+        border-right:0px;
+        padding:20px;
+        max-width:100vw;
+    }
+    .half{
+        width:100%;   
+    }
+    .half:not(p){
+        text-align:center;
+    }
+    .interestingFacts-list li::before {
+        font-size: 20px;
+        width: 10vw;
+        height: 10vw;
+        line-height: 10vw;
+        display: inline-block;
+        margin-right: 10px;
+        position: absolute;
+    }
+
+    .interestingFacts-list {
+        padding-left:0px;
+        li {
+            position:relative;
+            h2 {
+                width: 90vw;
+                font-size:x-large
+            }
+            p{
+                padding-left:0px;
+            }
+        }
+        li::before{
+            display:block;
+            width:100vw;
+            position:static;
+            border-radius:0;
+            margin-left:-20px;
+            margin-bottom:15px;
+        }
+    }
+    #sidenav-toggler-facts{
+        display:none;
+    }
+    nav.interestingFacts-scrollNav {
+        border-right:none;
+    }
+    .interestingFacts-header {
+        h1 {
+            font-size: 2rem;
+            width: 100vw;
+            border-color: transparent;
+        }
+    }
+    .darkTheme {
+        .interestingFacts-header {
+            h1 {
+                font-size: 2rem;
+                width: 100vw;
+                border-color: transparent;
+            }
         }
     }
 }

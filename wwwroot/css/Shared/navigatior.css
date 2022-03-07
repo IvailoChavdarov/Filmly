@@ -78,6 +78,12 @@ $textColor: #fcf7f7;*/
   to {
     transform: translateX(120%); } }
 
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
 #topNav {
   background-color: #364954;
   padding-bottom: 5px;
@@ -384,7 +390,7 @@ $textColor: #fcf7f7;*/
     #topNav .dropdown:hover .dropdown-content {
       display: none; }
     #topNav #themeSwitcher {
-      margin-left: 30px;
+      margin-left: 10px;
       padding-left: 0;
       margin-right: 0px;
       justify-content: right; }
@@ -405,24 +411,26 @@ $textColor: #fcf7f7;*/
     #mobileMenu ul {
       list-style-type: none;
       padding-left: 20px;
-      padding-right: 20px; }
+      padding-right: 20px;
+      font-size: larger; }
       #mobileMenu ul li {
         padding-top: 5px;
         padding-bottom: 5px; }
         #mobileMenu ul li a {
           white-space: nowrap;
           color: #E6F4F1;
-          font-size: large; }
+          font-size: inherit; }
         #mobileMenu ul li button {
           white-space: nowrap;
           padding: 0;
           color: #E6F4F1;
-          font-size: large; }
+          font-size: inherit; }
         #mobileMenu ul li h5 {
           white-space: nowrap;
           padding: 0;
           color: #E6F4F1;
-          padding-top: 3px; }
+          padding-top: 3px;
+          font-size: inherit; }
         #mobileMenu ul li hr {
           border-color: #99AEBB;
           color: #99AEBB;
@@ -445,7 +453,7 @@ $textColor: #fcf7f7;*/
             all: unset;
             white-space: nowrap;
             padding-left: 35px;
-            font-size: 1.15rem;
+            font-size: inherit;
             background-color: transparent;
             color: #E6F4F1; }
           #mobileMenu ul li form input[type="search"] {
@@ -542,3 +550,9 @@ $textColor: #fcf7f7;*/
   #scrollArrow {
     top: 90px;
     z-index: 0; } }
+
+@media only screen and (max-width: 349px) {
+  #topNav #themeSwitcher {
+    margin-left: auto; }
+  #topNav #userNavigationMini {
+    display: none; } }

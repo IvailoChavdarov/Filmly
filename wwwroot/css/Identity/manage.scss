@@ -3,15 +3,15 @@
 @import "../Shared/animations.scss";
 .manage-account-form-container {
     display: inline-block;
-    width: 85%;
+    width: 100%;
     padding: 70px;
-    border: 5px solid $mainColor;
-    background-color: $textColor;
+    background-color: $secondaryColor-dark;
     padding-top: 50px;
     padding-bottom: 40px;
-    color: $secondaryColor-dark;
+    color: $textColor;
     transition: all $changeThemeAnimationTime;
-
+    border: 5px solid transparent;
+    padding-bottom:20px;
     h4 {
         font-size: xx-large;
     }
@@ -55,6 +55,38 @@
         background-color: $mainColor;
         color: $textColor;
     }
+
+    input {
+        background-color: transparent;
+        border: none;
+        transition: all .3s ease;
+        border-bottom: 3px solid $mainColor;
+        border-radius: 0px;
+        color: $textColor;
+        margin-bottom: 15px;
+        padding-left: 5px;
+    }
+
+    input:active, input:focus {
+        background-color: $secondaryColor-light-semiTransparent;
+        border-color: $successColor;
+        color: $textColor;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        border: 3px solid $mainColor;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+
+        .fas {
+            color: $mainColor;
+        }
+    }
 }
 .stick-top {
     position: static;
@@ -65,20 +97,18 @@
 }
 .account-nav-container{
     height:95vh;
-    min-height:800px
+    min-height:870px
    
 }
 .pb-3{
     padding-bottom:0px!important;
 }
 .account-page-content{
-    padding:50px;
+    padding:30px;
 }
 .darkTheme {
     .manage-account-form-container {
-        color: $textColor;
-        background-color: $secondaryColor-dark;
-
+        border: 5px solid $mainColor;
         input {
             color: $textColor
         }

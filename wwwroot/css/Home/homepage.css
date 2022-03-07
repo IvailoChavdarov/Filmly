@@ -79,6 +79,12 @@ $textColor: #fcf7f7;*/
   to {
     transform: translateX(120%); } }
 
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
 #topNav {
   background-color: transparent;
   backdrop-filter: blur(4px);
@@ -182,7 +188,8 @@ $textColor: #fcf7f7;*/
   padding: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-  font-weight: 500; }
+  font-weight: 500;
+  display: inline-block; }
   .seeAllLink i {
     font-weight: 550; }
 
@@ -197,7 +204,9 @@ html, body {
 
 @media only screen and (max-width: 991px) {
   #topNav {
-    background-color: #364954; } }
+    background-color: #364954; }
+  .welcomeText {
+    display: block; } }
 
 .darkTheme .serviceSuggestionBox {
   background-color: #99AEBB;

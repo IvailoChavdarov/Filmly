@@ -78,6 +78,12 @@ $textColor: #fcf7f7;*/
   to {
     transform: translateX(120%); } }
 
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
 .container.search-container {
   background-color: #364954;
   border: 2px solid #15AFE1;

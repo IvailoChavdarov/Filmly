@@ -121,7 +121,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: 500;
-
+    display:inline-block;
     i {
         font-weight: 550;
     }
@@ -140,6 +140,9 @@ html, body {
 @media only screen and (max-width : 991px) {
     #topNav {
         background-color: $secondaryColor-dark;
+    }
+    .welcomeText{
+        display:block
     }
 }
 .darkTheme {

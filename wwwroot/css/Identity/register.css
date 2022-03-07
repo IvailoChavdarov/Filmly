@@ -78,23 +78,29 @@ $textColor: #fcf7f7;*/
   to {
     transform: translateX(120%); } }
 
-.container {
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
+main .container {
   margin-top: 50px;
   background-color: #364954;
-  animation: slideInFromLeft 1s;
+  animation: slideInFromTop 1s;
   padding: 75px;
   padding-bottom: 25px;
   color: #E6F4F1;
   transition: all 250ms ease;
   border: 5px solid transparent;
   padding-top: 35px; }
-  .container label, .container span {
+  main .container label, main .container span {
     font-size: x-large; }
-  .container hr {
+  main .container hr {
     border-color: rgba(153, 174, 187, 0.5); }
-  .container .text-danger span {
+  main .container .text-danger span {
     font-size: large; }
-  .container input {
+  main .container input {
     background-color: transparent;
     border: none;
     transition: all .3s ease;
@@ -103,25 +109,25 @@ $textColor: #fcf7f7;*/
     color: #E6F4F1;
     margin-bottom: 15px;
     padding-left: 5px; }
-  .container input:active, .container input:focus {
+  main .container input:active, main .container input:focus {
     background-color: rgba(153, 174, 187, 0.5);
     border-color: #22BB33;
     color: #E6F4F1; }
-  .container input[type="file"] {
+  main .container input[type="file"] {
     display: none; }
-  .container .custom-file-upload {
+  main .container .custom-file-upload {
     border: 3px solid #15AFE1;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer; }
-    .container .custom-file-upload .fas {
+    main .container .custom-file-upload .fas {
       color: #15AFE1; }
-  .container p {
+  main .container p {
     color: rgba(230, 244, 241, 0.5);
     font-size: large; }
-    .container p a {
+    main .container p a {
       color: #15AFE1; }
-  .container .checkbox-container input {
+  main .container .checkbox-container input {
     all: unset;
     width: 35px;
     height: 35px;
@@ -131,9 +137,9 @@ $textColor: #fcf7f7;*/
     vertical-align: middle;
     background-color: #E6F4F1;
     position: relative; }
-  .container .checkbox-container input:checked {
+  main .container .checkbox-container input:checked {
     background-color: #15AFE1; }
-  .container .checkbox-container input:checked::before {
+  main .container .checkbox-container input:checked::before {
     font-family: "Font Awesome 5 Free";
     content: "\f00c";
     color: #E6F4F1;
@@ -143,13 +149,13 @@ $textColor: #fcf7f7;*/
     transform: translate(-50%, -50%);
     font-weight: 900;
     font-size: x-large; }
-  .container .checkbox-container-sm input {
+  main .container .checkbox-container-sm input {
     width: 25px;
     height: 25px;
     margin: 0; }
-  .container .checkbox-container-sm input:checked::before {
+  main .container .checkbox-container-sm input:checked::before {
     font-size: large; }
-  .container #registerButton {
+  main .container #registerButton {
     background-color: #15AFE1;
     border: none;
     color: #E6F4F1;
@@ -158,7 +164,7 @@ $textColor: #fcf7f7;*/
     font-size: x-large;
     font-weight: 600;
     padding: 10px; }
-  .container #resetFormButton {
+  main .container #resetFormButton {
     width: 25%;
     border: 1px solid #dc3545;
     color: #dc3545;
@@ -168,10 +174,10 @@ $textColor: #fcf7f7;*/
     padding: 10px;
     background-color: transparent;
     transition: all .2s ease; }
-  .container #resetFormButton:hover {
+  main .container #resetFormButton:hover {
     background-color: #dc3545;
     color: #E6F4F1; }
-  .container #loginButton {
+  main .container #loginButton {
     background-color: #15AFE1;
     border: none;
     color: #E6F4F1;

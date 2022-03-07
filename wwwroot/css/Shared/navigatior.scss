@@ -449,7 +449,7 @@ $searchBarHeight:35px;
         }
 
         #themeSwitcher {
-            margin-left: 30px;
+            margin-left: 10px;
             padding-left: 0;
             margin-right:0px;
             justify-content: right;
@@ -475,6 +475,7 @@ $searchBarHeight:35px;
             list-style-type: none;
             padding-left: 20px;
             padding-right: 20px;
+            font-size: larger;
 
             li {
                 padding-top: 5px;
@@ -483,14 +484,14 @@ $searchBarHeight:35px;
                 a {
                     white-space: nowrap;
                     color: $textColor;
-                    font-size: large
+                    font-size: inherit
                 }
 
                 button {
                     white-space: nowrap;
                     padding: 0;
                     color: $textColor;
-                    font-size: large
+                    font-size: inherit
                 }
 
                 h5 {
@@ -498,6 +499,7 @@ $searchBarHeight:35px;
                     padding: 0;
                     color: $textColor;
                     padding-top: 3px;
+                    font-size:inherit
                 }
 
                 hr {
@@ -531,7 +533,7 @@ $searchBarHeight:35px;
                         all: unset;
                         white-space: nowrap;
                         padding-left: 35px;
-                        font-size: 1.15rem;
+                        font-size: inherit;
                         background-color: transparent;
                         color: $textColor;
                     }
@@ -668,4 +670,15 @@ $searchBarHeight:35px;
         z-index: 0;
     }
 
+}
+@media only screen and (max-width : 349px){
+    #topNav {
+        #themeSwitcher {
+            margin-left: auto;
+        }
+
+        #userNavigationMini {
+            display: none;
+        }
+    }
 }
