@@ -151,6 +151,17 @@ namespace Filmly.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            var profileImage = user.ProfileImage;
+            if (Input.Image != profileImage)
+            {
+                user.ProfileImage = Input.Image;
+                var setProfileImageResult = await _userManager.UpdateAsync(user);
+                if (!setProfileImageResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set email.";
+                    return RedirectToPage();
+                }
+            }
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = $"Your profile has been updated";
             return RedirectToPage(user);

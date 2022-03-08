@@ -15,7 +15,7 @@
     <a asp-controller="collection" asp-action="index" aria-label="Go to watchlist"><i class="far fa-bookmark"></i> Watchlist</a>
     @if (Model.UserData.IsPublic)
     {
-        <a asp-controller="collection" asp-action="favouritesof" aria-label="Go to favourites list"><i class="fas fa-share"></i> Share favourites</a>
+        <a asp-controller="collection" asp-action="favouritesof" asp-route-name="@User.Identity.Name" aria-label="Go to favourites list"><i class="fas fa-share"></i> Share favourites</a>
     }
     else
     {

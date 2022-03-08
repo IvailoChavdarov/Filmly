@@ -117,7 +117,7 @@ $textColor: #fcf7f7;*/
   .user-collection-list .list-image-container {
     position: relative;
     margin-right: 20px; }
-    .user-collection-list .list-image-container a {
+    .user-collection-list .list-image-container form {
       position: absolute;
       width: 100%;
       background-color: rgba(153, 174, 187, 0.5);
@@ -128,7 +128,22 @@ $textColor: #fcf7f7;*/
       line-height: 150px;
       opacity: 0;
       transition: all .3s ease; }
-  .user-collection-list .list-image-container:hover a {
+    .user-collection-list .list-image-container button {
+      position: absolute;
+      width: 100%;
+      background-color: rgba(153, 174, 187, 0.5);
+      left: 0px;
+      cursor: pointer;
+      font-size: 50px;
+      text-align: center;
+      line-height: 150px;
+      opacity: 0;
+      transition: all .3s ease;
+      border: none; }
+    .user-collection-list .list-image-container button:focus, .user-collection-list .list-image-container button:active {
+      border: none;
+      outline: none; }
+  .user-collection-list .list-image-container:hover button, .user-collection-list .list-image-container:hover form {
     opacity: 1; }
 
 .pb-3 {

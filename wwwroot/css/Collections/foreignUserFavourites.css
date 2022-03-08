@@ -134,3 +134,17 @@ $textColor: #fcf7f7;*/
   width: 100vw; }
   .not-logged-user .foreign-user-header h3 {
     padding-left: 15%; }
+
+#shareModal .modal-content {
+  background-color: #364954;
+  color: #E6F4F1;
+  border-radius: 0px;
+  width: 900px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 100px; }
+
+#shareModal .close {
+  color: #15AFE1;
+  text-shadow: none; }

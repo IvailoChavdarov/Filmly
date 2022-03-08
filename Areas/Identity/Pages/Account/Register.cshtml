@@ -95,9 +95,7 @@
         document.getElementById('registerButton').addEventListener('click', (e) => {
             e.preventDefault();
             if (image.files.length > 0) {
-                console.log("here");
                 const file = image.files[image.files.length - 1];
-                console.log(file);
                 const formData = new FormData();
                 formData.append('file', file);
                 formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
@@ -120,14 +118,13 @@
                 /*                    .catch(err => console.error(err));*/
             }
             else {
-                console.log("not there");
                 document.getElementById('submitButtonHidden').click()
             }
 
         })
         image.addEventListener('change', (e) => {
             if (e.target.files[image.files.length - 1].name.endsWith(".png") || e.target.files[image.files.length - 1].name.endsWith(".jpg") || e.target.files[image.files.length - 1].name.endsWith(".jpeg") | e.target.files[image.files.length - 1].name.endsWith(".gif")) {
-                if (e.target.files[0].size < 900000) {
+                if (e.target.files[0].size < 1100000) {
                     document.getElementById('profileImageInputHidden').value = e.target.files[0].name
                     document.getElementById('imageValidationText').innerText = ""
                 }

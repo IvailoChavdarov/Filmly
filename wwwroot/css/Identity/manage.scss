@@ -11,7 +11,8 @@
     color: $textColor;
     transition: all $changeThemeAnimationTime;
     border: 5px solid transparent;
-    padding-bottom:20px;
+    padding-bottom: 20px;
+
     h4 {
         font-size: xx-large;
     }
@@ -85,6 +86,48 @@
 
         .fas {
             color: $mainColor;
+        }
+    }
+
+    .checkbox-container {
+        input {
+            all: unset;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            vertical-align: middle;
+            background-color: $textColor;
+            position: relative;
+        }
+
+        input:checked {
+            background-color: $mainColor;
+        }
+
+        input:checked::before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f00c";
+            color: $textColor;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 900;
+            font-size: x-large;
+        }
+    }
+
+    .checkbox-container-sm {
+        input {
+            width: 25px;
+            height: 25px;
+            margin: 0;
+        }
+
+        input:checked::before {
+            font-size: large;
         }
     }
 }

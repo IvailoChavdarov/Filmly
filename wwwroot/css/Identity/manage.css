@@ -149,6 +149,34 @@ $textColor: #fcf7f7;*/
     cursor: pointer; }
     .manage-account-form-container .custom-file-upload .fas {
       color: #15AFE1; }
+  .manage-account-form-container .checkbox-container input {
+    all: unset;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    vertical-align: middle;
+    background-color: #E6F4F1;
+    position: relative; }
+  .manage-account-form-container .checkbox-container input:checked {
+    background-color: #15AFE1; }
+  .manage-account-form-container .checkbox-container input:checked::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    color: #E6F4F1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900;
+    font-size: x-large; }
+  .manage-account-form-container .checkbox-container-sm input {
+    width: 25px;
+    height: 25px;
+    margin: 0; }
+  .manage-account-form-container .checkbox-container-sm input:checked::before {
+    font-size: large; }
 
 .stick-top {
   position: static;

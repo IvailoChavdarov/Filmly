@@ -67,3 +67,20 @@
         width:100vw;
     }
 }
+#shareModal {
+    .modal-content {
+        background-color: $secondaryColor-dark;
+        color: $textColor;
+        border-radius:0px;
+        width:900px;
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        margin-top:100px;
+    }
+
+    .close{
+        color:$mainColor;
+        text-shadow:none;
+    }
+}

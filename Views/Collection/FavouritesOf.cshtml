@@ -6,7 +6,7 @@
 }
 @if (string.IsNullOrEmpty(Model.ErrorMessage))
 {
-    ViewData["Title"] = Model.Name+"'s favourites";
+    ViewData["Title"] = Model.Name + "'s favourites";
     if (Model.UserData != null)
     {
         <div class="row">
@@ -21,9 +21,10 @@
                             @Model.Name's favourites
                             @if (Model.SameUser)
                             {
-                                <button>Share</button>
+                                <button type="button" data-toggle="modal" data-target="#shareModal" class="NoLoader">Share</button>
                             }
                         </h3>
+
                     </div>
                     <ul class="user-collection-list">
                         @foreach (var title in Model.Favourites)
@@ -44,6 +45,25 @@
                 </div>
             </div>
         </div>
+        @if (Model.SameUser)
+        {
+            <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="share list modal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Share your favourites list with anyone by link or QR code</h5>
+                            <button type="button" class="close NoLoader" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="#" alt="QR code" id="QR-code-share" />
+                            <button class="NoLoader" id="copy-link-button" onclick="copyToClipboard(window.location.href)"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     }
     else
     {
@@ -76,4 +96,13 @@ else
 {
     ViewData["Title"] = Model.ErrorMessage;
     <h2 class="btn-danger">@Model.ErrorMessage</h2>
+}
+@section scripts{ 
+    <script>
+        var QRCode = document.getElementById("QR-code-share")
+        if (QRCode) {
+            QRCode.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + window.location.href;
+            document.getElementById("copy-link-button").innerHTML = window.location.href
+        }
+    </script>
 }

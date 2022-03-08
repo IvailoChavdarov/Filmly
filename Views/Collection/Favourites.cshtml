@@ -15,18 +15,28 @@
             <div class="account-page-content">
                 <h3>Your favourites</h3>
                 <ul class="user-collection-list">
-                    @foreach (var title in Model.Favourites)
+                    @if (Model.Favourites.Count > 0)
                     {
-                        <li>
-                            <div class="list-image-container">
-                                <img src="@title.Image" alt="Alternate Text" />
-                                <a title="Remove from favourites"><i class="far fa-times-circle text-danger"></i></a>
-                            </div>
-                            <div class="list-text">
-                                <h5>@title.FullTitle</h5>
-                                <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
-                            </div>
-                        </li>
+                        foreach (var title in Model.Favourites)
+                        {
+                            <li>
+                                <div class="list-image-container">
+                                    <img src="@title.Image" alt="Alternate Text" />
+                                    <form title="Remove from favourites" aria-label="Remove title from favourites" asp-controller="titles" asp-action="RemoveFrom" asp-route-collection="favourites" asp-route-id="@title.IdInApi" asp-route-title="@title.TitleName">
+                                        <button type="submit" aria-label="Remove from favourites"><i class="far fa-times-circle text-danger"></i></button>
+                                    </form>
+                                </div>
+                                <div class="list-text">
+                                    <h5>@title.FullTitle</h5>
+                                    <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
+                                </div>
+                            </li>
+                        }
+
+                    }
+                    else
+                    {
+                        <h4 style="padding:40px">Add titles to your watchlist from titles details page to see them here</h4>
                     }
                 </ul>
             </div>

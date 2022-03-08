@@ -13,17 +13,24 @@ using System.IO;
 using System.Text;
 using System.Data;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Identity;
 
 namespace Filmly.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RoleManager<IdentityRole> roleManager)
         {
             _logger = logger;
+            _roleManager = roleManager;
 
+            //added for starting the project from another device
+            //CreateAdminRole();
+            //CreateResearcherRole();
+            //CreateModeratorRole();
         }
 
         public IActionResult Index()
@@ -153,16 +160,20 @@ namespace Filmly.Controllers
         {
             return View();
         }
-        public IActionResult AddImage()
-        {
-            return RedirectToAction("index");
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //private async Task CreateAdminRole()
+        //{
+        //    if (!await _roleManager.RoleExistsAsync("admin"))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole("admin"));
+        //    }
+        //}
 
     }
 }
