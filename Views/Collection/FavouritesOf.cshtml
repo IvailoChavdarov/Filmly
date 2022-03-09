@@ -14,35 +14,35 @@
                 <partial name="_AccountNavigation" />
             </div>
             <div class="col-md-9">
-                <div class="account-page-content">
-                    <div class="foreign-user-header">
-                        <img src="@Model.Image" alt="Alternate Text" />
-                        <h3>
-                            @Model.Name's favourites
-                            @if (Model.SameUser)
-                            {
-                                <button type="button" data-toggle="modal" data-target="#shareModal" class="NoLoader">Share</button>
-                            }
-                        </h3>
+                    <div class="account-page-content">
+                        <div class="foreign-user-header">
+                            <img src="@Model.Image" alt="Alternate Text" />
+                            <h3>
+                                @Model.Name's favourites
+                                @if (Model.SameUser)
+                                {
+                                    <button type="button" data-toggle="modal" data-target="#shareModal" class="NoLoader">Share</button>
+                                }
+                            </h3>
 
+                        </div>
+                        <ul class="user-collection-list">
+                            @foreach (var title in Model.Favourites)
+                            {
+                                <li>
+                                    <div class="list-image-container">
+                                        <img src="@title.Image" alt="Alternate Text" />
+                                    </div>
+                                    <div class="list-text">
+                                        <h5>
+                                            @title.FullTitle
+                                        </h5>
+                                        <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
                     </div>
-                    <ul class="user-collection-list">
-                        @foreach (var title in Model.Favourites)
-                        {
-                            <li>
-                                <div class="list-image-container">
-                                    <img src="@title.Image" alt="Alternate Text" />
-                                </div>
-                                <div class="list-text">
-                                    <h5>
-                                        @title.FullTitle
-                                    </h5>
-                                    <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
             </div>
         </div>
         @if (Model.SameUser)
@@ -58,7 +58,7 @@
                         </div>
                         <div class="modal-body">
                             <img src="#" alt="QR code" id="QR-code-share" />
-                            <button class="NoLoader" id="copy-link-button" onclick="copyToClipboard(window.location.href)"></button>
+                            <button class="NoLoader copy-link-button" id="copy-link-button" onclick="copyToClipboard(window.location.href)"></button>
                         </div>
                     </div>
                 </div>

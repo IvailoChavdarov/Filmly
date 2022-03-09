@@ -14,16 +14,14 @@
     }
 }
 
-<div>
     <div class="row">
-        <div class="col-md-3 account-nav-container">
+        <div class="col-md-3 account-nav-container" >
                 <partial name="_AccountNavigation" />
             </div>
         <div class="col-md-9 account-page-content">
             @RenderBody()
         </div>
     </div>
-</div>
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

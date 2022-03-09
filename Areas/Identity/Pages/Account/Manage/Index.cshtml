@@ -7,57 +7,58 @@
     <link href="@Url.Content("~/css/Identity/manage.css")" rel="stylesheet" type="text/css" />
 }
 
-
-<div class="manage-account-form-container container">
-    <h4>Manage profile</h4>
-    <partial name="_StatusMessage" model="Model.StatusMessage" />
-    <form id="profile-form" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @*<div class="form-group">
-                <label asp-for="Input.Username"></label>
-                <input asp-for="Input.Username" class="form-control" />
-                <span asp-validation-for="Input.Username" class="text-danger"></span>
-            </div>*@
-        <div class="form-group">
-            <label asp-for="Input.FirstName"></label>
-            <input asp-for="Input.FirstName" class="form-control" />
-            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.LastName"></label>
-            <input asp-for="Input.LastName" class="form-control" />
-            <span asp-validation-for="Input.LastName" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.Email"></label>
-            <input asp-for="Input.Email" class="form-control" />
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.PhoneNumber"></label>
-            <input asp-for="Input.PhoneNumber" class="form-control" />
-            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.Image"></label>
-            <input asp-for="Input.Image" class="form-control" id="profileImageInputHidden" placeholder="Image URL" />
-            <span asp-validation-for="Input.Image" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <span style="margin-right:10px;font-size:large"> or </span>
-            <label for="fileupload" class="custom-file-upload">
-                <i class="fas fa-cloud-upload-alt"></i> Upload image
-            </label>
-            <input class="form-control" type="file" id="fileupload" />
-            <span id="imageValidationText" class="text-danger"></span>
-        </div>
-        <div class="form-group checkbox-container">
-            <label asp-for="Input.IsPublic"></label>
-            <input asp-for="Input.IsPublic" checked />
-            <span asp-validation-for="Input.IsPublic" class="text-danger"></span>
-        </div>
-        <button id="update-profile-button" type="submit">Save</button>
-    </form>
+<div class="container">
+    <div class="manage-account-form-container">
+        <h4>Manage profile</h4>
+        <partial name="_StatusMessage" model="Model.StatusMessage" />
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                    <label asp-for="Input.Username"></label>
+                    <input asp-for="Input.Username" class="form-control" />
+                    <span asp-validation-for="Input.Username" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Image"></label>
+                <input asp-for="Input.Image" class="form-control" id="profileImageInputHidden" placeholder="Image URL" />
+                <span asp-validation-for="Input.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="margin-right:10px;font-size:large"> or </span>
+                <label for="fileupload" class="custom-file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload image
+                </label>
+                <input class="form-control" type="file" id="fileupload" />
+                <span id="imageValidationText" class="text-danger"></span>
+            </div>
+            <div class="form-group checkbox-container">
+                <label asp-for="Input.IsPublic"></label>
+                <input asp-for="Input.IsPublic" />
+                <span asp-validation-for="Input.IsPublic" class="text-danger"></span>
+            </div>
+            <button id="update-profile-button" type="submit">Save</button>
+        </form>
+    </div>
 </div>
 @section Scripts {
     <script>

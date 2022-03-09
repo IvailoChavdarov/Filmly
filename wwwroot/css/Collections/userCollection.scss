@@ -16,7 +16,7 @@
     padding-left: 0px;
     background-color: $secondaryColor-dark;
     max-width: 100%;
-    border: 3px solid $secondaryColor-dark;
+    border: 5px solid $secondaryColor-dark;
 
     img {
         height: 150px;
@@ -89,6 +89,85 @@
 .pb-3 {
     padding-bottom: 0px!important;
 }
-.account-nav-container{
+/*.account-nav-container{
     min-height:780px;
+}*/
+.darkTheme {
+    .user-collection-list {
+        border: 5px solid $mainColor;
+    }
+
+    .user-list-container {
+        h3 {
+            color: $textColor
+        }
+    }
+}
+@media only screen and (max-width: 1600px) and (min-width:1260px) {
+    .user-list-container {
+        .container {
+            padding-right: 0;
+            margin-right:0;
+        }
+    }
+    main {
+        .row {
+            justify-content: space-between
+        }
+    }
+}
+@media only screen and (max-width: 1260px) {
+    .user-list-container {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+
+        .container {
+            max-width: 90vw;
+        }
+
+        .user-collection-list {
+            width: 100%;
+
+            h5 {
+                max-width: 40vw;
+            }
+        }
+
+        h3 {
+            margin-top: 70px;
+        }
+    }
+    .list-image-container {
+        button{
+            display:none;
+        }
+    }
+    main {
+        .row {
+            justify-content: space-between
+        }
+    }
+}
+@media only screen and (max-width: 800px) {
+    .user-list-container {
+        .container {
+            max-width: 100vw;
+            padding: 0;
+        }
+
+
+
+        .user-collection-list {
+            border-left: none;
+            border-right: none;
+
+            li {
+                padding: 15px;
+            }
+        }
+    }
+}
+main{
+    min-height:100vh;
 }

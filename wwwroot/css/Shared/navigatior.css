@@ -274,6 +274,7 @@ $textColor: #fcf7f7;*/
   position: absolute;
   border-bottom: 5px solid #15AFE1;
   /*z-index: 1; */
+  z-index: 2;
   width: 100%;
   height: 0px;
   -webkit-transition: height, 0.3s linear;
@@ -284,8 +285,7 @@ $textColor: #fcf7f7;*/
   background-color: #364954;
   text-wrap: normal;
   overflow: hidden;
-  color: #E6F4F1;
-  z-index: 1; }
+  color: #E6F4F1; }
   #topNavDropdown i.fas {
     margin-right: 3px; }
     #topNavDropdown i.fas span {
@@ -407,7 +407,7 @@ $textColor: #fcf7f7;*/
     height: calc(100% - 70px);
     padding-top: 20px;
     overflow-y: visible;
-    z-index: 1; }
+    z-index: 2; }
     #mobileMenu ul {
       list-style-type: none;
       padding-left: 20px;

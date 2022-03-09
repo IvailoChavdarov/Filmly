@@ -1,7 +1,7 @@
-﻿$("a").not(".NoLoader").click(function () {
+﻿$("a").not(".NoLoader").not(".close").click(function () {
     showLoader()
 });
-$("button").not(".NoLoader").click(function () {
+$("button").not(".NoLoader").not(".close").click(function () {
     showLoader()
 });
 //showLoader()

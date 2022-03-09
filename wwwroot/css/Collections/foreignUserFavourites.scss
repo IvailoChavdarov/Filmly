@@ -4,8 +4,7 @@
 
 .account-page-content {
     padding-top: 70px;
-
-
+    padding-left:100px;
     .user-collection-list {
         border: 5px solid $mainColor;
         border-top: 0px;
@@ -28,6 +27,7 @@
             top: 0;
             transform: translate(-40%, -40%);
             border: 5px solid $mainColor;
+            z-index:1;
         }
 
         h3 {
@@ -36,7 +36,7 @@
             font-size: 40px;
             font-weight: 600;
             color: $textColor;
-            padding-left: 12%;
+            padding-left: 12vw;
             border-bottom: 5px solid $mainColor;
             margin-bottom:0px;
             padding-bottom:28px;
@@ -71,16 +71,144 @@
     .modal-content {
         background-color: $secondaryColor-dark;
         color: $textColor;
-        border-radius:0px;
-        width:900px;
-        position:absolute;
-        left:50%;
-        transform:translateX(-50%);
-        margin-top:100px;
+        border-radius: 0px;
+        width: 900px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 100px;
     }
 
-    .close{
-        color:$mainColor;
-        text-shadow:none;
+    .modal-body {
+        padding: 0;
+    }
+
+    .close {
+        color: $mainColor;
+        text-shadow: none;
+    }
+
+    #copy-link-button {
+        display: inline-block;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 3px solid $mainColor;
+        background-color: $secondaryColor-light-semiTransparent;
+        color: $textColor;
+        border-radius: 10px;
+        transition: all .5s;
+        width: 540px;
+        position: relative;
+        text-align: left;
+        margin-left: 15px;
+    }
+
+    #copy-link-button:active, #copy-link-button:focus {
+        outline: none;
+        box-shadow: none;
+        border: 3px solid $successColor;
+    }
+
+    #copy-link-button:focus:before {
+        content: 'Copied!';
+        background-color: $successColor;
+        color: $textColor;
+        position: absolute;
+        width: 540px;
+        left: -2px;
+        top: 0px;
+        animation: fadeIn .5s;
+        text-align: center;
+        font-weight: 700;
+        height: 100%;
+        border: 3px solid $successColor;
+        border-radius: 10px;
+    }
+}
+@media only screen and (max-width: 1306px) {
+    .account-page-content {
+        padding-left:0;
+        .foreign-user-header {
+            height: fit-content;
+
+            img {
+                position: static;
+                transform: none;
+                border: none;
+                max-width: 30%;
+            }
+
+            h3 {
+                padding-left: 10px;
+                max-width: 65%;
+                border: none;
+                font-size:xx-large;
+                button {
+                    position: static;
+                    float: initial;
+                    vertical-align:bottom;
+                }
+            }
+
+            border-bottom: 5px solid $mainColor
+        }
+    }
+
+}
+@media only screen and (max-width: 1260px) {
+    .col-md-9 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .account-page-content {
+        .foreign-user-header, .user-collection-list {
+            width: 90vw;
+            margin-left:auto;
+            margin-right:auto;
+
+        }
+    }
+}
+@media only screen and (max-width: 910px) {
+    #shareModal {
+        .modal-content {
+            max-width: 95vw;
+            text-align: center;
+
+            img {
+                margin: 30px;
+            }
+
+            .copy-link-button {
+                margin: 20px;
+                max-width:87vw;
+                word-break:break-all;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 746px) {
+    .account-page-content {
+        .foreign-user-header, .user-collection-list {
+            width: 100vw;
+            border-left: none;
+            border-right: none;
+        }
+
+        .foreign-user-header{
+            text-align:center;
+            img{
+                display:block;
+                margin:auto;
+                margin-top:10px;
+                max-width:50%;
+            }
+            h3{
+                width:100vw;
+                padding:15px;
+                max-width:100vw;
+            }
+        }
     }
 }

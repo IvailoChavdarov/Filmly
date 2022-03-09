@@ -11,40 +11,43 @@
         <div class="col-md-3 account-nav-container">
             <partial name="_AccountNavigation" />
         </div>
-        <div class="col-md-9">
-            <div class="account-page-content">
-                <h3>Your watchlist</h3>
-                <ul class="user-collection-list">
-                    @if (Model.ToWatch.Count > 0)
-                    {
-                        foreach (var title in Model.ToWatch)
+        <div class="col-md-9 user-list-container">
+            <div class="container">
+                <div class="account-page-content">
+
+                    <h3>Your watchlist</h3>
+                    <ul class="user-collection-list">
+                        @if (Model.ToWatch.Count > 0)
                         {
-                            <li>
-                                <div class="list-image-container">
-                                    <img src="@title.Image" alt="Alternate Text" />
-                                    <form title="Remove from watchlist" aria-label="Remove title from watchlist" asp-controller="titles" asp-action="RemoveFrom" asp-route-collection="watchlist" asp-route-id="@title.IdInApi" asp-route-title="@title.TitleName">
-                                        <button type="submit" aria-label="Remove from watchlist"><i class="far fa-times-circle text-danger"></i></button>
-                                    </form>
-                                </div>
-                                <div class="list-text">
-                                    <h5>@title.FullTitle</h5>
-                                    <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
-                                </div>
-                            </li>
+                            foreach (var title in Model.ToWatch)
+                            {
+                                <li>
+                                    <div class="list-image-container">
+                                        <img src="@title.Image" alt="Alternate Text" />
+                                        <form title="Remove from watchlist" aria-label="Remove title from watchlist" asp-controller="titles" asp-action="RemoveFrom" asp-route-collection="watchlist" asp-route-id="@title.IdInApi" asp-route-title="@title.TitleName">
+                                            <button type="submit" aria-label="Remove from watchlist"><i class="far fa-times-circle text-danger"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="list-text">
+                                        <h5>@title.FullTitle</h5>
+                                        <a asp-controller="titles" asp-action="details" asp-route-id="@title.IdInApi">Go to</a>
+                                    </div>
+                                </li>
+                            }
                         }
-                    }
-                    else
-                    {
-                        <h4 style="padding:40px">Add titles to your watchlist from titles details page to see them here</h4>
-                    }
-                </ul>
+                        else
+                        {
+                            <h4 style="padding:40px">Add titles to your watchlist from titles details page to see them here</h4>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts{
-    <script>
+    @*<script>
 
         window.onscroll = function () { manageAccountNavigation() };
         var navigation = document.getElementById("account-nav");
@@ -78,5 +81,5 @@
                 sessionStorage.setItem("AccountNavOpened", false);
             }
         }
-    </script>
+    </script>*@
 }

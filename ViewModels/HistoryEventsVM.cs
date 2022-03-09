@@ -12,7 +12,7 @@ namespace Filmly.ViewModels
         {
             this.Events = JSONHelper.GetLocalDataAsListOfObjects<HistoryEvent>("CinemaHistory").OrderBy(x => x.EventDate.EventYear).GroupBy(x => x.EventDate.EventYear);
         }
-        public IEnumerable<System.Linq.IGrouping<string, HistoryEvent>> Events { get; set; }
+        public IEnumerable<IGrouping<string, HistoryEvent>> Events { get; set; }
         public BreadcrumbData BreadcrumbData { get; set; }
     }
     public class HistoryEvent
@@ -133,5 +133,11 @@ namespace Filmly.ViewModels
             }
             return date;
         }
+        //public static IOrderedEnumerable<HistoryEvent> OrderDates(List<HistoryEvent> dates)
+        //{
+        //    var datesBC = dates.Where(x => x.EventDate.EventYear.Contains("B.C")).OrderByDescending(x=>x.EventDate.EventYear);
+        //    var datesAD = dates.Where(x => !x.EventDate.EventYear.Contains("B.C")).OrderBy(x => x.EventDate.EventYear);
+        //    return datesBC.Concat();
+        //}
     }
 }

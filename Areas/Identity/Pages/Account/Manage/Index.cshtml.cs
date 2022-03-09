@@ -162,6 +162,17 @@ namespace Filmly.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            var isPublic = user.IsPublic;
+            if (Input.IsPublic != isPublic)
+            {
+                user.IsPublic = Input.IsPublic;
+                var setPublicityResult = await _userManager.UpdateAsync(user);
+                if (!setPublicityResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to account publicity.";
+                    return RedirectToPage();
+                }
+            }
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = $"Your profile has been updated";
             return RedirectToPage(user);
