@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Filmly.Data.Migrations
+namespace Filmly.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -167,147 +167,6 @@ namespace Filmly.Data.Migrations
                     b.HasIndex("TitleId");
 
                     b.ToTable("User_WatchList");
-                });
-
-            modelBuilder.Entity("Filmly.Models.Article", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DatePosted")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Theme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ThumbnailUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WriterId");
-
-                    b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("Filmly.Models.Discussion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("DateCreated")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Theme")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ThumbnailUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Topic")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
-
-                    b.ToTable("Discussions");
-                });
-
-            modelBuilder.Entity("Filmly.Models.DiscussionComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("DateCreated")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DiscussionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParentCommentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("DiscussionId");
-
-                    b.HasIndex("ParentCommentId");
-
-                    b.ToTable("DiscussionComments");
-                });
-
-            modelBuilder.Entity("Filmly.Models.Feedback", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PinnedOnHomePage")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SenderEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("Filmly.Models.Images", b =>
@@ -649,50 +508,6 @@ namespace Filmly.Data.Migrations
                     b.Navigation("Title");
                 });
 
-            modelBuilder.Entity("Filmly.Models.Article", b =>
-                {
-                    b.HasOne("Filmly.Models.ApplicationUser", "Writer")
-                        .WithMany("ArticlesWritten")
-                        .HasForeignKey("WriterId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Writer");
-                });
-
-            modelBuilder.Entity("Filmly.Models.Discussion", b =>
-                {
-                    b.HasOne("Filmly.Models.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId");
-
-                    b.Navigation("Creator");
-                });
-
-            modelBuilder.Entity("Filmly.Models.DiscussionComment", b =>
-                {
-                    b.HasOne("Filmly.Models.ApplicationUser", "Creator")
-                        .WithMany("UserComments")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Filmly.Models.Discussion", "Discussion")
-                        .WithMany("Comments")
-                        .HasForeignKey("DiscussionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Filmly.Models.DiscussionComment", "ParentComment")
-                        .WithMany("ChildrenComents")
-                        .HasForeignKey("ParentCommentId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Discussion");
-
-                    b.Navigation("ParentComment");
-                });
-
             modelBuilder.Entity("Filmly.Models.Images", b =>
                 {
                     b.HasOne("Filmly.Models.Titles", "Title")
@@ -803,20 +618,6 @@ namespace Filmly.Data.Migrations
                     b.Navigation("ApplicationUser_Favourites");
 
                     b.Navigation("ApplicationUser_WatchList");
-
-                    b.Navigation("ArticlesWritten");
-
-                    b.Navigation("UserComments");
-                });
-
-            modelBuilder.Entity("Filmly.Models.Discussion", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Filmly.Models.DiscussionComment", b =>
-                {
-                    b.Navigation("ChildrenComents");
                 });
 
             modelBuilder.Entity("Filmly.Models.TitleSimplified", b =>

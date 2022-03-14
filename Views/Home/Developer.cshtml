@@ -1,0 +1,30 @@
+﻿@model StaticPagesData
+@{
+    ViewData["Title"] = "News";
+}
+@section heads
+{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Home/developer.css")" rel="stylesheet" type="text/css" />
+}
+<partial name="_BreadcrumbPartial" />
+<div class="container contacts-container">
+    <!-- <h2>Ivaylo Chavdarov</h2> -->
+    <div class="img-container">
+        <img src="~/img/me.jpg" alt="" height="250" width="250" class="bg-success">
+        <h3>Ivaylo Chavdarov</h3>
+    </div>
+    <div class="creator-info">
+        <h3>Born: 26 September 2004</h3>
+        <h3>Town: Smolyan</h3>
+        <h3>Education:</h3>
+        <ul>
+            <li>1-7 grade in primary school "Asen Zlatarov"</li>
+            <li>Telerik School Academy Game making with Phaser.js</li>
+            <li class="inProgress">8-11(so far) grade in foreign language highschool "Ivan Vazov"</li>
+            <li class="inProgress">National Program "IT Career Training"</li>
+        </ul>
+    </div>
+    <p>Kinda good Ctrl+C and Ctrl+V clicker</p>
+    <p>Снимката не зарежда, просто е качество 10x10 пиксела :(</p>
+</div>

@@ -1,0 +1,90 @@
+﻿@model InterestingFact
+@{
+    ViewData["Title"] = "Add interesting fact";
+}
+@section heads{
+    <link href="@Url.Content("~/css/Identity/manage.css")" rel="stylesheet" type="text/css" />
+}
+<div class="container">
+    <div class="manage-account-form-container">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group text-black">
+                <h3>Add interesting fact</h3>
+            </div>
+            <div class="form-group">
+                <label asp-for="FactTitle"></label>
+                <input asp-for="FactTitle" class="form-control" />
+                <span asp-validation-for="FactTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FactInfo"></label>
+                <input asp-for="FactInfo" class="form-control" />
+                <span asp-validation-for="FactInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FactImage"></label>
+                <input asp-for="FactImage" class="form-control" id="profileImageInputHidden" placeholder="Image URL" />
+                <span asp-validation-for="FactImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="margin-right:10px;font-size:large"> or </span>
+                <label for="fileupload" class="custom-file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload image
+                </label>
+                <input class="form-control" type="file" id="fileupload" hidden />
+                <span id="imageValidationText" class="text-danger"></span>
+            </div>
+            <input type="submit" name="create" value="Add fact" />
+        </form>
+        </div>
+    </div>
+    @section Scripts {
+        <script>
+            const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ddo3vrwcb/image/upload';
+            const CLOUDINARY_UPLOAD_PRESET = 'k4nawbiw';
+            const image = document.querySelector('#fileupload');
+            image.addEventListener('change', (e) => {
+                e.preventDefault();
+                if (e.target.files[image.files.length - 1].name.endsWith(".png") || e.target.files[image.files.length - 1].name.endsWith(".jpg") || e.target.files[image.files.length - 1].name.endsWith(".jpeg") | e.target.files[image.files.length - 1].name.endsWith(".gif")) {
+                    if (e.target.files[0].size < 1100000) {
+                        document.getElementById('profileImageInputHidden').value = e.target.files[0].name
+                        document.getElementById('imageValidationText').innerText = ""
+
+                        if (image.files.length > 0) {
+                            const file = image.files[image.files.length - 1];
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+                            fetch(CLOUDINARY_URL, {
+                                method: 'POST',
+                                body: formData,
+                            })
+                                .then(response => response.json())
+                                .then((data) => {
+                                    if (data.secure_url !== '') {
+                                        const uploadedFileUrl = data.secure_url;
+                                        console.log(uploadedFileUrl + " is the url");
+                                        document.getElementById('profileImageInputHidden').value = uploadedFileUrl;
+                                    }
+                                })
+                            /*                    .catch(err => console.error(err));*/
+                        }
+                    }
+                    else {
+                        document.getElementById('imageValidationText').innerText = "Image is too large"
+                        image.value = null;
+                        document.getElementById('profileImageInputHidden').value = ""
+                    }
+                }
+                else {
+                    document.getElementById('imageValidationText').innerText = "Image should be in png, jpg, jpeg or gif format"
+                    image.value = null;
+                    document.getElementById('profileImageInputHidden').value = ""
+                }
+            })
+
+        </script>
+        <partial name="_ValidationScriptsPartial" />
+    }

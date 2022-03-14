@@ -26,7 +26,7 @@ namespace Filmly.StaticClasses
             string JSONResponse = GetResponseContent(URL);
             return DeserializeStringTo<TitleExtendedData>(JSONResponse);
         }
-        private static ImageData GetTitleImages(string id)
+        public static ImageData GetTitleImages(string id)
         {
             string URL = $"https://imdb-api.com/en/API/Images/{ConstantValues.APIKey}/{id}/Full";
             string JSONResponse = GetResponseContent(URL);

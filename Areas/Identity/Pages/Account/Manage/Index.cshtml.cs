@@ -29,6 +29,8 @@ namespace Filmly.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
         public ApplicationUser UserData { get; set; }
+        public bool AdminAccount { get; set; }
+        public bool ResearcherAccount { get; set; }
         [TempData]
         public string StatusMessage { get; set; }
 
@@ -66,6 +68,10 @@ namespace Filmly.Areas.Identity.Pages.Account.Manage
             var email = user.Email;
             var lastName = user.LastName;
             var isPublic = user.IsPublic;
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            this.AdminAccount = userRoles.Contains("Administrator");
+            this.ResearcherAccount = userRoles.Contains("Administrator")||userRoles.Contains("Researcher");
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,

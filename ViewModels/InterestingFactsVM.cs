@@ -21,6 +21,5 @@ namespace Filmly.ViewModels
         public string FactTitle { get; set; }
         public string FactInfo { get; set; }
         public string FactImage { get; set; }
-
     }
 }

@@ -1,0 +1,62 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Shared/animations.scss";
+@import "../Utility/_timings.scss";
+main .container {
+    background-color: $textColor;
+    padding-top: 25px;
+
+    .interesting-facts-controller, .history-events-controller {
+        max-height: 60px;
+        overflow: hidden;
+        background-color: #BBD0DE;
+        color: $secondaryColor-dark;
+        transition: max-height .3s linear;
+
+        h3 {
+            background-color: $textColor;
+            padding: 15px;
+        }
+    }
+    h2{
+        color:$secondaryColor-dark;
+        padding:15px;
+    }
+    .interesting-facts-controller.open, .history-events-controller.open {
+        max-height: fit-content;
+    }
+
+    .article-controller-item {
+        h5 {
+            width: 60%;
+            display: inline-block;
+        }
+
+        form, input {
+            display: inline-block;
+            width: 37%;
+            float: right;
+        }
+
+        padding: 10px;
+    }
+
+    font-size: larger;
+
+    .edit-roles-form {
+        [type="submit"] {
+            background-color: $mainColor;
+            border: none;
+            color: $textColor;
+            padding: 5px;
+        }
+
+        a {
+            color: $mainColor;
+        }
+
+        padding-bottom: 20px;
+    }
+}
+.card {
+    background-color: #BBD0DE;
+}

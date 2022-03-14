@@ -178,6 +178,11 @@ namespace Filmly.Controllers
             }
             return View("Ranking", RankingData);
         }
+        [HttpGet]
+        public IActionResult TitleImages(string id)
+        {
+            return View(APIHelper.GetTitleImages(id));
+        }
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

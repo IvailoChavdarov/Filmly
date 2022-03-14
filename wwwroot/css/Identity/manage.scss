@@ -131,6 +131,46 @@
         }
     }
 }
+.control-panel {
+    margin-top: 100px;
+    a:hover{
+        text-decoration:none;
+    }
+}
+.admin-panel-opener {
+    background-color: #ff5e00;
+    text-align: center;
+
+    a {
+        display: block;
+        width: 100%;
+        line-height: 50px;
+        color: $textColor;
+        font-size: larger;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    &:hover {
+        background-color: #a63d00;
+    }
+}
+.researcher-panel-opener {
+    font-size:0;
+    a {
+        display: inline-block;
+        width: 50%;
+        line-height: 50px;
+        color: $textColor;
+        font-size: 17px;
+        font-weight: 700;
+        text-align:center;
+        border:3px solid $mainColor;
+    }
+    a:hover{
+        background-color:$mainColor;
+    }
+}
 .stick-top {
     position: static;
     top: 0;

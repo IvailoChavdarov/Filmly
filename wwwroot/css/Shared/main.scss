@@ -263,3 +263,16 @@ body {
 main {
     min-height: 60vh
 }
+.bg-secondary-dark{
+    background-color:$secondaryColor-dark;
+    border:5px solid transparent;
+    transition:all $changeThemeAnimationTime ease;
+    margin-top:50px;
+    color:$textColor;
+    padding:30px;
+}
+.darkTheme{
+    .bg-secondary-dark{
+        border-color:$mainColor;
+    }
+}

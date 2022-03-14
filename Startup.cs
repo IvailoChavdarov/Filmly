@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Filmly.Models;
+using Filmly.StaticClasses;
 
 namespace Filmly
 {
@@ -40,7 +41,7 @@ namespace Filmly
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -61,7 +62,9 @@ namespace Filmly
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+            RolesInitializer.SeedRoles(roleManager);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

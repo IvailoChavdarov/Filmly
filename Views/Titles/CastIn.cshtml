@@ -1,23 +1,41 @@
 ﻿@model ActorCastInVM
-    <partial name="_BreadcrumbPartial" />
-<h1>@Model.ActorData.Name</h1>
-<h2>Popular works:</h2>
-@foreach (var title in Model.ActorData.KnownFor)
-{
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <img class="card-img-top" src="@title.Image" alt="Card image cap">
-            <h5 class="card-title">@title.Role in @title.FullTitle</h5>
-        </div>
-    </div>
+@{
+    ViewData["Title"] = $"{Model.ActorData.Name} appearances";
 }
-<h2>All appearances:</h2>
-@foreach (var title in Model.ActorData.CastMovies)
-{
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">@title.Role in @title.Title</h5>
-            <p>@title.Description</p>
-        </div>
-    </div>
+@section heads{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Titles/cast.css")" rel="stylesheet" type="text/css" />
 }
+
+<partial name="_BreadcrumbPartial" />
+<div class="container cast-container">
+    <a asp-action="details" asp-route-id="@Model.ActorData.Id" class="back-button">Back to @Model.ActorData.Name</a>
+    <ul class="cast">
+        @if (Model.ActorData.KnownFor.Length > 0)
+        {
+        <li class="h2">Popular works:</li>
+            @foreach (var knownFor in Model.ActorData.KnownFor)
+            {
+                <li class="cast-data">
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@knownFor.Id">
+                        <img src="@knownFor.Image" height="70">
+                        <h5>In @knownFor.Title as @knownFor.Role</h5>
+                    </a>
+                </li>
+            }
+        }
+        @if (Model.ActorData.CastMovies.Length > 0)
+        {
+    <li class="h2">All appearances:</li>
+            @foreach (var appearance in Model.ActorData.CastMovies)
+            {
+                <li class="cast-data">
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@appearance.Id">
+                        <h5>@appearance.Title</h5>
+                        <p>@appearance.Description</p>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>

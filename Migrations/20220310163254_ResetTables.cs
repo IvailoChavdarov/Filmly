@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Filmly.Data.Migrations
+namespace Filmly.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class ResetTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,7 +50,7 @@ namespace Filmly.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsPublic = table.Column<bool>(type: "bit", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -88,22 +88,39 @@ namespace Filmly.Data.Migrations
                     RuntimeStr = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Plot = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Awards = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    directors = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    writers = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    stars = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    genres = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    companies = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    countries = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    languages = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    contentRating = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    imDbRating = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    imDbRatingVotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    tagline = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    keywords = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Directors = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Writers = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Stars = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Genres = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Companies = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Countries = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Languages = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContentRating = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IMDbRating = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IMDbRatingVotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TrailerLinkEmbed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tagline = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Titles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TitlesSimplified",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdInApi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IMDbRating = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TitlesSimplified", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,23 +230,20 @@ namespace Filmly.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Similars",
+                name: "Images",
                 columns: table => new
                 {
-                    TitleId = table.Column<int>(type: "int", nullable: false),
-                    SimilarId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImgURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TitleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Similars", x => new { x.TitleId, x.SimilarId });
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Similars_Titles_SimilarId",
-                        column: x => x.SimilarId,
-                        principalTable: "Titles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Similars_Titles_TitleId",
+                        name: "FK_Images_Titles_TitleId",
                         column: x => x.TitleId,
                         principalTable: "Titles",
                         principalColumn: "Id",
@@ -240,21 +254,21 @@ namespace Filmly.Data.Migrations
                 name: "Titles_Actors",
                 columns: table => new
                 {
-                    ActorId = table.Column<int>(type: "int", nullable: false),
-                    TitleId = table.Column<int>(type: "int", nullable: false)
+                    TitleId = table.Column<int>(type: "int", nullable: false),
+                    ActorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Titles_Actors", x => new { x.TitleId, x.ActorId });
                     table.ForeignKey(
-                        name: "FK_Titles_Actors_Actors_TitleId",
-                        column: x => x.TitleId,
+                        name: "FK_Titles_Actors_Actors_ActorId",
+                        column: x => x.ActorId,
                         principalTable: "Actors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Titles_Actors_Titles_ActorId",
-                        column: x => x.ActorId,
+                        name: "FK_Titles_Actors_Titles_TitleId",
+                        column: x => x.TitleId,
                         principalTable: "Titles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -308,6 +322,30 @@ namespace Filmly.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Similars",
+                columns: table => new
+                {
+                    TitleId = table.Column<int>(type: "int", nullable: false),
+                    SimilarId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Similars", x => new { x.TitleId, x.SimilarId });
+                    table.ForeignKey(
+                        name: "FK_Similars_Titles_TitleId",
+                        column: x => x.TitleId,
+                        principalTable: "Titles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Similars_TitlesSimplified_SimilarId",
+                        column: x => x.SimilarId,
+                        principalTable: "TitlesSimplified",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -348,6 +386,11 @@ namespace Filmly.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Images_TitleId",
+                table: "Images",
+                column: "TitleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Similars_SimilarId",
                 table: "Similars",
                 column: "SimilarId");
@@ -386,6 +429,9 @@ namespace Filmly.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
                 name: "Similars");
 
             migrationBuilder.DropTable(
@@ -399,6 +445,9 @@ namespace Filmly.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "TitlesSimplified");
 
             migrationBuilder.DropTable(
                 name: "Actors");

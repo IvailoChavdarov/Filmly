@@ -1,62 +1,75 @@
 ﻿@model TitleCastVM
-    <partial name="_BreadcrumbPartial" />
-<a asp-action="details" asp-route-id="@Model.TitleData.ImDbId">@Model.TitleData.FullTitle</a>
-@if (Model.TitleData.Actors.Length > 0)
-{
-    <h1>Actors:</h1>
-    @foreach (var actor in Model.TitleData.Actors)
-    {
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="@actor.Image" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">@actor.Name in the role of @actor.AsCharacter</h5>
-            </div>
-        </div>
-    }
+@{
+    ViewData["Title"] = $"{Model.TitleData.Title}'s cast";
 }
-@if (Model.TitleData.Directors.Items.Length > 0)
-{
-    <h1>Directors:</h1>
-    @foreach (var director in Model.TitleData.Directors.Items)
-    {
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">@director.Name</h5>
-                <p>@director.Description</p>
-            </div>
-        </div>
-    }
+@section heads{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/Titles/cast.css")" rel="stylesheet" type="text/css" />
 }
-@if (Model.TitleData.Writers.Items.Length > 0)
-{
-    <h1>Writen by:</h1>
-    @foreach (var writer in Model.TitleData.Writers.Items)
-    {
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">@writer.Name</h5>
-                <p>@writer.Description</p>
-            </div>
-        </div>
-    }
-}
-@if (Model.TitleData.Others.Length > 0)
-{
-    <h1>Others:</h1>
-    @foreach (var other in Model.TitleData.Others)
-    {
-        if (other.Items.Length>0)
+
+<partial name="_BreadcrumbPartial" />
+<div class="container cast-container">
+    <a asp-action="details" asp-route-id="@Model.TitleData.ImDbId" class="back-button">Back to @Model.TitleData.FullTitle</a>
+    <ul class="cast">
+        @if (Model.TitleData.Actors.Length > 0)
         {
-            <h3>@other.Job</h3>
-           @foreach (var otherMember in other.Items)
-           {
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">@otherMember.Name</h5>
-        <p>@otherMember.Description</p>
-    </div>
-</div>
-           }
+            <li class="h2">Actors:</li>
+            @foreach (var actor in Model.TitleData.Actors)
+            {
+                <li class="cast-data">
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@actor.Id">
+                        <img src="@actor.Image" height="70">
+                        <h5>@actor.Name in the role of @actor.AsCharacter</h5>
+                    </a>
+                </li>
+            }
         }
-    }
-}
+        @if (Model.TitleData.Directors.Items.Length > 0)
+        {
+            <li class="h2">Directors:</li>
+            @foreach (var director in Model.TitleData.Directors.Items)
+            {
+
+                <li class="cast-data">
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@director.Id">
+                        <h5>@director.Name</h5>
+                        <p>@director.Description</p>
+                    </a>
+                </li>
+            }
+        }
+        @if (Model.TitleData.Writers.Items.Length > 0)
+        {
+            <li class="h2">Writen by:</li>
+            @foreach (var writer in Model.TitleData.Writers.Items)
+            {
+                <li class="cast-data">
+                    <a asp-controller="titles" asp-action="details" asp-route-id="@writer.Id">
+                        <h5>@writer.Name</h5>
+                        <p>@writer.Description</p>
+                    </a>
+                </li>
+            }
+        }
+        @if (Model.TitleData.Others.Length > 0)
+        {
+            <li class="h2">Others:</li>
+            @foreach (var other in Model.TitleData.Others)
+            {
+                if (other.Items.Length > 0)
+                {
+                    <li class="h3">@other.Job:</li>
+                    @foreach (var otherMember in other.Items)
+                    {
+                        <li class="cast-data">
+                            <a asp-controller="titles" asp-action="details" asp-route-id="@otherMember.Id">
+                                <h5>@otherMember.Name</h5> -
+                                <p>@otherMember.Description</p>
+                            </a>
+                        </li>
+                    }
+                }
+            }
+        }
+    </ul>
+</div>

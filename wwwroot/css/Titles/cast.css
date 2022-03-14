@@ -1,0 +1,142 @@
+﻿/*$secondaryColor-light: #DAF3FF;
+$secondaryColor-dark: #607999;
+$mainColor: #ff4400;
+$textColor: #FFF6F1;*/
+/*$secondaryColor-light: #A4AE9E;
+$secondaryColor-dark: #40493B;
+$mainColor: #4DFF00;
+$textColor: #F2FCEC;*/
+/*$secondaryColor-light: #d2c4ae;
+$secondaryColor-dark: #403535;
+$mainColor: #294023;
+$textColor: #ffeccf;*/
+/*$secondaryColor-light: #006E61;
+$secondaryColor-dark: #522700;
+$mainColor: #FCBA03;
+$textColor: #DFE0DF;*/
+/*$secondaryColor-light: #AEAC99;
+$secondaryColor-dark: #494738;
+$mainColor: #FFFF33;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #DFE0DF;
+$secondaryColor-dark: #693B22;
+$mainColor: #FF6700;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #9DB0A2;
+$secondaryColor-dark: #3B4A3F;
+$mainColor: #03FC90;
+$textColor: #FCFAEE;*/
+/*$secondaryColor-light: #121212;
+$secondaryColor-dark: rgb(31,31,31);
+$mainColor: rgb(245, 197, 24);
+$textColor: #fcf7f7;*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%); }
+  100% {
+    transform: translateY(0); } }
+
+@keyframes zoomIn-small {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(1.2); } }
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(-120%); } }
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0); }
+  to {
+    transform: translateX(120%); } }
+
+@keyframes slideOutToRightNotice {
+  0% {
+    transform: translateX(0); }
+  100% {
+    transform: translateX(100%); } }
+
+.cast {
+  list-style: none;
+  background-color: #364954;
+  padding: 25px;
+  border: 5px solid transparent;
+  transition: border-color 250ms ease; }
+  .cast .h2, .cast .h3 {
+    color: #15AFE1;
+    margin-top: 25px;
+    margin-bottom: 25px; }
+  .cast .cast-data {
+    background-color: #364954;
+    color: #E6F4F1;
+    padding-left: 15px; }
+    .cast .cast-data h5 {
+      display: inline-block;
+      padding-bottom: 10px;
+      padding-top: 10px; }
+    .cast .cast-data img {
+      object-fit: cover;
+      width: 52px;
+      margin-right: 15px; }
+    .cast .cast-data a {
+      display: block;
+      color: #E6F4F1; }
+    .cast .cast-data a:hover {
+      text-decoration: none;
+      color: #15AFE1; }
+    .cast .cast-data p {
+      margin-bottom: 0;
+      display: inline-block;
+      display: inline-block; }
+
+.cast-container {
+  animation: slideInFromLeft 1s; }
+
+.back-button {
+  animation: slideInFromLeft 1s;
+  color: #15AFE1;
+  background-color: #364954;
+  padding: 20px;
+  font-size: x-large;
+  font-weight: 700;
+  border: 5px solid transparent;
+  transition: border-color 250ms ease;
+  padding-bottom: 7px;
+  border-bottom: none; }
+
+.back-button:hover {
+  color: #E6F4F1; }
+
+.darkTheme .back-button {
+  border-color: #15AFE1; }
+
+.darkTheme .cast {
+  border-color: #15AFE1; }

@@ -28,7 +28,7 @@
         }
         if (Model.BreadcrumbData.IdPublicName == "Cast")
         {
-            <a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.ActionPublicName</a>
+<span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span><a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="@Model.BreadcrumbData.ActionName" asp-route-id="@Model.BreadcrumbData.IdName">@Model.BreadcrumbData.ActionPublicName</a>
             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span><a asp-controller="@Model.BreadcrumbData.ControllerName" asp-action="Cast" asp-route-id="@Model.BreadcrumbData.IdName">Cast</a>
         }
 

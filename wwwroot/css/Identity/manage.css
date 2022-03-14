@@ -178,6 +178,39 @@ $textColor: #fcf7f7;*/
   .manage-account-form-container .checkbox-container-sm input:checked::before {
     font-size: large; }
 
+.control-panel {
+  margin-top: 100px; }
+  .control-panel a:hover {
+    text-decoration: none; }
+
+.admin-panel-opener {
+  background-color: #ff5e00;
+  text-align: center; }
+  .admin-panel-opener a {
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: #E6F4F1;
+    font-size: larger;
+    font-weight: 700;
+    margin-bottom: 15px; }
+  .admin-panel-opener:hover {
+    background-color: #a63d00; }
+
+.researcher-panel-opener {
+  font-size: 0; }
+  .researcher-panel-opener a {
+    display: inline-block;
+    width: 50%;
+    line-height: 50px;
+    color: #E6F4F1;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    border: 3px solid #15AFE1; }
+  .researcher-panel-opener a:hover {
+    background-color: #15AFE1; }
+
 .stick-top {
   position: static;
   top: 0; }

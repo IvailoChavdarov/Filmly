@@ -110,6 +110,10 @@ namespace Filmly.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        if (_userManager.Users.Count() == 1)
+                        {
+                            await _userManager.AddToRoleAsync(user, "Administrator");
+                        }
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

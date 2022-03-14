@@ -144,19 +144,31 @@ namespace Filmly.Controllers
 
             return View(data);
         }
-        public IActionResult Contacts()
+        public IActionResult Developer()
         {
-            ContactsVM data = new ContactsVM();
-            data.BreadcrumbData = new BreadcrumbData()
+            StaticPagesData breadcrumb = new StaticPagesData();
+            breadcrumb.BreadcrumbData = new BreadcrumbData()
             {
                 ControllerName = "Home",
                 ControllerPublicName = "Home",
-                ActionName = "contacts",
-                ActionPublicName = "Contact us"
+                ActionName = "developer",
+                ActionPublicName = "Developer"
             };
-            return View(data);
+            return View(breadcrumb);
         }
         public IActionResult Privacy()
+        {
+            StaticPagesData breadcrumb = new StaticPagesData();
+            breadcrumb.BreadcrumbData = new BreadcrumbData()
+            {
+                ControllerName = "Home",
+                ControllerPublicName = "Home",
+                ActionName = "privacy",
+                ActionPublicName = "Privacy"
+            };
+            return View(breadcrumb);
+        }
+        public IActionResult Documentation()
         {
             return View();
         }
@@ -166,14 +178,5 @@ namespace Filmly.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        //private async Task CreateAdminRole()
-        //{
-        //    if (!await _roleManager.RoleExistsAsync("admin"))
-        //    {
-        //        await _roleManager.CreateAsync(new IdentityRole("admin"));
-        //    }
-        //}
-
     }
 }

@@ -293,3 +293,14 @@ body {
 
 main {
   min-height: 60vh; }
+
+.bg-secondary-dark {
+  background-color: #364954;
+  border: 5px solid transparent;
+  transition: all 250ms ease;
+  margin-top: 50px;
+  color: #E6F4F1;
+  padding: 30px; }
+
+.darkTheme .bg-secondary-dark {
+  border-color: #15AFE1; }

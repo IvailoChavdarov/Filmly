@@ -1,0 +1,60 @@
+﻿@import "../Utility/_colors.scss";
+@import "../Utility/_timings.scss";
+@import "../Shared/animations.scss";
+.title-images-container {
+    a {
+        margin-top:15px;
+        text-align:left;
+        display:block;
+        color: $mainColor;
+    }
+    text-align:center;
+    .image-card {
+        display: inline-block;
+        position: relative;
+        margin:12px;
+        border-radius:10px;
+        overflow:hidden;
+        img {
+            max-width: 475px;
+            max-height: 375px;
+        }
+
+        h3 {
+            position: absolute;
+            top: 0;
+            padding:12px;
+            color: $textColor;
+            height: 100%;
+            width: 100%;
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, transparent 0%, $secondaryColor-dark 70%, $secondaryColor-dark 100%);
+            opacity:0;
+            transition:opacity .5s ease;
+            text-align:left;
+        }
+    }
+    .image-card:hover{
+        h3{
+            opacity:1;
+        }
+    }
+}
+.darkTheme {
+    .title-images-container {
+        h3 {
+            color:$secondaryColor-dark;
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, transparent 0%, $secondaryColor-light 60%, $secondaryColor-light 100%);
+        }
+    }
+}
+@media only screen and (max-width: 470px) {
+    .title-images-container {
+        .image-card {
+            img {
+                max-width: 90vw;
+            }
+        }
+    }
+}

@@ -1,7 +1,15 @@
-﻿@{
+﻿@model StaticPagesData
+@{
     ViewData["Title"] = "Privacy Policy";
 }
+@section heads
+{
+    <link href="@Url.Content("~/css/Shared/breadcrumb.css")" rel="stylesheet" type="text/css" />
+}
 <partial name="_BreadcrumbPartial" />
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container bg-secondary-dark">
+    <h1>@ViewData["Title"]</h1>
+    <p>Filmly stores the data you entered during and after registration and uses it only for basic purposes like sharing, logging data, etc.</p>
+</div>
+

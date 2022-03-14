@@ -1,0 +1,18 @@
+﻿@model ImageData
+@{
+    ViewData["Title"] = $"{Model.Title} images";
+}
+@section heads{
+    <link href="@Url.Content("~/css/Titles/titleImages.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid title-images-container">
+    <h1><a asp-controller="titles" asp-action="details" asp-route-id="@Model.IMDbId">Back to @Model.Title</a></h1>
+    @foreach (var image in Model.Items)
+    {
+        <div class="image-card">
+            <img src="@image.Image" alt="@image.Title" />
+            <h3 class="image-card-title">@image.Title</h3>
+        </div>
+    }
+</div>

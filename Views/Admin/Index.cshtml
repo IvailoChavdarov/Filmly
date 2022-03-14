@@ -1,0 +1,49 @@
+﻿@model AdministrationIndexVM
+@{
+    ViewData["Title"] = "Control panel";
+}
+@section heads{
+    <link href="@Url.Content("~/css/Admin/controlPanel.css")" rel="stylesheet" type="text/css" />
+}
+<div class="container">
+    <div class="interesting-facts-controller">
+        <h3 onclick="document.querySelector('.interesting-facts-controller').classList.toggle('open')">Remove interesting facts <i class="fas fa-angle-down"></i></h3>
+        @foreach (var interestingFact in Model.InterestingFacts)
+        {
+            <div class="article-controller-item">
+                <h5>@interestingFact.FactTitle</h5>
+                <form asp-action="RemoveFact" asp-route-factTitle="@interestingFact.FactTitle" method="post">
+                    <input type="submit" class="btn btn-danger" value="Remove" />
+                </form>
+            </div>
+        }
+    </div>
+    <div class="history-events-controller">
+        <h3 onclick="document.querySelector('.history-events-controller').classList.toggle('open')">Remove history events <i class="fas fa-angle-down"></i></h3>
+        @foreach (var historyEvent in Model.HistoryEvents)
+        {
+            <div class="article-controller-item">
+                <h5>@historyEvent.EventTitle</h5>
+                <form asp-action="RemoveEvent" asp-route-eventTitle="@historyEvent.EventTitle" method="post">
+                    <input type="submit" class="btn btn-danger" value="Remove" />
+                </form>
+            </div>
+        }
+    </div>
+    <form asp-action="EditUsersInRole" method="post" class="edit-roles-form">
+        <h2>Add or remove users from researcher role</h2>
+        @for (int i = 0; i < Model.UsersRoles.Count; i++)
+        {
+            <div class="form-check m-1">
+                <input type="hidden" asp-for="@Model.UsersRoles[i].UserId" />
+                <input type="hidden" asp-for="@Model.UsersRoles[i].UserName" />
+                <input asp-for="@Model.UsersRoles[i].IsSelected" class="form-check-input" />
+                <label class="form-check-label" asp-for="@Model.UsersRoles[i].IsSelected">
+                    @Model.UsersRoles[i].UserName
+                </label>
+            </div>
+        }
+        <input type="submit" value="Update" />
+        <a asp-action="Index">Cancel</a>
+    </form>
+</div>

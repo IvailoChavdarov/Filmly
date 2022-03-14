@@ -114,5 +114,21 @@
   {
     "outputFile": "wwwroot/css/Collections/foreignUserFavourites.css",
     "inputFile": "wwwroot/css/Collections/foreignUserFavourites.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Admin/controlPanel.css",
+    "inputFile": "wwwroot/css/Admin/controlPanel.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Home/developer.css",
+    "inputFile": "wwwroot/css/Home/developer.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Titles/cast.css",
+    "inputFile": "wwwroot/css/Titles/cast.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Titles/titleImages.css",
+    "inputFile": "wwwroot/css/Titles/titleImages.scss"
   }
 ]
