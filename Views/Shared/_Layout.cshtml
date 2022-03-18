@@ -30,10 +30,7 @@
     {
         <span class="notice @TempData["noticeBackground"]" id="noticeBox"><span>@TempData["notice"]</span></span>
     }
-@*<span class="notice bg-success"><span>Attack on titan (2013) was not successfully removed from your watchlist!</span></span>*@
-    @*<script>
-            window.onunload = function () { };
-        </script>*@
+
     <script>
         var noticeBox = document.getElementById("noticeBox")
         if (noticeBox) {
@@ -45,7 +42,6 @@
             }, 4800);
             noticeBox.classList.add("activated")
         }
-       
     </script>
     <script src="~/js/Themes.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -55,7 +51,6 @@
     <script src="~/js/Loader.js?version=1" asp-append-version="true"></script>
     <script src="~/js/TopNavigator.js" asp-append-version="true"></script>
     <script src="~/js/genresSlider.js" asp-append-version="true"></script>
-    @*<script>scrollFunction();</script>*@
     <script>
         function copyDiscordName() {
             var button = document.getElementById('discordLink')

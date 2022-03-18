@@ -26,11 +26,6 @@ namespace Filmly.Controllers
         {
             _logger = logger;
             _roleManager = roleManager;
-
-            //added for starting the project from another device
-            //CreateAdminRole();
-            //CreateResearcherRole();
-            //CreateModeratorRole();
         }
 
         public IActionResult Index()
@@ -171,12 +166,6 @@ namespace Filmly.Controllers
         public IActionResult Documentation()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -99,12 +99,6 @@ namespace Filmly.Controllers
                 return RedirectToAction("ActorDetails", new {id=id });
             }
             Titles TitleToRender = GetTitle(id);
-            //tt2560140 - AoT IMDb ID
-            if (TitleToRender.IdInApi== "tt2560140")
-            {
-                TitleToRender.IMDbRating = "10";
-            }
-            //var MovieInDb = _db.Titles.Where(x => x.IdInApi == id);
             TitleDetailsVM Response = new TitleDetailsVM() { TitleFullData = TitleToRender};
             if (User.Identity.IsAuthenticated)
             {

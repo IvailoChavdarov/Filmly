@@ -26,6 +26,7 @@ namespace Filmly.Controllers
             _roleManager = roleManager;
             _db = db;
         }
+
         [HttpGet]
         [Authorize]
         [Authorize(Roles = "Administrator")]
@@ -58,6 +59,7 @@ namespace Filmly.Controllers
 
             return View(adminControllerData);
         }
+
         [HttpPost]
         [Authorize]
         [Authorize(Roles = "Administrator")]
@@ -95,6 +97,7 @@ namespace Filmly.Controllers
 
             return RedirectToAction("index");
         }
+
         [HttpPost]
         [Authorize]
         [Authorize(Roles = "Administrator")]
@@ -106,6 +109,7 @@ namespace Filmly.Controllers
             JSONHelper.RewriteLocalData(interestingFacts, "InterestingFacts");
             return RedirectToAction("interestingfacts", "home");
         }
+
         [HttpPost]
         [Authorize]
         [Authorize(Roles = "Administrator")]

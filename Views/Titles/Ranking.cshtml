@@ -11,10 +11,9 @@
 <div class="ranking-header">
     <img src="~/img/genres/@(NameSimplifiers.RankingNamesDictionaryUserView.Where(x=>x.Value==Model.RankingName).First().Key + ".jpg")" alt="Alternate Text" />
     <div class="ranking-title"><h1>@Model.RankingName</h1></div>
-    @*<div class="ranking-title-additional-underlay"></div>
-        <div class="ranking-title-additional"></div>*@
 </div>
 <partial name="_BreadcrumbPartial" />
+<p style="font-size:small;opacity:0.6;text-align:right;padding-right:10px">Image designed by <a href="https://www.freepik.com/" target="_blank">Freepik</a></p>
 <div class="container ranking-container">
     <div class="table">
         <div class="table-body">

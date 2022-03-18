@@ -56,7 +56,7 @@ namespace Filmly.StaticClasses
             {
                 if (ranking.Contains("Anime"))
                 {
-                    string URL = $"https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?title_type=tv_series&num_votes=1000,&genres=animation&keywords=anime&sort=user_rating,desc";
+                    string URL = $"https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?title_type=tv_series&num_votes=15000,&genres=animation&keywords=anime&sort=user_rating,desc";
                     string JSONResponse = GetResponseContent(URL);
                     return DeserializeStringTo<ThemedRanking>(JSONResponse);
 
@@ -145,11 +145,11 @@ namespace Filmly.StaticClasses
             {
                 if (ranking == "Top250Anime")
                 {
-                    URL = "https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?num_votes=1000,&genres=animation&countries=jp&keywords=anime&count=250&sort=user_rating,desc";
+                    URL = "https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?num_votes=12000,&genres=animation&countries=jp&keywords=anime&count=250&sort=user_rating,desc";
                 }
                 else
                 {
-                    URL = "https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?num_votes=1000,&genres=animation&countries=jp&keywords=anime&count=100";
+                    URL = "https://imdb-api.com/API/AdvancedSearch/k_ygr1rofb?num_votes=12000,&genres=animation&countries=jp&keywords=anime&count=100";
                 }
                 string JSONResponse = GetResponseContent(URL);
                 return DeserializeStringTo<ThemedRanking>(JSONResponse);

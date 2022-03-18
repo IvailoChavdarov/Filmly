@@ -1,0 +1,9 @@
+﻿@model StatusCodeErrorViewModel
+@{
+    ViewData["Title"] = $"Error {Model.ErrorCode}";
+}
+<div class="container mt-5">
+    <h1 class="text-danger">@Model.ErrorCode</h1>
+    <h2 class="text-danger">@Model.ErrorDescription</h2>
+    <h2><a asp-controller="home" asp-action="index">Back to home</a></h2>
+</div>
